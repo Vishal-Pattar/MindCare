@@ -4,31 +4,11 @@
     /* Color Variables */
     --color-border: #27272A;
     --color-bg: #09090B;
-    --color-bg-body: #0F0F0F ;
+    --color-bg-body: #181818;
+    --color-accent: #202020;
     --color-text-primary: #FAFAFA;
     --color-text-secondary: #A1A1AA;
     --color-text-tertiary: #52525B;
-
-    --background: rgb(10, 10, 10);
-    --foreground: rgb(249, 249, 249);
-    --card: rgb(10, 10, 10);
-    --card-foreground: rgb(249, 249, 249);
-    --popover: rgb(10, 10, 10);
-    --popover-foreground: rgb(249, 249, 249);
-    --primary: rgb(249, 249, 249);
-    --primary-foreground: rgb(13, 33, 51);
-    --secondary: rgb(19, 25, 32);
-    --secondary-foreground: rgb(249, 249, 249);
-    --muted: rgb(19, 25, 32);
-    --muted-foreground: rgb(62, 82, 130);
-    --accent: rgb(19, 25, 32);
-    --accent-foreground: rgb(249, 249, 249);
-    --destructive: rgb(194, 4, 1);
-    --destructive-foreground: rgb(249, 249, 249);
-    --border: rgb(19, 25, 32);
-    --input: rgb(19, 25, 32);
-    --ring: rgb(241, 236, 236);
-
 
     /* Gradient Variables */
     --gradient-header: linear-gradient(rgb(25, 25, 31), rgba(9, 9, 11, 1));
