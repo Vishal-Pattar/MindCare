@@ -13,7 +13,7 @@ const App = () => {
     const addMessage = (userMessage) => {
         const newMessage = {
             user: userMessage,
-            output: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ea, eligendi repellat cupiditate eum blanditiis omnis nemo. Ut, quos nihil. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ea, eligendi repellat cupiditate eum blanditiis omnis nemo.'
+            output: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ea, eligendi repellat cupiditate eum blanditiis omnis nemo. Ut, quos nihil. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi ea, eligendi repellat.'
         };
         setMessages([...messages, newMessage]);
     };
