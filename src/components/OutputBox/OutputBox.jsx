@@ -17,7 +17,7 @@ const OutputBox = ({ messages }) => {
                         index === prevMessages.length - 1 ? { ...msg, display: true } : msg
                     )
                 );
-            }, 2000);
+            }, 1000);
         }
     }, [messages]);
 
@@ -28,7 +28,7 @@ const OutputBox = ({ messages }) => {
                     <span>
                         <img src={img} alt='output' className='outputbox__image' />
                         <div className='outputbox__text'>
-                            <span>{msg.user}</span>
+                            <div>{msg.user}</div>
                         </div>
                     </span>
                     <span>
@@ -36,7 +36,7 @@ const OutputBox = ({ messages }) => {
                         <div className='outputbox__text'>
                             {msg.display ? (
                                 msg.output.split(' ').map((word, i) => (
-                                    <span key={i} className='word' style={{ '--word-index': i }}>{word} </span>
+                                    <div key={i} className='word' style={{ '--word-index': i }}>{word} </div>
                                 ))
                             ) : (
                                 <img src={Loader} alt='loading' className='loader' />

@@ -1,9 +1,15 @@
 .outputbox__container {
+    max-height: 74vh;
     width: 50vw;
     position: relative;
     top: 0px;
     left: 50%;
     transform: translateX(-50%);
+    overflow-y: scroll;
+}
+
+.outputbox__container::-webkit-scrollbar {
+    display: none;
 }
 
 .outputbox__content span{
@@ -12,7 +18,7 @@
     font-family: 'Geist-Light', sans-serif;
 }
 
-.outputbox__content span img {
+.outputbox__image {
     height: 20px;
     width: 20px;
     margin: 1.25rem;
@@ -21,14 +27,15 @@
 .outputbox__text {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: start;
     align-items: center;
     color: var(--color-text-primary);
-    border-bottom: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
     box-sizing: border-box;
+    flex-wrap: wrap;
 }
 
-.outputbox__text span {
+.outputbox__text div {
     margin: 0.5rem 0.1rem;
 }
 
@@ -47,5 +54,4 @@
 .loader {
     height: 20px;
     width: 20px;
-    margin: 1.25rem;
 }
