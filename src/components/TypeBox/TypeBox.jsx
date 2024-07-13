@@ -9,18 +9,33 @@ const TypeBox = ({ addMessage }) => {
 
     useEffect(() => {
         const textarea = textareaRef.current;
-        if (textarea) {
-            const resizeTextarea = () => {
+
+        const resizeTextarea = () => {
+            if (textarea) {
                 textarea.style.height = 'auto';
                 textarea.style.height = `${textarea.scrollHeight}px`;
                 textarea.scrollTop = textarea.scrollHeight;
-            };
+            }
+        };
 
+        const handleKeyDown = (event) => {
+            if (event.key === 'Enter') {
+                if (event.shiftKey) {
+                    return;
+                }
+                event.preventDefault();
+                handleSendMessage();
+            }
+        };
+
+        if (textarea) {
             textarea.addEventListener('input', resizeTextarea);
+            textarea.addEventListener('keydown', handleKeyDown);
             resizeTextarea();
 
             return () => {
                 textarea.removeEventListener('input', resizeTextarea);
+                textarea.removeEventListener('keydown', handleKeyDown);
             };
         }
     }, []);
@@ -28,7 +43,8 @@ const TypeBox = ({ addMessage }) => {
     const handleSendMessage = () => {
         if (textareaRef.current) {
             addMessage(textareaRef.current.value);
-            textareaRef.current.value = ''; // Clear the textarea after sending the message
+            textareaRef.current.value = '';
+            textareaRef.current.style.height = 'auto';
         }
     };
 
