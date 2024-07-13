@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import WelcomeBox from '../WelcomeBox/WelcomeBox';
 import './OutputBox.css';
 import img from '../../assets/logo.png';
 import Loader from '../../assets/loader.gif'; // Add a loader gif to your assets
 
 const OutputBox = ({ messages }) => {
     const [displayMessages, setDisplayMessages] = useState([]);
+    const [showWelcomeBox, setShowWelcomeBox] = useState(true);
 
     useEffect(() => {
         if (messages.length > 0) {
+            setShowWelcomeBox(false);
+
             const lastMessage = messages[messages.length - 1];
             setDisplayMessages((prevMessages) => [...prevMessages, { ...lastMessage, display: false }]);
 
@@ -19,9 +23,14 @@ const OutputBox = ({ messages }) => {
                 );
             }, 1000);
         }
+        else {
+            setShowWelcomeBox(true);
+        }
     }, [messages]);
 
-    return (
+    return (showWelcomeBox ? (
+        <WelcomeBox />
+    ) : (
         <div className='outputbox__container'>
             {displayMessages.map((msg, index) => (
                 <div className='outputbox__content' key={index}>
@@ -46,7 +55,7 @@ const OutputBox = ({ messages }) => {
                 </div>
             ))}
         </div>
+    )
     );
-};
-
+}
 export default OutputBox;
