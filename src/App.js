@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import './global.css';
 import './font.css';
 import Header from './components/Header/Header';
 import TypeBox from './components/TypeBox/TypeBox';
-// import WelcomeBox from './components/WelcomeBox/WelcomeBox';
 import OutputBox from './components/OutputBox/OutputBox';
+import LoginBox from './components/LoginBox/LoginBox';
+import RegisterBox from './components/RegisterBox/RegisterBox';
+
+const Main = ({ addMessage, messages }) => (
+    <>
+        <TypeBox addMessage={addMessage} />
+        <OutputBox messages={messages} />
+    </>
+);
 
 const App = () => {
     const [messages, setMessages] = useState([]);
@@ -19,12 +28,17 @@ const App = () => {
     };
 
     return (
-        <div className='App'>
-            <Header />
-            <TypeBox addMessage={addMessage} />
-            <OutputBox messages={messages} />
-        </div>
-    )
-}
+        <Router>
+            <div className='App'>
+                <Header />
+                <Routes>
+                    <Route path="/login" element={<LoginBox />} />
+                    <Route path="/register" element={<RegisterBox />} />
+                    <Route path="/" element={<Main addMessage={addMessage} messages={messages} />} />
+                </Routes>
+            </div>
+        </Router>
+    );
+};
 
 export default App;
