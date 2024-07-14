@@ -15,7 +15,7 @@
 .outputbox__content span{
     display: flex;
     flex-direction: row;
-    font-family: 'Geist-Light', sans-serif;
+    font-family: 'Geist-Regular', sans-serif;
 }
 
 .outputbox__image {
@@ -24,19 +24,20 @@
     margin: 1.25rem;
 }
 
-.outputbox__text {
+.outputbox__textspace {
     width: 100%;
     display: flex;
-    justify-content: start;
     align-items: center;
     color: var(--color-text-primary);
-    border-top: 1px solid var(--color-border);
     box-sizing: border-box;
     flex-wrap: wrap;
+    padding: 1rem 0;
+    white-space: pre-wrap;
+    border-bottom: 1px solid var(--color-border);
 }
 
-.outputbox__text div {
-    margin: 0.5rem 0.1rem;
+.outputbox__textspace div {
+    margin: 0 0.1rem;
 }
 
 .word {
