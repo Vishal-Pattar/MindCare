@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import './TypeBox.css';
 import { FiPlus } from "react-icons/fi";
 import { MdSubdirectoryArrowLeft } from "react-icons/md";
@@ -6,6 +6,14 @@ import { Tooltip } from 'react-tooltip';
 
 const TypeBox = ({ addMessage }) => {
     const textareaRef = useRef(null);
+
+    const handleSendMessage = useCallback(() => {
+        if (textareaRef.current) {
+            addMessage(textareaRef.current.value);
+            textareaRef.current.value = '';
+            textareaRef.current.style.height = 'auto';
+        }
+    }, [addMessage]);
 
     useEffect(() => {
         const textarea = textareaRef.current;
@@ -19,10 +27,7 @@ const TypeBox = ({ addMessage }) => {
         };
 
         const handleKeyDown = (event) => {
-            if (event.key === 'Enter') {
-                if (event.shiftKey) {
-                    return;
-                }
+            if (event.key === 'Enter' && !event.shiftKey) {
                 event.preventDefault();
                 handleSendMessage();
             }
@@ -31,6 +36,8 @@ const TypeBox = ({ addMessage }) => {
         if (textarea) {
             textarea.addEventListener('input', resizeTextarea);
             textarea.addEventListener('keydown', handleKeyDown);
+
+            // Resize initially
             resizeTextarea();
 
             return () => {
@@ -38,15 +45,7 @@ const TypeBox = ({ addMessage }) => {
                 textarea.removeEventListener('keydown', handleKeyDown);
             };
         }
-    }, []);
-
-    const handleSendMessage = () => {
-        if (textareaRef.current) {
-            addMessage(textareaRef.current.value);
-            textareaRef.current.value = '';
-            textareaRef.current.style.height = 'auto';
-        }
-    };
+    }, [handleSendMessage]);
 
     return (
         <div className="typebox__container">
@@ -62,7 +61,7 @@ const TypeBox = ({ addMessage }) => {
                 </div>
             </div>
             <div className='typebox__footer'>
-                Open source AI chatbot built with React and Node.js
+                <span>Open source AI chatbot built by <span>Creative Minds</span></span>
             </div>
         </div>
     );
