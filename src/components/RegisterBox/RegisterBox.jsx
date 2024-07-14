@@ -9,7 +9,7 @@ const RegisterBox = () => {
             <div className='registerbox__title'>Sign up for an account!</div>
             <div className='registerbox__email registerbox__input'>
                 <label for="email">Email</label>
-                <input type='email' id='email' placeholder='Enter your email password' />
+                <input type='email' id='email' placeholder='Enter your email address' />
             </div>
             <div className='registerbox__password registerbox__input'>
                 <label for="pass">Password</label>
