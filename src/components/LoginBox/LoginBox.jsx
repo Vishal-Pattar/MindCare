@@ -9,7 +9,7 @@ const LoginBox = () => {
             <div className='loginbox__title'>Please Login to Continue</div>
             <div className='loginbox__email loginbox__input'>
                 <label for="email">Email</label>
-                <input type='email' id='email' placeholder='Enter your email password' />
+                <input type='email' id='email' placeholder='Enter your email address' />
             </div>
             <div className='loginbox__password loginbox__input'>
                 <label for="pass">Password</label>
