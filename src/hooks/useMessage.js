@@ -9,7 +9,7 @@ const useMessages = () => {
         setMessages(prevMessages => [...prevMessages, { id: tempMessageId, user: userMessage, output: 'Loading...', loading: true }]);
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/generate`, { prompt: userMessage });
+            const response = await axios.post('/.netlify/functions/generate', { prompt: userMessage });
             setMessages(prevMessages => 
                 prevMessages.map(msg => 
                     msg.id === tempMessageId ? { ...msg, output: response.data.text, loading: false } : msg
