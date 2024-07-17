@@ -31,6 +31,10 @@
     flex-direction: column;
 }
 
+.signbox__input.invalid input {
+    border-color: var(--color-text-error)
+}
+
 .signbox__input label {
     font-size: 0.85rem;
     font-family: 'Geist-Medium', sans-serif;
@@ -51,6 +55,14 @@
 
 .signbox__input input:focus {
     border-color: var(--color-text-secondary);
+}
+
+.signbox__error {
+    font-size: 0.75rem;
+    font-family: 'Geist-Light', sans-serif;
+    color: var(--color-text-error);
+    user-select: none;
+    margin: 0.1rem;
 }
 
 .signbox__button {
@@ -77,10 +89,28 @@
     text-align: center;
     color: var(--color-text-secondary);
     position: relative;
+    margin-bottom: 2rem;
 }
 
 .signbox__footer a {
     cursor: pointer;
     text-decoration: underline;
     color: var(--color-text-secondary);
+}
+
+.signbox__errorbox {
+    padding: 0.5rem;
+    background-color: var(--color-bg);
+    font-size: 1rem;
+    font-family: 'Geist-Regular', sans-serif;
+    color: var(--color-text-error);
+    user-select: none;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    box-sizing: border-box;
+    border: 1px solid var(--color-border);
+    max-width: 50vw;
+    transition: .2 ease;
 }
