@@ -3,6 +3,7 @@ import WelcomeBox from '../WelcomeBox/WelcomeBox';
 import './OutputBox.css';
 import img from '../../assets/logo.png';
 import Loader from '../../assets/loader.gif';
+import Markdown from 'markdown-to-jsx';
 
 const OutputBox = ({ messages }) => {
     const [showWelcomeBox, setShowWelcomeBox] = useState(true);
@@ -38,7 +39,7 @@ const OutputBox = ({ messages }) => {
                             {msg.loading ? (
                                 <img src={Loader} alt='loading' className='loader' />
                             ) : (
-                                msg.output
+                                <Markdown>{msg.output}</Markdown>
                             )}
                         </div>
                     </span>
