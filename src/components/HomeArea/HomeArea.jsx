@@ -13,10 +13,19 @@ const HomeArea = () => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const url = process.env.NODE_ENV === 'development' 
-                ? 'http://localhost:5000/api/auth/user' 
-                : '/api/auth/user';
-                const response = await axios.get(url, { withCredentials: true });
+                const token = localStorage.getItem('authToken');
+                if (!token) {
+                    navigate('/login');
+                    return;
+                }
+
+                const url = '/.netlify/functions/authentication';
+                const response = await axios.get(url, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    withCredentials: true
+                });
                 if (response.data.username) {
                     setUsername(response.data.username);
                 } else {
