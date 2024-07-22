@@ -11,7 +11,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get('http://localhost:5000/api/auth/logout', { withCredentials: true });
+      localStorage.removeItem('authToken');
       clearMessages();
       navigate('/login');
     } catch (error) {
