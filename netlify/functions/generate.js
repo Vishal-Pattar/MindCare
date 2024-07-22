@@ -1,23 +1,27 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const { json } = require('micro');
 require('dotenv').config();
 
-const API_KEY = process.env.API_KEY;
-const genAI = new GoogleGenerativeAI(API_KEY);
+exports.handler = async (req, res) => {
+  const { prompt } = JSON.parse(req.body);
 
-module.exports = async (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).send('Method Not Allowed');
-  }
-  const { prompt } = await json(req);
+  const API_KEY = process.env.API_KEY;
+  const genAI = new GoogleGenerativeAI(API_KEY);
+
   try {
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const result = await model.generateContent(prompt);
     const response = result.response;
     const text = response.text();
-    return res.json({ text });
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ text }),
+    };
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ error: error.message });
+    console.error(error.message);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
+    };
   }
 };
