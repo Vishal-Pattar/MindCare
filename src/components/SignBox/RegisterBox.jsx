@@ -12,9 +12,7 @@ const RegisterBox = () => {
     const handleRegister = async (event) => {
         event.preventDefault();
         try {
-            const url = process.env.NODE_ENV === 'development' 
-                ? 'http://localhost:5000/api/auth/register' 
-                : '/api/auth/register';
+            const url = '/.netlify/functions/register';
             const response = await axios.post(url, { username, password });
             if (response.status === 201) {
                 navigate('/login');
