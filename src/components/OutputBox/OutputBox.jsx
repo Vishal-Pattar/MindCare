@@ -35,7 +35,7 @@ const OutputBox = ({ messages }) => {
                     </span>
                     <span>
                         <img src={img} alt='output' className='outputbox__image' />
-                        <div className='outputbox__textspace'>
+                        <div className='outputbox__textspace outputbox__textspace_output'>
                             {msg.loading ? (
                                 <img src={Loader} alt='loading' className='loader' />
                             ) : (
