@@ -11,9 +11,19 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      localStorage.removeItem('authToken');
-      clearMessages();
-      navigate('/login');
+      const token = localStorage.getItem('authToken');
+      const url = '/.netlify/functions/logout';
+      const response = await axios.get(url, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        },
+        withCredentials: true
+      });
+      if (response.status === 200) {
+        localStorage.removeItem('authToken');
+        clearMessages();
+        navigate('/login');
+      }
     } catch (error) {
       console.error('Error logging out:', error);
     }
