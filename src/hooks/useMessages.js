@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const useMessages = () => {
     const [messages, setMessages] = useState([]);
+    const token = localStorage.getItem('authToken');
 
     const addMessage = async (userMessage) => {
         const tempMessageId = Date.now();
@@ -11,7 +12,7 @@ const useMessages = () => {
         try {
             const url = '/.netlify/functions/generate';
 
-            const response = await axios.post(url, { prompt: userMessage });
+            const response = await axios.post(url, { prompt: userMessage, authToken: token });
             setMessages(prevMessages => 
                 prevMessages.map(msg => 
                     msg.id === tempMessageId ? { ...msg, output: response.data.text, loading: false } : msg
