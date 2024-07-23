@@ -12,18 +12,20 @@ const LoginBox = () => {
     const handleLogin = async (event) => {
         event.preventDefault();
         try {
-            const url = process.env.NODE_ENV === 'development' 
-                ? 'http://localhost:5000/api/auth/login' 
-                : '/api/auth/login';
+            const url = '/.netlify/functions/login';
             const response = await axios.post(url,
                 { username, password },
                 { withCredentials: true }
             );
             if (response.status === 200) {
+                const { token } = response.data;
+                localStorage.setItem('authToken', token);
                 navigate('/');
             }
         } catch (error) {
             if (error.response && error.response.data) {
+                setUsername('');
+                setPassword('');
                 setError(error.response.data.msg);
             } else {
                 setError('Server error');
@@ -31,8 +33,13 @@ const LoginBox = () => {
         }
     };
 
+    const handleInputChange = (setter) => (event) => {
+        setter(event.target.value);
+        setError('');
+    };
+
     return (
-        <>
+        <div className='signerror__container'>
             <div className='signbox__container'>
                 <div className='signbox__title'>Please Login to Continue</div>
                 <div className='signbox__email signbox__input'>
@@ -42,7 +49,7 @@ const LoginBox = () => {
                         id='username'
                         placeholder='Enter your Username'
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={handleInputChange(setUsername)}
                         required
                     />
                 </div>
@@ -53,7 +60,7 @@ const LoginBox = () => {
                         id='pass'
                         placeholder='Enter your Password'
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={handleInputChange(setPassword)}
                         required
                     />
                 </div>
@@ -61,7 +68,7 @@ const LoginBox = () => {
             </div>
             <div className='signbox__footer'>No account yet? <Link to='/register'>Register</Link></div>
             {error && <div className='signbox__errorbox'>{error}</div>}
-        </>
+        </div>
     );
 };
 

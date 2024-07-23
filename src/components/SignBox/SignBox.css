@@ -1,5 +1,35 @@
+.signerror__container {
+    max-height: 93vh;
+    width: 100vw;
+    position: relative;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.signerror__container::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.signerror__container::-webkit-scrollbar {
+    width: 12px;
+}
+
+.signerror__container::-webkit-scrollbar-track {
+    background: var(--color-bg-body);
+}
+
+.signerror__container::-webkit-scrollbar-thumb {
+    background-color: var(--color-text-tertiary);
+    border-radius: 20px;
+    border: 3px solid var(--color-bg-body);
+}
+
+
 .signbox__container {
-    height: 50vh;
+    min-height: 50vh;
     width: 25vw;
     display: flex;
     flex-direction: column;
@@ -23,7 +53,7 @@
 }
 
 .signbox__input {
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     background: var(--color-bg);
     color: var(--color-text-secondary);
     transition: .2s ease;
@@ -38,6 +68,7 @@
 .signbox__input label {
     font-size: 0.85rem;
     font-family: 'Geist-Medium', sans-serif;
+    user-select: none;
 }
 
 .signbox__input input {
@@ -49,7 +80,7 @@
     outline: none;
     border: 1px solid var(--color-border);
     padding: 0.75rem;
-    margin-top: 0.75rem;
+    margin-top: 0.4rem;
     border-radius: 0.5rem;
 }
 
@@ -76,6 +107,7 @@
     user-select: none;
     transition: .2 ease;
     padding: 0.65rem;
+    margin-top: 1rem;
 }
 
 .signbox__button:hover {
@@ -113,4 +145,5 @@
     border: 1px solid var(--color-border);
     max-width: 50vw;
     transition: .2 ease;
+    margin-bottom: 1rem;
 }

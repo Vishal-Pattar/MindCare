@@ -9,10 +9,7 @@ const useMessages = () => {
         setMessages(prevMessages => [...prevMessages, { id: tempMessageId, user: userMessage, output: 'Loading...', loading: true }]);
 
         try {
-            // Check if running in production or locally
-            const url = process.env.NODE_ENV === 'development' 
-                ? 'http://localhost:5000/generate' 
-                : '/.netlify/functions/generate';
+            const url = '/.netlify/functions/generate';
 
             const response = await axios.post(url, { prompt: userMessage });
             setMessages(prevMessages => 
