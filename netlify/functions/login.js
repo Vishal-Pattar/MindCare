@@ -4,6 +4,13 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 exports.handler = async (req, res) => {
+  if (req.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ msg: 'Method Not Allowed' }),
+    };
+  }
+
   const { username, password } = await JSON.parse(req.body);
 
   const client = new MongoClient(process.env.MONGODB_URI);
