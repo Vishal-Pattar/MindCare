@@ -11,14 +11,14 @@ const HomeArea = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+
         const fetchUser = async () => {
             try {
-                const token = localStorage.getItem('authToken');
-                if (!token) {
-                    navigate('/login');
-                    return;
-                }
-
                 const url = '/.netlify/functions/authentication';
                 const response = await axios.get(url, {
                     headers: {
@@ -45,7 +45,7 @@ const HomeArea = () => {
             <TypeBox addMessage={addMessage} />
             <OutputBox messages={messages} />
         </>
-    )
-}
+    );
+};
 
 export default HomeArea;
