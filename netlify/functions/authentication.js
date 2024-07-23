@@ -15,6 +15,7 @@ exports.handler = async (req, res) => {
     };
   }
   const token = req.headers.authorization?.split(' ')[1];
+  const token_sign = token.split('.')[2];
   if (!token) {
     return {
       statusCode: 401,
@@ -32,6 +33,7 @@ exports.handler = async (req, res) => {
     const objectId = new ObjectId(decoded.id);
 
     const user = await users.findOne({ _id:objectId });
+    const session = await sessions.findOne({ sessionID: token_sign });
 
     if (!user) {
       return {
@@ -39,8 +41,10 @@ exports.handler = async (req, res) => {
         body: JSON.stringify({ msg: 'Token is not valid' }),
       };
     }
+    if(!session){
+      await sessions.insertOne({ sessionID: token_sign, username: user.username, authToken: token, createdAt: getISTDate(), logoutAt: null });
+    }
 
-    await sessions.insertOne({ username: user.username, authToken: token, createdAt: getISTDate() });
     await client.close();
     return {
       statusCode: 200,
