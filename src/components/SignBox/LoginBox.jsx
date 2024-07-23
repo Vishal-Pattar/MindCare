@@ -39,7 +39,7 @@ const LoginBox = () => {
     };
 
     return (
-        <>
+        <div className='signerror__container'>
             <div className='signbox__container'>
                 <div className='signbox__title'>Please Login to Continue</div>
                 <div className='signbox__email signbox__input'>
@@ -68,7 +68,7 @@ const LoginBox = () => {
             </div>
             <div className='signbox__footer'>No account yet? <Link to='/register'>Register</Link></div>
             {error && <div className='signbox__errorbox'>{error}</div>}
-        </>
+        </div>
     );
 };
 
