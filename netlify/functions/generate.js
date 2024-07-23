@@ -2,10 +2,14 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 require('dotenv').config();
 
 exports.handler = async (req, res) => {
-  const { prompt } = JSON.parse(req.body);
-
-  const API_KEY = process.env.API_KEY;
-  const genAI = new GoogleGenerativeAI(API_KEY);
+  if (req.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ msg: 'Method Not Allowed' }),
+    };
+  }
+  const { prompt, authToken } = JSON.parse(req.body);
+  const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
   try {
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
