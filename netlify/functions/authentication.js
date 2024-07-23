@@ -2,8 +2,19 @@ const { MongoClient, ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-exports.handler = async (event) => {
-  const token = event.headers.authorization?.split(' ')[1];
+const getISTDate = () => {
+  const date = new Date();
+  return date.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
+};
+
+exports.handler = async (req, res) => {
+  if (req.httpMethod !== 'GET') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ msg: 'Method Not Allowed' }),
+    };
+  }
+  const token = req.headers.authorization?.split(' ')[1];
   if (!token) {
     return {
       statusCode: 401,
@@ -17,10 +28,10 @@ exports.handler = async (event) => {
     await client.connect();
     const db = client.db('aichat');
     const users = db.collection('users');
+    const sessions = db.collection('sessions');
     const objectId = new ObjectId(decoded.id);
 
     const user = await users.findOne({ _id:objectId });
-    await client.close();
 
     if (!user) {
       return {
@@ -29,10 +40,13 @@ exports.handler = async (event) => {
       };
     }
 
+    await sessions.insertOne({ username: user.username, authToken: token, createdAt: getISTDate() });
+    await client.close();
     return {
       statusCode: 200,
       body: JSON.stringify({ username: user.username }),
     };
+
   } catch (err) {
     console.error(err.message);
     return {
