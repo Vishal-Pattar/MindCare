@@ -2,6 +2,13 @@ const { MongoClient } = require('mongodb');
 const bcrypt = require('bcrypt');
 
 exports.handler = async (req, res) => {
+  if (req.httpMethod !== 'POST') {
+    return {
+      statusCode: 405,
+      body: JSON.stringify({ msg: 'Method Not Allowed' }),
+    };
+  }
+
   const { username, password, email, referral } = JSON.parse(req.body);
 
   const client = new MongoClient(process.env.MONGODB_URI);
@@ -11,14 +18,24 @@ exports.handler = async (req, res) => {
   const referrals = db.collection('referrals');
 
   try {
-    const user = await users.findOne({ username });
+    const userByUsername = await users.findOne({ username });
+    const userByEmail = await users.findOne({ email });
     const referrer = await referrals.findOne({ referralCode: referral });
-    if (user) {
+
+    if (userByUsername) {
       return {
         statusCode: 400,
         body: JSON.stringify({ msg: 'Username already exists' }),
       };
     }
+    
+    if (userByEmail) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ msg: 'Email already exists' }),
+      };
+    }
+
     if (!referrer) {
       return {
         statusCode: 400,
