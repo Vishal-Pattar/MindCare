@@ -4,6 +4,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { ImMenu } from "react-icons/im";
 import Referral from './Referral/Referral';
 import ChatHistory from './ChatHistory/ChatHistory';
+import Users from './Users/Users';
 
 const AdminPanel = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,7 +35,8 @@ const AdminPanel = () => {
             </div>
             <div className='admin__container' style={{ width: isSidebarOpen ? '80vw' : '96vw' }} >
                 {/* <Referral /> */}
-                <ChatHistory />
+                {/* <ChatHistory /> */}
+                <Users />
             </div>
         </div>
     );
