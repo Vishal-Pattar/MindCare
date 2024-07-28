@@ -26,6 +26,10 @@
     color: var(--color-green);
 }
 
+.center {
+    text-align: center;
+}
+
 .roboto-thin {
     font-family: "Roboto", sans-serif;
     font-weight: 100;
