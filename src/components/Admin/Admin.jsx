@@ -2,21 +2,13 @@ import React, { useState } from 'react';
 import './Admin.css';
 import { IoMdCloseCircle } from "react-icons/io";
 import { ImMenu } from "react-icons/im";
-import Coupon from './Coupon/Coupon';
-import ChatHistory from './ChatHistory/ChatHistory';
-import Users from './Users/Users';
-import Session from './Session/Session';
+import { Link, Outlet } from 'react-router-dom';
 
 const AdminPanel = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [selectedMenuItem, setSelectedMenuItem] = useState('Users'); // Default to 'Users'
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
-    };
-
-    const handleMenuClick = (menuItem) => {
-        setSelectedMenuItem(menuItem);
     };
 
     return (
@@ -28,10 +20,9 @@ const AdminPanel = () => {
                             <div>Menus</div>
                             <IoMdCloseCircle className='close-button' onClick={toggleSidebar} />
                         </div>
-                        <div className="menu-item" onClick={() => handleMenuClick('Users')}>Users</div>
-                        <div className="menu-item" onClick={() => handleMenuClick('Coupon')}>Coupon</div>
-                        <div className="menu-item" onClick={() => handleMenuClick('Sessions')}>Sessions</div>
-                        <div className="menu-item" onClick={() => handleMenuClick('ChatHistory')}>Chat History</div>
+                        <Link to="/admin/users" className="menu-item" >Users</Link>
+                        <Link to="/admin/coupons" className="menu-item" >Coupons</Link>
+                        <Link to="/admin/sessions" className="menu-item" >Sessions</Link>
                     </div>
                 ) : (
                     <div className='menu-button-container'>
@@ -40,10 +31,7 @@ const AdminPanel = () => {
                 )}
             </div>
             <div className='admin__container' style={{ width: isSidebarOpen ? '80vw' : '96vw' }}>
-                {selectedMenuItem === 'Users' && <Users />}
-                {selectedMenuItem === 'Coupon' && <Coupon />}
-                {selectedMenuItem === 'Sessions' && <Session />}
-                {selectedMenuItem === 'ChatHistory' && <ChatHistory />}
+                <Outlet />
             </div>
         </div>
     );

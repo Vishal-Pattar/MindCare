@@ -90,6 +90,8 @@
     transition: background-color 0.3s ease-in-out;
     text-align: center;
     box-shadow: var(--box-shadow-white);
+    text-decoration: none;
+    color: var(--color-bg);
 }
 
 .menu-item:hover {
