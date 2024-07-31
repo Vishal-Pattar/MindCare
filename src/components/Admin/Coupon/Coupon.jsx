@@ -10,20 +10,29 @@ const Coupon = () => {
     const [numCodesToGenerate, setNumCodesToGenerate] = useState('');
 
     useEffect(() => {
-        const fetchCoupons = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/api/coupons');
-                const data = response.data;
-                setCoupons(data);
-                setUsedCount(data.filter(coupon => coupon.status).length);
-                setAvailableCount(data.filter(coupon => !coupon.status).length);
-            } catch (error) {
-                console.error('Error fetching coupons:', error);
-            }
-        };
-
         fetchCoupons();
     }, []);
+
+    const fetchCoupons = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/api/coupons');
+            const data = response.data;
+
+            // Sort coupons by status (false first) and then by created_at (oldest first)
+            const sortedCoupons = data.sort((a, b) => {
+                if (a.status !== b.status) {
+                    return a.status - b.status; // false (0) comes before true (1)
+                }
+                return new Date(a.created_at) - new Date(b.created_at); // sort by date
+            });
+
+            setCoupons(sortedCoupons);
+            setUsedCount(sortedCoupons.filter(coupon => coupon.status).length);
+            setAvailableCount(sortedCoupons.filter(coupon => !coupon.status).length);
+        } catch (error) {
+            console.error('Error fetching coupons:', error);
+        }
+    };
 
     const handleGenerate = async () => {
         if (!numCodesToGenerate) return;
@@ -32,12 +41,25 @@ const Coupon = () => {
             const response = await axios.post('http://localhost:5000/api/coupons', {
                 numCode: parseInt(numCodesToGenerate)
             });
-            setCoupons([...coupons, ...response.data]);
-            setAvailableCount(availableCount + response.data.length);
+            const newCoupons = response.data;
+
+            const sortedCoupons = [...coupons, ...newCoupons].sort((a, b) => {
+                if (a.status !== b.status) {
+                    return a.status - b.status;
+                }
+                return new Date(a.created_at) - new Date(b.created_at);
+            });
+
+            setCoupons(sortedCoupons);
+            setAvailableCount(availableCount + newCoupons.length);
             setNumCodesToGenerate('');
         } catch (error) {
             console.error('Error generating coupon codes:', error);
         }
+    };
+
+    const handleRefresh = () => {
+        fetchCoupons();
     };
 
     return (
@@ -47,6 +69,7 @@ const Coupon = () => {
                 <div className='coupon__stats'>
                     <div className='coupon__stat'>Coupons Used:&nbsp;<span className='redColor'>{usedCount}</span></div>
                     <div className='coupon__stat'>Coupons Available:&nbsp;<span className='greenColor'>{availableCount}</span></div>
+                    <div className='coupon__button' onClick={handleRefresh}>Refresh</div>
                 </div>
                 <div className='coupon__generatebox'>
                     <input

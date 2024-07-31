@@ -1,8 +1,16 @@
 import React from 'react';
 import { IoShieldCheckmarkSharp } from "react-icons/io5";
 import { MdIndeterminateCheckBox } from "react-icons/md";
+import formatDateTime from '../../../utils/formatDateTime';
 
 const CouponTable = ({ coupon }) => {
+    const handleCopyCode = () => {
+        navigator.clipboard.writeText(coupon.code)
+            .catch(err => {
+                console.error("Failed to copy: ", err);
+            });
+    };
+
     return (
         <table className="coupon__table">
             <tbody>
@@ -12,7 +20,7 @@ const CouponTable = ({ coupon }) => {
                 </tr>
                 <tr>
                     <td>Coupon Code</td>
-                    <td>{coupon.code}</td>
+                    <td className='coupon__table_code' onClick={handleCopyCode} >{coupon.code}</td>
                 </tr>
                 <tr>
                     <td>Credits</td>
@@ -20,7 +28,7 @@ const CouponTable = ({ coupon }) => {
                 </tr>
                 <tr>
                     <td>Created At</td>
-                    <td>{new Date(coupon.created_at).toLocaleString()}</td>
+                    <td>{formatDateTime(coupon.created_at)}</td>
                 </tr>
                 <tr>
                     <td>Used By</td>
@@ -28,7 +36,7 @@ const CouponTable = ({ coupon }) => {
                 </tr>
                 <tr>
                     <td>Used Date</td>
-                    <td>{coupon.used_date ? new Date(coupon.used_date).toLocaleString() : '---'}</td>
+                    <td>{coupon.used_date ? formatDateTime(coupon.used_date) : '---'}</td>
                 </tr>
             </tbody>
         </table>

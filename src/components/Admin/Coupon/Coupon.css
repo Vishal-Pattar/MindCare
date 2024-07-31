@@ -42,7 +42,8 @@
     box-sizing: border-box;
 }
 
-.coupon__stat:first-child {
+.coupon__stat:nth-child(2) {
+    margin-left: 1rem;
     margin-right: 1rem;
 }
 
@@ -137,6 +138,7 @@
 .coupon__table tr td {
     text-align: left;
     padding: 0.1rem;
+    user-select: none;
 }
 
 .coupon__status {
@@ -144,3 +146,6 @@
     justify-content: flex-end;
 }
 
+.coupon__table_code {
+    cursor: pointer;
+}
