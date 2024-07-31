@@ -71,6 +71,10 @@
     user-select: none;
 }
 
+.signbox__input span {
+    font-size: 0.75rem;
+}
+
 .signbox__input input {
     border: none;
     background: none;

@@ -11,11 +11,15 @@ const LoginBox = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault();
+
+        if (!username || !password) {
+            setError('All fields are required');
+            return;
+        }
+
         try {
-            const url = '/.netlify/functions/login';
-            const response = await axios.post(url,
-                { username, password },
-                { withCredentials: true }
+            const url = 'http://localhost:5000/api/users/login';
+            const response = await axios.post(url, { username, password }
             );
             if (response.status === 200) {
                 const { token } = response.data;
