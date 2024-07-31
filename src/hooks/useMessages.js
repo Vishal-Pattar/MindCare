@@ -10,7 +10,7 @@ const useMessages = () => {
         setMessages(prevMessages => [...prevMessages, { id: tempMessageId, user: userMessage, output: 'Loading...', loading: true }]);
 
         try {
-            const url = '/.netlify/functions/generate';
+            const url = 'http://localhost:5000/api/generate';
             const response = await axios.post(url, { prompt: userMessage }, {
                 headers: {
                     'Authorization': `Bearer ${token}`
