@@ -6,26 +6,32 @@ import axios from 'axios';
 const Users = () => {
     const [users, setUsers] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [showPersonalData, setShowPersonalData] = useState(false);
 
     useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/api/users');
-                setUsers(response.data);
-            } catch (error) {
-                console.error('Error fetching users:', error);
-            }
-        };
         fetchUsers();
     }, []);
 
-    const handleToggle = async (index) => {
-        const updatedUsers = [...users];
-        const userToUpdate = updatedUsers[index];
+    const fetchUsers = async () => {
         try {
-            await axios.put(`http://localhost:5000/api/users/toggle-permit/${userToUpdate.username}`);
-            // Update the local state to reflect the change
-            userToUpdate.permit = !userToUpdate.permit;
+            const response = await axios.get('http://localhost:5000/api/users');
+            setUsers(response.data);
+        } catch (error) {
+            console.error('Error fetching users:', error);
+        }
+    };
+
+    const handleRefresh = () => {
+        fetchUsers();
+    }
+
+    const handleToggle = async (user) => {
+        const updatedUsers = users.map(u =>
+            u._id === user._id ? { ...u, permit: !u.permit } : u
+        );
+
+        try {
+            await axios.put(`http://localhost:5000/api/users/toggle-permit/${user.username}`);
             setUsers(updatedUsers);
         } catch (error) {
             console.error('Error updating user:', error);
@@ -41,6 +47,10 @@ const Users = () => {
         user.email.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
+    const handlePersonalData = () => {
+        setShowPersonalData(!showPersonalData);
+    }
+
     return (
         <>
             <div className="users__container">
@@ -53,6 +63,10 @@ const Users = () => {
                         value={searchQuery}
                         onChange={handleSearchChange}
                     />
+                    <button className='users__button' onClick={handleRefresh}>Refresh</button>
+                    <div className='users_checkbox'>
+                        <span>Show Personal Data <Toggle onClick={() => handlePersonalData()} /></span>
+                    </div>
                 </div>
             </div>
             <div className='users__box'>
@@ -64,10 +78,12 @@ const Users = () => {
                             <th>Email</th>
                             <th>Coupon</th>
                             <th>Role</th>
-                            <th>Fname</th>
-                            <th>Lname</th>
-                            <th>Age</th>
-                            <th>Gender</th>
+                            {showPersonalData && (<>
+                                <th>Fname</th>
+                                <th>Lname</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                            </>)}
                             <th>Permit</th>
                             <th>Edit</th>
                         </tr>
@@ -80,12 +96,14 @@ const Users = () => {
                                 <td>{user.email}</td>
                                 <td>{user.coupon}</td>
                                 <td>{user.role}</td>
-                                <td>{user.personal_details.first_name}</td>
-                                <td>{user.personal_details.last_name}</td>
-                                <td>{user.personal_details.age}</td>
-                                <td>{user.personal_details.gender}</td>
+                                {showPersonalData && (<>
+                                    <td>{user.personal_details.first_name}</td>
+                                    <td>{user.personal_details.last_name}</td>
+                                    <td>{user.personal_details.age}</td>
+                                    <td>{user.personal_details.gender}</td>
+                                </>)}
                                 <td className='center'>
-                                    <Toggle permit={user.permit} onClick={() => handleToggle(index)} />
+                                    <Toggle permit={user.permit} onClick={() => handleToggle(user)} />
                                 </td>
                                 <td><button className='users__btn'>Edit</button></td>
                             </tr>

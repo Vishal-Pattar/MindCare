@@ -42,7 +42,7 @@
     transition: .2 ease;
 }
 
-/* .users__searchButton {
+.users__button {
     font-size: 1rem;
     font-family: 'Geist-Medium', sans-serif;
     padding: 0.5rem 1rem;
@@ -53,7 +53,9 @@
     cursor: pointer;
     user-select: none;
     transition: .2 ease;
-} */
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
 
 .users__box {
     height: 81vh;
@@ -113,4 +115,27 @@
 
 .users__btn:hover {
     background-color: var(--color-text-secondary);
+}
+
+.users_checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.users_checkbox span {
+    font-size: 1rem;
+    font-family: 'Geist-Medium', sans-serif;
+    color: var(--color-text-primary);
+    user-select: none;
+    align-items: center;
+    justify-content: center;
 }
