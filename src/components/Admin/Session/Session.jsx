@@ -1,42 +1,49 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Session.css';
 import axios from 'axios';
+import formatDateTime from '../../../utils/formatDateTime';
 
 const Session = () => {
-    const [session, setSession] = useState([]);
+    const [sessions, setSessions] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchSession = async () => {
+        const fetchSessions = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/api/sessions');
-                setSession(response.data);
+                setSessions(response.data);
             } catch (error) {
-                console.error('Error fetching Session:', error);
+                console.error('Error fetching sessions:', error);
             }
         };
-        fetchSession();
+        fetchSessions();
     }, []);
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
     };
 
-    const filteredSession = session.filter(session => 
+    const filteredSessions = sessions.filter(session =>
         session.username.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    const handleShowClick = (sessionId) => {
+        navigate(`/admin/history/${sessionId}`);
+    };
 
     return (
         <>
             <div className="session__container">
                 <span className='session__title'>Session</span>
                 <div className='session__search'>
-                    <input 
-                        type='text' 
-                        placeholder='Search' 
-                        className='session__searchInput' 
-                        value={searchQuery} 
-                        onChange={handleSearchChange} 
+                    <input
+                        type='text'
+                        placeholder='Search'
+                        className='session__searchInput'
+                        value={searchQuery}
+                        onChange={handleSearchChange}
                     />
                 </div>
             </div>
@@ -46,23 +53,28 @@ const Session = () => {
                         <tr>
                             <th>No</th>
                             <th>Username</th>
-                            <th>SessionID</th>
-                            <th>AuthToken</th>
-                            <th>CreatedAt</th>
-                            <th>LoggedOutAt</th>
+                            <th>Session-ID</th>
+                            <th>Logged-In</th>
+                            <th>Logged-Out</th>
                             <th>History</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredSession.map((session, index) => (
+                        {filteredSessions.map((session, index) => (
                             <tr key={session._id}>
                                 <td>{index + 1}</td>
                                 <td>{session.username}</td>
                                 <td>{session.session_id}</td>
-                                <td>{session.token}</td>
-                                <td>{session.logged_in}</td>
-                                <td>{session.logged_out}</td>
-                                <td><button className='session__btn'>Edit</button></td>
+                                <td>{formatDateTime(session.logged_in)}</td>
+                                <td>{formatDateTime(session.logged_out)}</td>
+                                <td>
+                                    <button
+                                        className='session__btn'
+                                        onClick={() => handleShowClick(session.session_id)}
+                                    >
+                                        Show
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
