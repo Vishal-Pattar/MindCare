@@ -4,6 +4,8 @@ import './OutputBox.css';
 import img from '../../assets/logo.png';
 import Loader from '../../assets/loader.gif';
 import Markdown from 'markdown-to-jsx';
+import withAuthorization from '../../utils/withAuthorization';
+import { Permissions } from '../../utils/roles';
 
 const OutputBox = ({ messages }) => {
     const [showWelcomeBox, setShowWelcomeBox] = useState(true);
@@ -49,4 +51,4 @@ const OutputBox = ({ messages }) => {
     );
 };
 
-export default OutputBox;
+export default withAuthorization(Permissions.User_Access)(OutputBox);
