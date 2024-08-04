@@ -18,7 +18,7 @@
     user-select: none;
 }
 
-.header__button {
+.header__button, .header__stats {
     margin-right: 1rem;
     font-size: 1rem;
     font-family: 'Geist-Medium', sans-serif;
@@ -35,4 +35,9 @@
 .header__button:hover {
     background: var(--color-accent);
     border-color: var(--color-accent);
+}
+
+span {
+    display: inline-flex;
+    flex-direction: row;
 }
