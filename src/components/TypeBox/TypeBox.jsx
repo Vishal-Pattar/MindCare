@@ -3,6 +3,8 @@ import './TypeBox.css';
 import { FiPlus } from "react-icons/fi";
 import { MdSubdirectoryArrowLeft } from "react-icons/md";
 import { Tooltip } from 'react-tooltip';
+import withAuthorization from '../../utils/withAuthorization';
+import { Permissions } from '../../utils/roles';
 
 const TypeBox = ({ addMessage }) => {
     const textareaRef = useRef(null);
@@ -54,7 +56,7 @@ const TypeBox = ({ addMessage }) => {
                     <Tooltip id="typebox_newchat" className='typebox_tooltip'/>
                     <FiPlus className='typebox__icon' />
                 </div>
-                <textarea rows={1} ref={textareaRef} placeholder='Send a Message.....'></textarea>
+                <textarea rows='1' ref={textareaRef} placeholder='Send a Message.....'></textarea>
                 <div className='typebox__submit' data-tooltip-id="typebox_submit" data-tooltip-content="Send Message" onClick={handleSendMessage}>
                     <Tooltip id="typebox_submit" className='typebox_tooltip'/>
                     <MdSubdirectoryArrowLeft className='typebox__icon'/>
@@ -67,4 +69,4 @@ const TypeBox = ({ addMessage }) => {
     );
 };
 
-export default TypeBox;
+export default withAuthorization(Permissions.User_Access)(TypeBox);
