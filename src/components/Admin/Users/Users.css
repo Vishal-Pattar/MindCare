@@ -117,7 +117,7 @@
     background-color: var(--color-text-secondary);
 }
 
-.users_checkbox {
+.users__checkbox {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -131,7 +131,7 @@
     user-select: none;
 }
 
-.users_checkbox span {
+.users__checkbox span {
     font-size: 1rem;
     font-family: 'Geist-Medium', sans-serif;
     color: var(--color-text-primary);
