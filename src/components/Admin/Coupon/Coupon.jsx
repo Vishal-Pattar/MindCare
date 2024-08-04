@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './Coupon.css';
 import CouponTable from './CouponTable';
 import axios from 'axios';
+import withAuthorization from '../../../utils/withAuthorization';
+import { Permissions } from '../../../utils/roles';
 
 const Coupon = () => {
     const [coupons, setCoupons] = useState([]);
-    const [usedCount, setUsedCount] = useState(0);
-    const [availableCount, setAvailableCount] = useState(0);
+    const [couponStats, setCouponStats] = useState([]);
     const [numCodesToGenerate, setNumCodesToGenerate] = useState('');
 
     useEffect(() => {
@@ -15,20 +16,17 @@ const Coupon = () => {
 
     const fetchCoupons = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/api/coupons');
-            const data = response.data;
-
-            // Sort coupons by status (false first) and then by created_at (oldest first)
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/coupons`);
+            const data = response.data.data;
+    
             const sortedCoupons = data.sort((a, b) => {
                 if (a.status !== b.status) {
-                    return a.status - b.status; // false (0) comes before true (1)
+                    return a.status - b.status;
                 }
-                return new Date(a.created_at) - new Date(b.created_at); // sort by date
+                return new Date(a.created_at) - new Date(b.created_at);
             });
-
+            setCouponStats(response.data.count);
             setCoupons(sortedCoupons);
-            setUsedCount(sortedCoupons.filter(coupon => coupon.status).length);
-            setAvailableCount(sortedCoupons.filter(coupon => !coupon.status).length);
         } catch (error) {
             console.error('Error fetching coupons:', error);
         }
@@ -38,10 +36,11 @@ const Coupon = () => {
         if (!numCodesToGenerate) return;
 
         try {
-            const response = await axios.post('http://localhost:5000/api/coupons', {
-                numCode: parseInt(numCodesToGenerate)
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/coupons`, {
+                numberOfCoupons: parseInt(numCodesToGenerate)
             });
-            const newCoupons = response.data;
+            const newCoupons = response.data.data;
+            console.log('newCoupons:', response);
 
             const sortedCoupons = [...coupons, ...newCoupons].sort((a, b) => {
                 if (a.status !== b.status) {
@@ -51,7 +50,7 @@ const Coupon = () => {
             });
 
             setCoupons(sortedCoupons);
-            setAvailableCount(availableCount + newCoupons.length);
+            setCouponStats(response.data.count);
             setNumCodesToGenerate('');
         } catch (error) {
             console.error('Error generating coupon codes:', error);
@@ -67,8 +66,8 @@ const Coupon = () => {
             <div className='coupon__generations'>
                 <span className='coupon__title'>Coupon Stats</span>
                 <div className='coupon__stats'>
-                    <div className='coupon__stat'>Coupons Used:&nbsp;<span className='redColor'>{usedCount}</span></div>
-                    <div className='coupon__stat'>Coupons Available:&nbsp;<span className='greenColor'>{availableCount}</span></div>
+                    <div className='coupon__stat'>Used:&nbsp;<span className='redColor'>{couponStats.used}</span></div>
+                    <div className='coupon__stat'>Available:&nbsp;<span className='greenColor'>{couponStats.available}</span></div>
                     <div className='coupon__button' onClick={handleRefresh}>Refresh</div>
                 </div>
                 <div className='coupon__generatebox'>
@@ -91,4 +90,4 @@ const Coupon = () => {
     );
 };
 
-export default Coupon;
+export default withAuthorization(Permissions.Admin_Access)(Coupon);
