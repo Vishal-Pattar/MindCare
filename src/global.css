@@ -13,6 +13,16 @@
     --color-red: #FF0000;
     --color-green: #00FF00;
 
+    --color-bg-error: #9c2b2e;
+    --color-bg-warning: #f39c12;
+    --color-bg-info: #3498db;
+    --color-bg-success: #2ecc71;
+
+    --color-border-error: #e84e4f;
+    --color-border-warning: #f39c12;
+    --color-border-info: #3498db;
+    --color-border-success: #2ecc71;
+
     /* Gradient Variables */
     --gradient-header: linear-gradient(rgb(25, 25, 31), rgba(9, 9, 11, 1));
     --box-shadow-black: 8px 8px 16px #000000, -8px -8px 16px #242424;
