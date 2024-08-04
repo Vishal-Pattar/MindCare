@@ -4,6 +4,8 @@ import axios from 'axios';
 import './ChatHistory.css';
 import Markdown from 'markdown-to-jsx';
 import formatDateTime from '../../../utils/formatDateTime';
+import withAuthorization from '../../../utils/withAuthorization';
+import { Permissions } from '../../../utils/roles';
 
 const ChatHistory = () => {
     const { sessionId } = useParams();
@@ -16,8 +18,10 @@ const ChatHistory = () => {
     useEffect(() => {
         const fetchChatHistory = async () => {
             try {
-                const response = await axios.post('http://localhost:5000/api/history', { sessionId });
-                setChatHistory(response.data);
+                const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/v1/history`, { sessionId });
+                setChatHistory(response.data.history);
+                setSessionLoggedInDatetime(response.data.session.logged_in);
+                setSessionLoggedOutDatetime(response.data.session.logged_out);
             } catch (err) {
                 setError('Error fetching chat history');
                 console.error(err);
@@ -25,21 +29,6 @@ const ChatHistory = () => {
         };
 
         fetchChatHistory();
-    }, [sessionId]);
-
-
-    useEffect(() => {
-        const fetchSessionDatetime = async () => {
-            try {
-                const response = await axios.post('http://localhost:5000/api/sessions/getById', { session_id: sessionId });
-                setSessionLoggedInDatetime(response.data.logged_in);
-                setSessionLoggedOutDatetime(response.data.logged_out);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-
-        fetchSessionDatetime();
     }, [sessionId]);
 
     useEffect(() => {
@@ -70,4 +59,4 @@ const ChatHistory = () => {
     );
 }
 
-export default ChatHistory;
+export default withAuthorization(Permissions.Admin_Access)(ChatHistory);
