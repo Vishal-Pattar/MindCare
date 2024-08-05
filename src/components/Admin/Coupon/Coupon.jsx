@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './Coupon.css';
 import CouponTable from './CouponTable';
 import axios from 'axios';
 import withAuthorization from '../../../utils/withAuthorization';
@@ -63,25 +62,26 @@ const Coupon = () => {
 
     return (
         <>
-            <div className='coupon__generations'>
-                <span className='coupon__title'>Coupon Stats</span>
-                <div className='coupon__stats'>
-                    <div className='coupon__stat'>Used:&nbsp;<span className='redColor'>{couponStats.used}</span></div>
-                    <div className='coupon__stat'>Available:&nbsp;<span className='greenColor'>{couponStats.available}</span></div>
-                    <div className='coupon__button' onClick={handleRefresh}>Refresh</div>
+            <div className='admin__container'>
+                <span className='admin__title'>Coupon Stats</span>
+                <div className='admin__stats'>
+                    <div className='admin__stat'>Used:&nbsp;<span className='redColor'>{couponStats.used}</span></div>
+                    <div className='admin__stat'>Available:&nbsp;<span className='greenColor'>{couponStats.available}</span></div>
+                    <div className='admin__button' onClick={handleRefresh}>Refresh</div>
                 </div>
-                <div className='coupon__generatebox'>
+                <div className='admin__cover'>
                     <input
                         type="text"
-                        className='coupon__input'
+                        className='admin__input admin__input--small'
                         placeholder='Value'
+                        maxLength={2}
                         value={numCodesToGenerate}
                         onChange={(e) => setNumCodesToGenerate(e.target.value)}
                     />
-                    <button className='coupon__button' onClick={handleGenerate}>Generate</button>
+                    <button className='admin__button' onClick={handleGenerate}>Generate</button>
                 </div>
             </div>
-            <div className='coupon__boxcodes'>
+            <div className='admin__box admin__box--coupon'>
                 {coupons.map(coupon => (
                     <CouponTable key={coupon._id} coupon={coupon} />
                 ))}
