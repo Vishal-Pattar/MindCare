@@ -1,150 +1,126 @@
 .signerror__container {
-    height: 93vh;
-    width: 100vw;
-    position: relative;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    overflow-y: auto;
-    box-sizing: border-box;
+  height: 93vh;
+  width: 100vw;
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .signerror__container::placeholder {
-    color: var(--color-text-secondary);
+  color: var(--color-text-secondary);
 }
 
 .signerror__container::-webkit-scrollbar {
-    width: 12px;
+  width: 12px;
 }
 
 .signerror__container::-webkit-scrollbar-track {
-    background: var(--color-bg-body);
+  background: var(--color-bg-body);
 }
 
 .signerror__container::-webkit-scrollbar-thumb {
-    background-color: var(--color-text-tertiary);
-    border-radius: 20px;
-    border: 3px solid var(--color-bg-body);
+  background-color: var(--color-text-tertiary);
+  border-radius: 20px;
+  border: 3px solid var(--color-bg-body);
 }
 
-
 .signbox__container {
-    min-height: 50vh;
-    width: 25vw;
-    display: flex;
-    flex-direction: column;
-    background: var(--color-bg);
-    color: var(--color-text-primary);
-    border: 2px solid var(--color-border);
-    box-sizing: border-box;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 10px;
-    justify-content: space-evenly;
-    padding: 2rem;
-    margin: 2rem 0;
+  min-height: 50vh;
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border);
+  box-sizing: border-box;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  justify-content: space-evenly;
+  padding: 2rem;
+  margin: 2rem 0;
 }
 
 .signbox__title {
-    font-size: 1.5rem;
-    font-family: 'Geist-SemiBold', sans-serif;
-    user-select: none;
+  font-size: 1.5rem;
+  font-family: "Geist-SemiBold", sans-serif;
+  user-select: none;
 }
 
 .signbox__input {
-    padding: 0.4rem 0;
-    background: var(--color-bg);
-    color: var(--color-text-secondary);
-    transition: .2s ease;
-    display: flex;
-    flex-direction: column;
+  padding: 0.4rem 0;
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  transition: 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .signbox__input.invalid input {
-    border-color: var(--color-text-error)
+  border-color: var(--color-text-error);
 }
 
 .signbox__input label {
-    font-size: 0.85rem;
-    font-family: 'Geist-Medium', sans-serif;
-    user-select: none;
+  font-size: 0.85rem;
+  font-family: "Geist-Medium", sans-serif;
+  user-select: none;
 }
 
 .signbox__input span {
-    font-size: 0.75rem;
+  font-size: 0.75rem;
 }
 
 .signbox__input input {
-    border: none;
-    background: none;
-    color: var(--color-text-primary);
-    font-family: 'Geist-Regular', sans-serif;
-    font-size: 0.85rem;
-    outline: none;
-    border: 1px solid var(--color-border);
-    padding: 0.75rem;
-    margin-top: 0.4rem;
-    border-radius: 0.5rem;
+  border: none;
+  background: none;
+  color: var(--color-text-primary);
+  font-family: "Geist-Regular", sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  border: 1px solid var(--color-border);
+  padding: 0.75rem;
+  margin-top: 0.4rem;
+  border-radius: 0.5rem;
 }
 
 .signbox__input input:focus {
-    border-color: var(--color-text-secondary);
-}
-
-.signbox__error {
-    font-size: 0.75rem;
-    font-family: 'Geist-Light', sans-serif;
-    color: var(--color-text-error);
-    user-select: none;
-    margin: 0.1rem;
+  border-color: var(--color-text-secondary);
 }
 
 .signbox__button {
-    font-size: 1rem;
-    font-family: 'Geist-Medium', sans-serif;
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    background: var(--color-text-primary);
-    color: var(--color-bg);
-    cursor: pointer;
-    user-select: none;
-    transition: .2 ease;
-    padding: 0.65rem;
-    margin-top: 1rem;
+  font-size: 1rem;
+  font-family: "Geist-Medium", sans-serif;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-text-primary);
+  color: var(--color-bg);
+  cursor: pointer;
+  user-select: none;
+  transition: 0.2 ease;
+  padding: 0.65rem;
+  margin-top: 1rem;
 }
 
 .signbox__button:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .signbox__footer {
-    font-size: 0.9rem;
-    font-family: 'Geist-Regular', sans-serif;
-    user-select: none;
-    text-align: center;
-    color: var(--color-text-secondary);
-    position: relative;
-    margin-bottom: 2rem;
+  font-size: 0.9rem;
+  font-family: "Geist-Regular", sans-serif;
+  user-select: none;
+  text-align: center;
+  color: var(--color-text-secondary);
+  position: relative;
+  margin-bottom: 2rem;
 }
 
 .signbox__footer a {
-    cursor: pointer;
-    text-decoration: underline;
-    color: var(--color-text-secondary);
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--color-text-secondary);
 }
-
-.signbox__wrapper {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 0.1rem;
-    max-width: 50vw;
-    margin: 1rem;
-    box-sizing: border-box;
-    row-gap: 0.5rem;
-  }
