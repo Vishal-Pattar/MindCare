@@ -12,15 +12,15 @@ const CouponTable = ({ coupon }) => {
     };
 
     return (
-        <table className="coupon__table">
+        <table className="admin__table">
             <tbody>
                 <tr>
                     <td>Status</td>
-                    <td>{coupon.status ? <MdIndeterminateCheckBox className='coupon__status redColor' /> : <IoShieldCheckmarkSharp className='coupon__status greenColor' />}</td>
+                    <td>{coupon.status ? <MdIndeterminateCheckBox className='admin__status redColor' /> : <IoShieldCheckmarkSharp className='coupon__status greenColor' />}</td>
                 </tr>
                 <tr>
                     <td>Coupon Code</td>
-                    <td className='coupon__table_code' onClick={handleCopyCode} >{coupon.code}</td>
+                    <td className='admin__table_code' onClick={handleCopyCode} >{coupon.code}</td>
                 </tr>
                 <tr>
                     <td>Credits</td>
