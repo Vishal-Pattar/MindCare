@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Session.css";
 import axios from "axios";
 import formatDateTime from "../../../utils/formatDateTime";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
+import Toggle from "../Custom/Toggle";
 
 const Session = () => {
   const [sessions, setSessions] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showAdminSessions, setShowAdminSessions] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,9 +35,13 @@ const Session = () => {
     setSearchQuery(e.target.value);
   };
 
-  const filteredSessions = sessions.filter((session) =>
-    session.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const handleToggle = () => {
+    setShowAdminSessions((prevShowAdminSessions) => !prevShowAdminSessions);
+  };
+
+  const filteredSessions = sessions
+    .filter((session) => session.username.toLowerCase().includes(searchQuery.toLowerCase()))
+    .filter((session) => showAdminSessions || session.username !== "Admin");
 
   const sortedSessions = filteredSessions.sort((a, b) => {
     return new Date(b.logged_in) - new Date(a.logged_in);
@@ -48,28 +53,31 @@ const Session = () => {
 
   return (
     <>
-      <div className="session__container">
-        <span className="session__title">Session</span>
-        <div className="session__search">
+      <div className="admin__container">
+        <span className="admin__title">Session</span>
+        <div className="admin__cover">
           <input
             type="text"
             placeholder="Search"
-            className="session__searchInput"
+            className="admin__input"
             value={searchQuery}
             onChange={handleSearchChange}
           />
-          <button className="session__button" onClick={handleRefresh}>
+          <div className="admin__checkbox">
+            <Toggle permit={showAdminSessions} onClick={handleToggle} />
+          </div>
+          <button className="admin__button" onClick={handleRefresh}>
             Refresh
           </button>
         </div>
       </div>
-      <div className="session__box">
-        <table>
+      <div className="admin__box">
+        <table className="admin__box--table">
           <thead>
-            <tr>
+            <tr className="admin__box--tr">
               <th>No</th>
               <th>Username</th>
-              <th>Session ID</th>
+              <th>Session Title</th>
               <th>Prompt count</th>
               <th>Logged In</th>
               <th>Logged Out</th>
@@ -78,10 +86,10 @@ const Session = () => {
           </thead>
           <tbody>
             {sortedSessions.map((session, index) => (
-              <tr key={session.session_id}>
+              <tr key={session.session_id} className="admin__box--tr">
                 <td>{index + 1}</td>
                 <td>{session.username}</td>
-                <td>{session.session_id}</td>
+                <td>{session.session_title}</td>
                 <td>{session.prompt_count}</td>
                 <td>{formatDateTime(session.logged_in)}</td>
                 {session.session_ended ? (
@@ -91,7 +99,7 @@ const Session = () => {
                 )}
                 <td>
                   <button
-                    className="session__btn"
+                    className="admin__button admin__button--small"
                     onClick={() => handleShowClick(session.session_id)}
                   >
                     Show
