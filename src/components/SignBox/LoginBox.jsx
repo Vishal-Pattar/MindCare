@@ -31,8 +31,8 @@ const LoginBox = () => {
 
       const infoMessage =
         role === "Admin"
-          ? "Welcome Admin. Redirecting to the Admin Dashboard..."
-          : "Welcome to the chat! Redirecting to the Chat...";
+          ? "Welcome Admin. Redirecting to the Admin Dashboard"
+          : "Welcome to the chat! Redirecting to the Chat";
 
       addAlert(infoMessage, "info", "signbox");
 
@@ -57,7 +57,7 @@ const LoginBox = () => {
   };
 
   return (
-    <div className="signerror__container">
+    <>
       <div className="signbox__container">
         <div className="signbox__title">Please Login to Continue</div>
         <div className="signbox__input">
@@ -89,7 +89,7 @@ const LoginBox = () => {
       <div className="signbox__footer">
         No account yet? <Link to="/register">Register</Link>
       </div>
-    </div>
+    </>
   );
 };
 
