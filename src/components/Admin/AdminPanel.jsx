@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './AdminPanel.css';
+import './Admin.css'
 import { IoMdCloseCircle } from "react-icons/io";
 import { ImMenu } from "react-icons/im";
 import { Link, Outlet } from 'react-router-dom';
