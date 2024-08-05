@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SignBox.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import AlertBox from "../AlertBox/AlertBox";
+import { useAlert } from "../../context/AlertContext";
 
 const RegisterBox = () => {
   const [username, setUsername] = useState("");
@@ -11,14 +11,10 @@ const RegisterBox = () => {
   const [coupon, setCoupon] = useState("");
   const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
+  const { addAlert } = useAlert();
 
   const handleRegister = async (event) => {
     event.preventDefault();
-
-    if (!username || !password || !email || !coupon) {
-      addMessage("All fields are required", "error");
-      return;
-    }
 
     try {
       const response = await axios.post(
@@ -26,34 +22,19 @@ const RegisterBox = () => {
         { username, password, email, couponCode: coupon }
       );
       if (response.status === 201) {
-        addMessage("Registration Successful", "success");
-        addMessage("Redirecting to Login Page", "info");
+        addAlert("Registration Successful", "success", "signbox");
+        addAlert("Redirecting to Login Page", "info", "signbox");
         setTimeout(() => {
           navigate("/login");
-        }, 3000);
+        }, 2000);
       }
     } catch (error) {
-      if (error.response && error.response.data) {
-        addMessage(error.response.data.msg, "error");
-      } else {
-        addMessage("Server error", "error");
-      }
+      addAlert(error.response.data.error, "error", "signbox");
     }
   };
 
-  const addMessage = (message, variant) => {
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { id: Date.now(), message, variant },
-    ]);
-  };
-
-  const removeMessage = (id) => {
-    setMessages((prevMessages) => prevMessages.filter((msg) => msg.id !== id));
-  };
-
   return (
-    <div className="signerror__container">
+    <>
       <div className="signbox__container">
         <div className="signbox__title">Sign up for an account!</div>
         <div className="signbox__input">
@@ -109,20 +90,7 @@ const RegisterBox = () => {
       <div className="signbox__footer">
         Already have an account? <Link to="/login">Log in</Link>
       </div>
-      <div className="signbox__wrapper">
-        {messages.map((msg) => (
-          <AlertBox
-            key={msg.id}
-            id={msg.id}
-            removeAlert={removeMessage}
-            variant={msg.variant}
-            component="signbox"
-          >
-            {msg.message}
-          </AlertBox>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
