@@ -1,19 +1,23 @@
 import React, { createContext, useState, useContext, useCallback } from "react";
-import AlertBox from "../components/AlertBox/AlertBox";
 
 const AlertContext = createContext();
 
-export const useAlert = () => {
-  return useContext(AlertContext);
-};
+export const useAlert = () => useContext(AlertContext);
 
 export const AlertProvider = ({ children }) => {
   const [alerts, setAlerts] = useState([]);
 
-  const addAlert = useCallback((content, variant, component) => {
-    const id = Math.random().toString(36).substring(7);
-    setAlerts((alerts) => [...alerts, { id, variant, component, content }]);
-    return id;
+  const addAlert = useCallback((content, variant, position) => {
+    setAlerts((alerts) => {
+      // Remove any alert with the same content
+      const filteredAlerts = alerts.filter(
+        (alert) => alert.content !== content
+      );
+
+      // Add the new alert
+      const id = Math.random().toString(36).substring(7);
+      return [...filteredAlerts, { id, variant, content, position }];
+    });
   }, []);
 
   const removeAlert = useCallback((id) => {
@@ -21,21 +25,8 @@ export const AlertProvider = ({ children }) => {
   }, []);
 
   return (
-    <AlertContext.Provider value={{ addAlert, removeAlert }}>
+    <AlertContext.Provider value={{ alerts, addAlert, removeAlert }}>
       {children}
-      <div className="alertbox__wrapper">
-        {alerts.map((alert) => (
-          <AlertBox
-            key={alert.id}
-            id={alert.id}
-            variant={alert.variant}
-            component={alert.component}
-            removeAlert={removeAlert}
-          >
-            {alert.content}
-          </AlertBox>
-        ))}
-      </div>
     </AlertContext.Provider>
   );
 };
