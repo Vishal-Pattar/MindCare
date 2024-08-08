@@ -9,25 +9,26 @@ export const triggerFetchCredits = () => {
 
 const useCredits = () => {
   const [credits, setCredits] = useState(0);
-  const token = sessionStorage.getItem("authToken");
-  const username = sessionStorage.getItem("username");
   const { addAlert } = useAlert();
 
   const fetchCredits = async () => {
+    const token = sessionStorage.getItem("authToken");
+    const config = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/metrics/credits`,
-        { username: username },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      console.log("Fetching credits");
+      console.log(config);
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/metrics`,
+        config
       );
-      setCredits(response.data.data);
+      console.log(response.data.data.credits_available);
+      setCredits(response.data.data.credits_available);
     } catch (error) {
-      console.error(error);
-      addAlert(error.response?.data?.error || "An error occurred", "error");
+      addAlert(
+        error.response.data.error || error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
