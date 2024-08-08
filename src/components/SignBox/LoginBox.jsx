@@ -9,7 +9,7 @@ const LoginBox = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login, ussr } = useContext(AuthContext);
   const { addAlert } = useAlert();
 
   const handleLogin = async (event) => {
@@ -21,20 +21,26 @@ const LoginBox = () => {
         { username, password }
       );
       const { token, role } = response.data;
+      console.log(response.data);
 
       sessionStorage.setItem("authToken", token);
       sessionStorage.setItem("username", username);
 
+      login({
+        username: username,
+        role: role,
+      });
+
       const successMessage =
         role === "Admin" ? "Login Successful!" : "Login Successful!";
-      addAlert(successMessage, "success", "signbox");
+      addAlert(successMessage, "success", "bottom_right");
 
       const infoMessage =
         role === "Admin"
           ? "Welcome Admin. Redirecting to the Admin Dashboard"
           : "Welcome to the chat! Redirecting to the Chat";
 
-      addAlert(infoMessage, "info", "signbox");
+      addAlert(infoMessage, "info", "top_center");
 
       setTimeout(() => {
         login({ username, role });
@@ -47,13 +53,8 @@ const LoginBox = () => {
     } catch (error) {
       setUsername("");
       setPassword("");
-      console.error(error.response.data.error);
-      addAlert(error.response.data.error, "error", "signbox");
+      addAlert(error.response.data.message, "error", "bottom_right");
     }
-  };
-
-  const handleInputChange = (setter) => (event) => {
-    setter(event.target.value);
   };
 
   return (
@@ -67,7 +68,7 @@ const LoginBox = () => {
             id="username"
             placeholder="Enter your Username"
             value={username}
-            onChange={handleInputChange(setUsername)}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
@@ -78,7 +79,7 @@ const LoginBox = () => {
             id="pass"
             placeholder="Enter your Password"
             value={password}
-            onChange={handleInputChange(setPassword)}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
