@@ -1,45 +1,58 @@
-import React, { useContext, useEffect } from 'react';
-import axios from 'axios';
-import { rolePermissions } from './roles';
-import AuthContext from '../context/AuthContext';
-import AlertBox from '../components/AlertBox/AlertBox';
+import React, { useContext, useEffect } from "react";
+import axios from "axios";
+import { rolePermissions } from "./roles";
+import AuthContext from "../context/AuthContext";
+import { useAlert } from "../context/AlertContext";
 
 const withAuthorization = (requiredPermission) => (WrappedComponent) => {
   return (props) => {
     const { ussr, login } = useContext(AuthContext);
+    const { addAlert } = useAlert();
+    const authToken = sessionStorage.getItem("authToken");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    };
 
     useEffect(() => {
-      const username = sessionStorage.getItem('username');
-      const authToken = sessionStorage.getItem('authToken');
+      if (!authToken) {
+        addAlert(
+          "Access Denied: You must be logged in to access this page.",
+          "error",
+          "center"
+        );
+        return;
+      }
 
-      if (!ussr && username && authToken) {
-        const fetchUserRole = async () => {
-          try {
-            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/role`, {
-              headers: {
-                'Authorization': `Bearer ${authToken}`,
-                'Content-Type': 'application/json',
-              }
-            });
+      const fetchUserRole = async () => {
+        try {
+          const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/role`, config);
+          login({
+            username: response.data.username,
+            role: response.data.role,
+          });
+        } catch (err) {
+          addAlert("Failed to fetch user role.", "error", "bottom_right");
+        }
+      };
 
-            if (response.data && response.data.role) {
-              login({ ...response.data });
-            }
-          } catch (err) {
-            console.error('Failed to fetch user role:', err.message);
-          }
-        };
-
+      if (!ussr) {
         fetchUserRole();
       }
-    }, [ussr, login]);
+    }, [ussr, authToken, login, addAlert]);
 
-    if (!ussr) {
-      return <AlertBox variant="error" component="context">Access Denied: You must be logged in to access this page.</AlertBox>;
+    if (!authToken) {
+      return null;
     }
 
-    if (!rolePermissions[ussr.role]?.includes(requiredPermission)) {
-      return <AlertBox variant="error" component="context">Access Denied: You do not have the necessary permissions to access this page.</AlertBox>;
+    if (ussr && !rolePermissions[ussr.role]?.includes(requiredPermission)) {
+      addAlert(
+        "Access Denied: You do not have the necessary permissions to access this page.",
+        "error",
+        "center"
+      );
+      return null;
     }
 
     return <WrappedComponent {...props} />;
