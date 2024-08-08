@@ -5,11 +5,19 @@ import formatDateTime from "../../../utils/formatDateTime";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
 import Toggle from "../Custom/Toggle";
+import { useAlert } from "../../../context/AlertContext";
 
 const Session = () => {
   const [sessions, setSessions] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [showAdminSessions, setShowAdminSessions] = useState(false);
+  const authToken = sessionStorage.getItem("authToken");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  };
+  const { addAlert } = useAlert();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,11 +27,11 @@ const Session = () => {
   const fetchSessions = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/sessions`
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/sessions`, config
       );
       setSessions(response.data.data);
     } catch (error) {
-      console.error("Error fetching sessions:", error);
+      addAlert(error.response.data.message || error.message, "error", "bottom_right");
     }
   };
 
