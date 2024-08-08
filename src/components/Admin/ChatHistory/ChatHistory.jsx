@@ -11,6 +11,12 @@ const ChatHistory = () => {
   const { sessionId } = useParams();
   const [history, setHistory] = useState([]);
   const { addAlert } = useAlert();
+  const authToken = sessionStorage.getItem("authToken");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  };
 
   useEffect(() => {
     fetchHistory();
@@ -18,13 +24,17 @@ const ChatHistory = () => {
 
   const fetchHistory = async () => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/history`,
-        { sessionId }
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/history/${sessionId}`,
+        config
       );
       setHistory(response.data);
-    } catch (err) {
-      addAlert(err.message, "error", "signbox");
+    } catch (error) {
+      addAlert(
+        error.response.data.message || error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
@@ -37,8 +47,8 @@ const ChatHistory = () => {
       <div className="admin__container">
         <span className="admin__title">Chat History</span>
         <div className="admin__stats">
-          <div className="admin__stat">
-            Title: {history.session && history.session.session_title}
+          <div className="admin__stat blueColor">
+              {history.session && history.session.session_title}
           </div>
           {history.session && history.session.prompt_count ? (
             <div className="admin__stat">
