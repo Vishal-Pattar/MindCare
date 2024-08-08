@@ -5,6 +5,7 @@
     --color-border: #27272A;
     --color-bg: #09090B;
     --color-bg-body: #181818;
+    --color-bg-hover: #171717e6;
     --color-accent: #202020;
     --color-text-primary: #FAFAFA;
     --color-text-secondary: #A1A1AA;
@@ -12,6 +13,7 @@
     --color-text-error: #FF3333;
     --color-red: #FF0000;
     --color-green: #00FF00;
+    --color-blue: #0000FF;
 
     --color-bg-error: #9c2b2e;
     --color-bg-warning: #f39c12;
@@ -34,6 +36,10 @@
 
 .greenColor {
     color: var(--color-green);
+}
+
+.blueColor {
+    color: var(--color-blue);
 }
 
 .center {
