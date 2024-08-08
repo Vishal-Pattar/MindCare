@@ -16,20 +16,21 @@ import ChatHistory from "./components/Admin/ChatHistory/ChatHistory";
 import LandingPage from "./components/LandingPage/LandingPage";
 import { AuthProvider } from "./context/AuthContext";
 import { AlertProvider } from "./context/AlertContext";
+import AlertBox from "./components/AlertBox/AlertBox";
 
 const App = () => {
   return (
     <AuthProvider>
-      <AlertProvider>
-        <Router>
-          <div className="App">
+      <Router>
+        <div className="App">
+          <AlertProvider>
             <Header />
             <Routes>
               <Route path="/admin" element={<AdminPanel />}>
                 <Route path="users" element={<Users />} />
                 <Route path="coupons" element={<Coupon />} />
                 <Route path="sessions" element={<Session />} />
-                <Route path="profile" element={<Profile />} />
+                <Route path="profile/:username" element={<Profile />} />
                 <Route path="history/:sessionId" element={<ChatHistory />} />
               </Route>
               <Route path="/login" element={<LoginBox />} />
@@ -37,9 +38,10 @@ const App = () => {
               <Route path="/chat" element={<HomeArea />} />
               <Route path="/" element={<LandingPage />} />
             </Routes>
-          </div>
-        </Router>
-      </AlertProvider>
+            <AlertBox />
+          </AlertProvider>
+        </div>
+      </Router>
     </AuthProvider>
   );
 };
