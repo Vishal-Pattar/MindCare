@@ -27,8 +27,12 @@ const CouponTable = ({ coupon }) => {
                     <td>{coupon.credits}</td>
                 </tr>
                 <tr>
-                    <td>Created At</td>
-                    <td>{formatDateTime(coupon.created_at)}</td>
+                    <td>Created Date</td>
+                    <td>{formatDateTime(coupon.created_at).split(" ")[0]}</td>
+                </tr>
+                <tr>
+                    <td>Created Time</td>
+                    <td>{formatDateTime(coupon.created_at).split(" ")[1]}</td>
                 </tr>
                 <tr>
                     <td>Used By</td>
@@ -36,7 +40,11 @@ const CouponTable = ({ coupon }) => {
                 </tr>
                 <tr>
                     <td>Used Date</td>
-                    <td>{coupon.used_date ? formatDateTime(coupon.used_date) : '---'}</td>
+                    <td>{coupon.used_date ? formatDateTime(coupon.used_date).split(" ")[0] : '---'}</td>
+                </tr>
+                <tr>
+                    <td>Used Time</td>
+                    <td>{coupon.used_date ? formatDateTime(coupon.used_date).split(" ")[1] : '---'}</td>
                 </tr>
             </tbody>
         </table>
