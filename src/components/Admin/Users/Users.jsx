@@ -4,11 +4,18 @@ import axios from "axios";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
 import { useAlert } from "../../../context/AlertContext";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const { addAlert } = useAlert();
+  const authToken = sessionStorage.getItem("authToken");
+  const config = {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  };
 
   useEffect(() => {
     fetchUsers();
@@ -17,11 +24,16 @@ const Users = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/users`
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/users`,
+        config
       );
       setUsers(response.data.data);
     } catch (error) {
-      addAlert(error.message, "error", "signbox");
+      addAlert(
+        error.response.data.message || error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
@@ -35,14 +47,19 @@ const Users = () => {
     );
 
     try {
-      const response = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/users/permit`,
-        { username: user.username }
+      const response = await axios.patch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/users/${user.username}/permit`,{},
+        config
       );
       setUsers(updatedUsers);
-      addAlert(response.data.message, "success", "signbox");
+      addAlert(response.data.message, "success", "bottom_right");
     } catch (error) {
-      addAlert(error.response.data.error, "error", "signbox");
+      console.log(error);
+      addAlert(
+        error.response.data.message || error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
@@ -52,14 +69,18 @@ const Users = () => {
     );
 
     try {
-      const response = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/users/role`,
-        { username: user.username, role: newRole }
+      const response = await axios.patch(
+        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/users/${user.username}/role`,
+        { role: newRole }, config
       );
       setUsers(updatedUsers);
-      addAlert(response.data.message, "success", "signbox");
+      addAlert(response.data.message, "success", "bottom_right");
     } catch (error) {
-      addAlert(error.response.data.error, "error", "signbox");
+      addAlert(
+        error.response.data.message || error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
@@ -129,9 +150,11 @@ const Users = () => {
                   />
                 </td>
                 <td>
-                  <button className="admin__button admin__button--small">
-                    Edit
-                  </button>
+                  <Link to={`/admin/profile/${user.username}`}>
+                    <button className="admin__button admin__button--small">
+                      Edit
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
