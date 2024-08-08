@@ -9,7 +9,6 @@ const RegisterBox = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [coupon, setCoupon] = useState("");
-  const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
   const { addAlert } = useAlert();
 
@@ -22,14 +21,14 @@ const RegisterBox = () => {
         { username, password, email, couponCode: coupon }
       );
       if (response.status === 201) {
-        addAlert("Registration Successful", "success", "signbox");
-        addAlert("Redirecting to Login Page", "info", "signbox");
+        addAlert("Registration Successful", "success", "bottom_right");
+        addAlert("Redirecting to Login Page", "info", "bottom_right");
         setTimeout(() => {
           navigate("/login");
         }, 2000);
       }
     } catch (error) {
-      addAlert(error.response.data.error, "error", "signbox");
+      addAlert(error.response.data.error, "error", "bottom_right");
     }
   };
 
