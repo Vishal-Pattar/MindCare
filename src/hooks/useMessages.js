@@ -21,8 +21,7 @@ const useMessages = () => {
     ]);
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/generate`,
+      const response = await axios.post("/api/v1/generate",
         { prompt: userMessage },
         {
           headers: {
