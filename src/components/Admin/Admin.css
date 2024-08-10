@@ -241,7 +241,7 @@
   font-size: 1rem;
 }
 
-.admin__prompt pre {
+.admin__prompt .admin__prompt--pre {
   display: inline-block;
   padding: 0.5rem;
   color: var(--color-text-primary);
@@ -254,7 +254,7 @@
   word-break: break-word;
 }
 
-.admin__response pre {
+.admin__response .admin__response--pre {
   display: inline-block;
   padding: 0.5rem;
   color: var(--color-text-primary);
@@ -270,8 +270,8 @@
 .admin__response p,
 .admin__prompt p,
 .admin__response pre,
-.admin__prompt pre {
-  margin: 0;
+.admin__prompt pre{
+  margin: 0.1rem;
 }
 
 .admin__chat--error {
