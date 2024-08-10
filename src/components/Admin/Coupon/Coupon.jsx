@@ -24,8 +24,7 @@ const Coupon = () => {
 
   const fetchCoupons = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/coupons`,
+      const response = await axios.get("/api/v1/coupons",
         config
       );
       const data = response.data.data;
@@ -49,8 +48,7 @@ const Coupon = () => {
 
   const handleGenerate = async () => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/coupons`,
+      const response = await axios.post("/api/v1/coupons",
         {
           numberOfCoupons: parseInt(numberOfCoupons),
           creditsPerCoupon: parseInt(creditsPerCoupon),
