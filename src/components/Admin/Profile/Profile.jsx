@@ -57,12 +57,24 @@ const Profile = () => {
           district: District,
           block: Block,
         }));
-        addAlert("Address data fetched successfully.", "success", "bottom_right");
+        addAlert(
+          "Address data fetched successfully.",
+          "success",
+          "bottom_right"
+        );
       } else {
-        addAlert("No data found for the given pincode.", "error", "bottom_right");
+        addAlert(
+          "No data found for the given pincode.",
+          "error",
+          "bottom_right"
+        );
       }
     } catch (error) {
-      addAlert(error.response.data.message || error.message, "error", "bottom_right");
+      addAlert(
+        error.response.data.message || error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
@@ -101,14 +113,18 @@ const Profile = () => {
 
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/personal`,
+        "/api/v1/personal",
         { formData },
         config
       );
 
       addAlert(response.data.message, "success", "bottom_right");
     } catch (error) {
-      addAlert(error.response.data.error || error.message, "error", "bottom_right");
+      addAlert(
+        error.response.data.error || error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
@@ -116,7 +132,8 @@ const Profile = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BACKEND_URL}/api/v1/personal/?username=${username}`,config
+          `/api/v1/personal/?username=${username}`,
+          config
         );
 
         const data = response.data.data;
@@ -148,7 +165,11 @@ const Profile = () => {
         }
       } catch (error) {
         setUserFound(false);
-        addAlert(error.response.data.message || error.message, "error", "bottom_right");
+        addAlert(
+          error.response.data.message || error.message,
+          "error",
+          "bottom_right"
+        );
       }
     };
 
