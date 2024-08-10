@@ -1,34 +1,5 @@
-.signerror__container {
-  height: 93vh;
-  width: 100vw;
-  position: relative;
-  top: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  overflow-y: auto;
-  box-sizing: border-box;
-}
-
-.signerror__container::placeholder {
-  color: var(--color-text-secondary);
-}
-
-.signerror__container::-webkit-scrollbar {
-  width: 12px;
-}
-
-.signerror__container::-webkit-scrollbar-track {
-  background: var(--color-bg-body);
-}
-
-.signerror__container::-webkit-scrollbar-thumb {
-  background-color: var(--color-text-tertiary);
-  border-radius: 20px;
-  border: 3px solid var(--color-bg-body);
-}
-
 .signbox__container {
-  min-height: 50vh;
+  min-height: 35vh;
   width: 25vw;
   display: flex;
   flex-direction: column;
@@ -40,7 +11,7 @@
   left: 50%;
   transform: translateX(-50%);
   border-radius: 10px;
-  justify-content: space-evenly;
+  justify-content: space-around;
   padding: 2rem;
   margin: 2rem 0;
 }
@@ -49,6 +20,7 @@
   font-size: 1.5rem;
   font-family: "Geist-SemiBold", sans-serif;
   user-select: none;
+  margin-bottom: 1rem;
 }
 
 .signbox__input {
@@ -116,7 +88,7 @@
   text-align: center;
   color: var(--color-text-secondary);
   position: relative;
-  margin-bottom: 2rem;
+  margin: 1rem 0;
 }
 
 .signbox__footer a {
