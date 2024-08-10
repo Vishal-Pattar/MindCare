@@ -4,15 +4,20 @@ import "./App.css";
 import "./global.css";
 import "./font.css";
 import Header from "./components/Header/Header";
-import LoginBox from "./components/SignBox/LoginBox";
-import RegisterBox from "./components/SignBox/RegisterBox";
 import HomeArea from "./components/HomeArea/HomeArea";
+
+import Login from "./components/SignBox/Login.jsx";
+import Register from "./components/SignBox/Register.jsx";
+import ResetPassword from "./components/SignBox/ResetPassword.jsx";
+import NewPassword from "./components/SignBox/NewPassword.jsx";
+
 import AdminPanel from "./components/Admin/AdminPanel";
 import Users from "./components/Admin/Users/Users";
 import Coupon from "./components/Admin/Coupon/Coupon";
 import Profile from "./components/Admin/Profile/Profile";
 import Session from "./components/Admin/Session/Session";
 import ChatHistory from "./components/Admin/ChatHistory/ChatHistory";
+
 import LandingPage from "./components/LandingPage/LandingPage";
 import { AuthProvider } from "./context/AuthContext";
 import { AlertProvider } from "./context/AlertContext";
@@ -33,10 +38,12 @@ const App = () => {
                 <Route path="profile/:username" element={<Profile />} />
                 <Route path="history/:sessionId" element={<ChatHistory />} />
               </Route>
-              <Route path="/login" element={<LoginBox />} />
-              <Route path="/register" element={<RegisterBox />} />
-              <Route path="/chat" element={<HomeArea />} />
               <Route path="/" element={<LandingPage />} />
+              <Route path="/chat" element={<HomeArea />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/resetPassword" element={<ResetPassword />} />
+              <Route path="/newPassword/:token" element={<NewPassword />} />
             </Routes>
             <AlertBox />
           </AlertProvider>
