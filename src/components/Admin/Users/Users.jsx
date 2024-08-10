@@ -23,8 +23,7 @@ const Users = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/users`,
+      const response = await axios.get("/api/v1/admin/users",
         config
       );
       setUsers(response.data.data);
@@ -47,8 +46,7 @@ const Users = () => {
     );
 
     try {
-      const response = await axios.patch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/users/${user.username}/permit`,{},
+      const response = await axios.patch(`/api/v1/admin/users/${user.username}/permit`,{},
         config
       );
       setUsers(updatedUsers);
@@ -69,8 +67,7 @@ const Users = () => {
     );
 
     try {
-      const response = await axios.patch(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/users/${user.username}/role`,
+      const response = await axios.patch(`/api/v1/admin/users/${user.username}/role`,
         { role: newRole }, config
       );
       setUsers(updatedUsers);
