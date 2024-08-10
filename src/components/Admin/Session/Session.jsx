@@ -26,8 +26,7 @@ const Session = () => {
 
   const fetchSessions = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/sessions`, config
+      const response = await axios.get("/api/v1/admin/sessions", config
       );
       setSessions(response.data.data);
     } catch (error) {
