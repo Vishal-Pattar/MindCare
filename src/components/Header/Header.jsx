@@ -22,8 +22,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/users/logout`,
+      const response = await axios.get("/api/v1/users/logout",
         {
           headers: {
             Authorization: `Bearer ${token}`,
