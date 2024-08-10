@@ -17,8 +17,7 @@ const useCredits = () => {
     try {
       console.log("Fetching credits");
       console.log(config);
-      const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/metrics`,
+      const response = await axios.get("/api/v1/metrics",
         config
       );
       console.log(response.data.data.credits_available);
