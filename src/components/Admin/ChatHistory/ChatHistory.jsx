@@ -25,7 +25,7 @@ const ChatHistory = () => {
   const fetchHistory = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/v1/admin/history/${sessionId}`,
+        `/api/v1/admin/history/${sessionId}`,
         config
       );
       setHistory(response.data);
@@ -48,7 +48,7 @@ const ChatHistory = () => {
         <span className="admin__title">Chat History</span>
         <div className="admin__stats">
           <div className="admin__stat blueColor">
-              {history.session && history.session.session_title}
+            {history.session && history.session.session_title}
           </div>
           {history.session && history.session.prompt_count ? (
             <div className="admin__stat">
@@ -71,12 +71,12 @@ const ChatHistory = () => {
           history.data.map((chat, index) => (
             <div key={index} className="admin__history--item">
               <div className="admin__prompt">
-                <pre>
+                <pre className="admin__prompt--pre">
                   <Markdown>{chat.prompt}</Markdown>
                 </pre>
               </div>
               <div className="admin__response">
-                <pre>
+                <pre className="admin__response--pre">
                   <Markdown>{chat.response}</Markdown>
                 </pre>
               </div>
