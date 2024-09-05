@@ -18,21 +18,22 @@ const ResetPassword = () => {
     addAlert("Reset Password link to your registered email address", "info", "bottom_center");
 
 
-    // try {
-    //   const response = await axios.post("/api/v1/users/login",
-    //     { username, password }
-    //   );
-    //   if (response.data.status === "success") {
-    //     addAlert("Login Successful!", "info", "bottom_center");
-    //   }
-    // } catch (error) {
-    //   setEmail("");
-    //   addAlert(
-    //     error.response ? error.response.data.message : error.message,
-    //     "error",
-    //     "bottom_right"
-    //   );
-    // }
+    try {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/api/v1/users/login`,
+        { username, password }
+      );
+      if (response.data.status === "success") {
+        addAlert("Login Successful!", "info", "bottom_center");
+      }
+    } catch (error) {
+      setEmail("");
+      addAlert(
+        error.response ? error.response.data.message : error.message,
+        "error",
+        "bottom_right"
+      );
+    }
   };
 
   return (
