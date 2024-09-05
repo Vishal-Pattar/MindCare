@@ -15,7 +15,8 @@ const useCredits = () => {
     const token = sessionStorage.getItem("authToken");
     const config = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      const response = await axios.get("/api/v1/metrics",
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.get(`${apiUrl}/api/v1/metrics`,
         config
       );
       setCredits(response.data.data.credits_available);
