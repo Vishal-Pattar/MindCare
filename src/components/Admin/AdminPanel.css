@@ -33,6 +33,7 @@
     cursor: pointer;
     padding: 0.5rem;
     margin: 1rem;
+    color: var(--color-bg-body);
     background-color: var(--color-text-primary);
     font-size: 1.5rem;
     font-family: 'Geist-Bold', sans-serif;
