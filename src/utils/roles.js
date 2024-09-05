@@ -6,4 +6,5 @@ export const Permissions = {
 export const rolePermissions = {
     Admin: [Permissions.Admin_Access, Permissions.User_Access],
     Member: [Permissions.User_Access],
+    Tester: [Permissions.User_Access],
 };
