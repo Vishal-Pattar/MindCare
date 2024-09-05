@@ -24,8 +24,16 @@ export const AlertProvider = ({ children }) => {
     setAlerts((alerts) => alerts.filter((alert) => alert.id !== id));
   }, []);
 
+  const removeAlertByContent = useCallback((content) => {
+    setAlerts((alerts) => alerts.filter((alert) => alert.content !== content));
+  }, []);
+
+  const removeAllAlerts = useCallback(() => {
+    setAlerts([]);
+  }, []);
+
   return (
-    <AlertContext.Provider value={{ alerts, addAlert, removeAlert }}>
+    <AlertContext.Provider value={{ alerts, addAlert, removeAlert, removeAllAlerts, removeAlertByContent }}>
       {children}
     </AlertContext.Provider>
   );
