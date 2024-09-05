@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext, useMemo } from "react";
-import { Link, useLocation, useNavigate, matchPath } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Header.css";
 import axios from "axios";
 import useMessages from "../../hooks/useMessages";
 import AuthContext from "../../context/AuthContext";
 import useCredits from "../../hooks/useCredits";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { HiOutlineMenu } from "react-icons/hi";
 
 const Header = () => {
   const [messages, addMessage, clearMessages] = useMessages();
@@ -13,6 +15,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { logout, ussr } = useContext(AuthContext);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const token = useMemo(() => sessionStorage.getItem("authToken"), [location]);
 
@@ -21,14 +24,13 @@ const Header = () => {
   }, [token]);
 
   const handleLogout = async () => {
+    // handleMenu();
     try {
-      const response = await axios.get("/api/v1/users/logout",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get("/api/v1/users/logout", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (response.status === 200) {
         sessionStorage.removeItem("authToken");
         sessionStorage.removeItem("username");
@@ -42,49 +44,100 @@ const Header = () => {
     }
   };
 
-  const isOnAdminPath = matchPath("/admin/*", location.pathname);
+  const handleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
-    <div className="header__container">
-      <div className="header__title roboto-regular">
-        Creative Minds AI Chat {ussr?.role}
-      </div>
-      <span>
-        {ussr?.role === "Admin" && (
-          <Link to="/admin">
-            <button className="header__button roboto-regular">Admin</button>
-          </Link>
-        )}
-        {location.pathname === "/login" && (
-          <Link to="/register">
-            <button className="header__button roboto-regular">Register</button>
-          </Link>
-        )}
-        {location.pathname === "/register" && (
-          <Link to="/login">
-            <button className="header__button roboto-regular">Login</button>
-          </Link>
-        )}
-        {(location.pathname === "/chat" || isOnAdminPath) &&
-          (isAuthenticated ? (
-            <span>
-              <div className="header__stats roboto-regular">
-                Credits: <span className={credits > 0 ? "greenColor" : "redColor" }>{credits}</span>
-              </div>
-              <button
-                className="header__button roboto-regular"
-                onClick={handleLogout}
-              >
-                Logout
-              </button>
-            </span>
-          ) : (
-            <Link to="/login">
-              <button className="header__button roboto-regular">Login</button>
+    <>
+      <div className="header__container">
+        <div className="header__title roboto-regular">Creative Minds</div>
+        <span>
+          {ussr?.role === "Admin" && (
+            <Link to="/admin">
+              <button className="header__button roboto-regular">Admin</button>
             </Link>
-          ))}
-      </span>
-    </div>
+          )}
+          {isAuthenticated && (
+            <div className="header__stats roboto-regular">
+              Credits:{" "}
+              <span className={credits > 0 ? "greenColor" : "redColor"}>
+                {credits}
+              </span>
+            </div>
+          )}
+          <div className="header__menu--button" onClick={handleMenu}>
+            {isMenuOpen ? (
+              <HiOutlineMenuAlt3 className="header__menu--icon" />
+            ) : (
+              <HiOutlineMenu className="header__menu--icon" />
+            )}
+          </div>
+        </span>
+      </div>
+      {isMenuOpen && (
+        <div className="header__menu">
+          {isAuthenticated && (
+            <>
+              <Link to="/chat">
+                <button className="header__menu--item roboto-regular" onClick={handleMenu}>
+                  Chat
+                </button>
+              </Link>
+              <Link to="/profile">
+                <button className="header__menu--item roboto-regular" onClick={handleMenu}>
+                  Profile
+                </button>
+              </Link>
+              <Link>
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </Link>
+            </>
+          )}
+          {!isAuthenticated && (
+            <>
+              <Link to="/login">
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleMenu}
+                >
+                  Login
+                </button>
+              </Link>
+              <Link to="/register">
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleMenu}
+                >
+                  Register
+                </button>
+              </Link>
+              <Link to="/resetPassword">
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleMenu}
+                >
+                  Reset Password
+                </button>
+              </Link>
+              <Link to="/reportIssue">
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleMenu}
+                >
+                  Report Issue
+                </button>
+              </Link>
+            </>
+          )}
+        </div>
+      )}
+    </>
   );
 };
 
