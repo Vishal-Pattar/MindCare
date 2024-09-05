@@ -16,7 +16,8 @@ const RegisterBox = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("/api/v1/users/register",
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/api/v1/users/register`,
         { username, password, email, couponCode: coupon }
       );
       if (response.status === 201) {
