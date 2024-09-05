@@ -106,8 +106,9 @@ const Profile = () => {
     }
 
     try {
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await axios.put(
-        "/api/v1/personal",
+        `${apiUrl}/api/v1/personal`,
         { formData },
         config
       );
@@ -136,8 +137,9 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const apiUrl = process.env.REACT_APP_API_URL;
         const response = await axios.get(
-          `/api/v1/personal/?username=${username}`,
+          `${apiUrl}/api/v1/personal/?username=${username}`,
           config
         );
 
