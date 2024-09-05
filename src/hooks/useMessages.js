@@ -1,14 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 import { useAlert } from "../context/AlertContext";
-import { triggerFetchCredits } from "./useCredits";
+import useCredits, { triggerFetchCredits } from "./useCredits";
 
 const useMessages = () => {
   const [messages, setMessages] = useState([]);
   const token = sessionStorage.getItem("authToken");
   const { addAlert } = useAlert();
+  const credits = useCredits();
 
   const addMessage = async (userMessage) => {
+    if (credits <= 0) {
+      addAlert(
+        "You have no credits left. Please buy more credits to continue.",
+        "error",
+        "top_center"
+      );
+      return;
+    }
     const tempMessageId = Date.now();
     setMessages((prevMessages) => [
       ...prevMessages,
@@ -21,7 +30,8 @@ const useMessages = () => {
     ]);
 
     try {
-      const response = await axios.post("/api/v1/generate",
+      const response = await axios.post(
+        "/api/v1/generate",
         { prompt: userMessage },
         {
           headers: {
@@ -43,9 +53,9 @@ const useMessages = () => {
         prevMessages.filter((msg) => msg.id !== tempMessageId)
       );
       addAlert(
-        error.response?.data?.error || error.message,
+        error.response ? error.response.data.message : error.message,
         "error",
-        "signbox"
+        "bottom_right"
       );
     }
   };
