@@ -33,15 +33,6 @@ const AdminPanel = () => {
                 onClick={toggleSidebar}
               />
             </div>
-            <Link to="/chat" className="menu-item">
-              Chat
-            </Link>
-            <Link to="/login" className="menu-item">
-              Login
-            </Link>
-            <Link to="/register" className="menu-item">
-              Register
-            </Link>
             <Link to="/admin/users" className="menu-item">
               Users
             </Link>
