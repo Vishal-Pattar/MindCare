@@ -15,12 +15,9 @@ const useCredits = () => {
     const token = sessionStorage.getItem("authToken");
     const config = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      console.log("Fetching credits");
-      console.log(config);
       const response = await axios.get("/api/v1/metrics",
         config
       );
-      console.log(response.data.data.credits_available);
       setCredits(response.data.data.credits_available);
     } catch (error) {
       addAlert(
