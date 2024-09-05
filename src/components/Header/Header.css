@@ -41,3 +41,75 @@ span {
     display: inline-flex;
     flex-direction: row;
 }
+
+.header__menu--button {
+    margin-right: 1rem;
+    font-size: 1rem;
+    font-family: 'Geist-Medium', sans-serif;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    user-select: none;
+    transition: .2 ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__menu--button:hover {
+    background-color: var(--color-bg-hover);
+    border-color: var(--color-text-tertiary);
+}
+
+.header__menu--icon {
+    font-size: 1.25rem;
+}
+
+.header__menu {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    position: absolute;
+    top: 7vh;
+    right: 0rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    z-index: 1;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    border-top: none;
+}
+
+.header__menu a {
+    text-decoration: none;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__menu--item {
+    font-size: 1rem;
+    font-family: 'Geist-Medium', sans-serif;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    user-select: none;
+    transition: .2 ease;
+    text-decoration: none;
+}
+
+.header__menu a:hover {
+    background-color: var(--color-bg-hover);
+    border-color: var(--color-text-tertiary);
+}
