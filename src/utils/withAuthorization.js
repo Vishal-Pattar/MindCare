@@ -27,7 +27,8 @@ const withAuthorization = (requiredPermission) => (WrappedComponent) => {
 
       const fetchUserRole = async () => {
         try {
-          const response = await axios.get("/api/v1/admin/role", config);
+          const apiUrl = process.env.REACT_APP_API_URL;
+          const response = await axios.get(`${apiUrl}/api/v1/admin/role`, config);
           login({
             username: response.data.username,
             role: response.data.role,
