@@ -63,7 +63,7 @@ const ChatHistory = () => {
       <div className="admin__box admin__box--chathistory">
         <div className="admin__datetime">
           <span>
-            Session Created at:{" "}
+            Session Started at:{" "}
             {history.session && formatDateTime(history.session.logged_in)}
           </span>
         </div>
