@@ -14,7 +14,7 @@
 }
 
 .alert-container.top_center {
-  top: 1rem;
+  top: 4rem;
   left: 50%;
   transform: translateX(-50%);
   align-items: center;
