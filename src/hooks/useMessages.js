@@ -30,8 +30,9 @@ const useMessages = () => {
     ]);
 
     try {
+      const apiUrl = process.env.REACT_APP_API_URL;
       const response = await axios.post(
-        "/api/v1/generate",
+        `${apiUrl}/api/v1/generate`,
         { prompt: userMessage },
         {
           headers: {
