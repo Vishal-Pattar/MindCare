@@ -27,7 +27,8 @@ const NewPassword = () => {
     addAlert("Password updated successfully", "info", "bottom_center");
 
     // try {
-    //   const response = await axios.post("/api/v1/users/login",
+    //   const apiUrl = process.env.REACT_APP_API_URL;
+    //   const response = await axios.post(`${apiUrl}/api/v1/users/login`,
     //     { username, password }
     //   );
     //   if (response.data.status === "success") {
