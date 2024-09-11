@@ -13,7 +13,7 @@
   border-radius: 10px;
   justify-content: space-around;
   padding: 2rem;
-  margin: 2rem 0;
+  margin: 2rem 0 0 0;
 }
 
 .feedback__title {
@@ -117,22 +117,24 @@
   user-select: none;
 }
 
-.feedback__inputGroup textarea {
-  height: 10rem;
+.feedback__inputGroup textarea, .feedback__inputGroup input {
   border: none;
   background: none;
   color: var(--color-text-primary);
   font-family: "Geist-Regular", sans-serif;
-  font-size: 1rem;
   outline: none;
   border: 1px solid var(--color-border);
   padding: 0.75rem;
   margin-top: 0.4rem;
   border-radius: 0.5rem;
+}
+
+.feedback__inputGroup textarea {
+  height: 10rem;
   resize: none;
 }
 
-.feedback__inputGroup textarea::placeholder {
+.feedback__inputGroup textarea::placeholder, .feedback__inputGroup input::placeholder {
   color: var(--color-text-secondary);
 }
 
@@ -151,7 +153,7 @@
   border: 3px solid var(--color-bg-body);
 }
 
-.feedback__inputGroup textarea:focus {
+.feedback__inputGroup textarea:focus, .feedback__inputGroup input:focus {
   border-color: var(--color-text-secondary);
 }
 
@@ -191,9 +193,10 @@
   margin-top: 0.4rem;
   border-radius: 0.5rem;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: justify;
+  flex-direction: row;
   gap: 1rem;
 }
 
@@ -201,6 +204,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-size: 0.9rem;
 }
 .feedback__checkbox--container input {
   display: none;
@@ -212,7 +216,7 @@
 
 .feedback__checkbox--container .path {
   fill: none;
-  stroke: var(--color-text-tertiary);
+  stroke: var(--color-text-primary);
   stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -224,4 +228,5 @@
 .feedback__checkbox--container input:checked ~ svg .path {
   stroke-dasharray: 70.5096664428711 9999999;
   stroke-dashoffset: -262.2723388671875;
+  stroke: var(--color-green);
 }
