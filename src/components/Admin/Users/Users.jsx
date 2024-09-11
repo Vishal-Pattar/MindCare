@@ -24,9 +24,7 @@ const Users = () => {
   const fetchUsers = async () => {
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(`${apiUrl}/api/v1/admin/users`,
-        config
-      );
+      const response = await axios.get(`${apiUrl}/api/v1/admin/users`, config);
       setUsers(response.data.data);
     } catch (error) {
       addAlert(
@@ -48,7 +46,9 @@ const Users = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.patch(`${apiUrl}/api/v1/admin/users/${user.username}/permit`,{},
+      const response = await axios.patch(
+        `${apiUrl}/api/v1/admin/users/${user.username}/permit`,
+        {},
         config
       );
       setUsers(updatedUsers);
@@ -70,8 +70,10 @@ const Users = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.patch(`${apiUrl}/api/v1/admin/users/${user.username}/role`,
-        { role: newRole }, config
+      const response = await axios.patch(
+        `${apiUrl}/api/v1/admin/users/${user.username}/role`,
+        { role: newRole },
+        config
       );
       setUsers(updatedUsers);
       addAlert(response.data.message, "success", "bottom_right");
@@ -133,21 +135,33 @@ const Users = () => {
                 <td>{user.email}</td>
                 <td>{user.coupon}</td>
                 <td>
-                  <select
-                    className="admin__select"
-                    value={user.role}
-                    onChange={(e) => handleRoleChange(user, e.target.value)}
-                  >
-                    <option value="Admin">Admin</option>
-                    <option value="Tester">Tester</option>
-                    <option value="Member">Member</option>
-                  </select>
+                  {user.role !== "Root" ? (
+                    <select
+                      className="admin__select"
+                      value={user.role}
+                      onChange={(e) => handleRoleChange(user, e.target.value)}
+                    >
+                      <option value="Admin">Admin</option>
+                      <option value="Tester">Tester</option>
+                      <option value="Member">Member</option>
+                    </select>
+                  ) : (
+                    <div className="admin__button admin__button--small">
+                      {user.role}
+                    </div>
+                  )}
                 </td>
                 <td className="center">
-                  <Toggle
-                    permit={user.permit}
-                    onClick={() => handleToggle(user)}
-                  />
+                  {user.role === "Root" ? (
+                    <div className="admin__button admin__button--small">
+                      {user.permit ? "Permitted" : "Not Permitted"}
+                    </div>
+                  ) : (
+                    <Toggle
+                      permit={user.permit}
+                      onClick={() => handleToggle(user)}
+                    />
+                  )}
                 </td>
                 <td>
                   <Link to={`/admin/profile/${user.username}`}>
