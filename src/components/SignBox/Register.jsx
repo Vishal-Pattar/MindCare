@@ -17,9 +17,12 @@ const RegisterBox = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/v1/users/register`,
-        { username, password, email, couponCode: coupon }
-      );
+      const response = await axios.post(`${apiUrl}/api/v1/users/register`, {
+        username,
+        password,
+        email,
+        couponCode: coupon,
+      });
       if (response.status === 201) {
         addAlert("Registration Successful", "success", "bottom_right");
         addAlert("Redirecting to Login Page", "info", "bottom_right");
@@ -28,7 +31,11 @@ const RegisterBox = () => {
         }, 2000);
       }
     } catch (error) {
-      addAlert(error.response.data.error, "error", "bottom_right");
+      addAlert(
+        error.response ? error.response.data.message : error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
