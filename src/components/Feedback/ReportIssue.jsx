@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Feedback.css";
 import { useAlert } from "../../context/AlertContext";
+import Checkbox from "./Checkbox";
 
 const ReportIssue = () => {
   const [issueText, setIssueText] = useState("");
@@ -39,29 +40,21 @@ const ReportIssue = () => {
       <div className="feedback__description">
         Click below to report any issues you are facing.
       </div>
+      <div className="feedback__inputGroup">
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
       <div className="feedback__checkboxGroup">
-        <label className="feedback__checkbox--container">
-          <input type="checkbox" />
-          <svg viewBox="0 0 64 64" height="1rem" width="1rem">
-            <path
-              d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
-              pathLength="575.0541381835938"
-              className="path"
-            ></path>
-          </svg>
-          <span>Login/Register</span>
-        </label>
-        <label className="feedback__checkbox--container">
-          <input type="checkbox" />
-          <svg viewBox="0 0 64 64" height="1rem" width="1rem">
-            <path
-              d="M 0 16 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 16 L 32 48 L 64 16 V 8 A 8 8 90 0 0 56 0 H 8 A 8 8 90 0 0 0 8 V 56 A 8 8 90 0 0 8 64 H 56 A 8 8 90 0 0 64 56 V 16"
-              pathLength="575.0541381835938"
-              className="path"
-            ></path>
-          </svg>
-          <span>Chatting</span>
-        </label>
+        <Checkbox name="Login/Register"/>
+        <Checkbox name="Profile"/>
+        <Checkbox name="Subscription"/>
+        <Checkbox name="Payment"/>
+        <Checkbox name="Others"/>
       </div>
       <div className="feedback__inputGroup">
         <label htmlFor="issueText">
@@ -69,7 +62,7 @@ const ReportIssue = () => {
         </label>
         <textarea
           id="issueText"
-          placeholder="Enter your issue here"
+          placeholder="I am Facing an issue with..."
           value={issueText}
           onChange={handleReportIssueChange}
         />
