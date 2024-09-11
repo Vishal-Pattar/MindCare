@@ -52,9 +52,11 @@ const Header = () => {
   return (
     <>
       <div className="header__container">
-        <div className="header__title roboto-regular">Creative Minds</div>
+        <Link to="/">
+          <div className="header__title roboto-regular">Creative Minds</div>
+        </Link>
         <span>
-          {ussr?.role === "Admin" && (
+          {(ussr?.role === "Admin" || ussr?.role === "Root") && (
             <Link to="/admin">
               <button className="header__button roboto-regular">Admin</button>
             </Link>
@@ -81,12 +83,18 @@ const Header = () => {
           {isAuthenticated && (
             <>
               <Link to="/chat">
-                <button className="header__menu--item roboto-regular" onClick={handleMenu}>
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleMenu}
+                >
                   Chat
                 </button>
               </Link>
               <Link to="/profile">
-                <button className="header__menu--item roboto-regular" onClick={handleMenu}>
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleMenu}
+                >
                   Profile
                 </button>
               </Link>
