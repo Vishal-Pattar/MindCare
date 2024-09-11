@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { useAlert } from "../../context/AlertContext";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 
 const Profile = () => {
-  const { username } = useParams();
   const { addAlert } = useAlert();
   const authToken = sessionStorage.getItem("authToken");
   const config = {
@@ -15,7 +13,6 @@ const Profile = () => {
   };
   const [container, setContainer] = useState(1);
   const [formData, setFormData] = useState({
-    username: username,
     first_name: "",
     last_name: "",
     age: "",
@@ -36,7 +33,7 @@ const Profile = () => {
   const handleFetchAddress = async () => {
     const { pincode } = formData;
     if (!pincode) {
-      addAlert("Pincode is required.", "error", "signbox");
+      addAlert("Pincode is required.", "error", "bottom_right");
       return;
     }
 
@@ -65,7 +62,7 @@ const Profile = () => {
       }
     } catch (error) {
       addAlert(
-        error.response.data.message || error.message,
+        error.response ? error.response.data.message : error.message,
         "error",
         "bottom_right"
       );
@@ -75,7 +72,6 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const {
-      username,
       first_name,
       last_name,
       age,
@@ -89,7 +85,6 @@ const Profile = () => {
     } = formData;
 
     if (
-      !username ||
       !first_name ||
       !last_name ||
       !age ||
@@ -98,8 +93,7 @@ const Profile = () => {
       !country ||
       !state ||
       !district ||
-      !block ||
-      !context
+      !block
     ) {
       addAlert("All fields are required.", "error", "bottom_right");
       return;
@@ -107,7 +101,7 @@ const Profile = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.put(
+      const response = await axios.post(
         `${apiUrl}/api/v1/personal`,
         { formData },
         config
@@ -115,8 +109,9 @@ const Profile = () => {
 
       addAlert(response.data.message, "success", "bottom_right");
     } catch (error) {
+      console.log(error);
       addAlert(
-        error.response.data.error || error.message,
+        error.response ? error.response.data.message : error.message,
         "error",
         "bottom_right"
       );
@@ -133,53 +128,6 @@ const Profile = () => {
       setContainer(container - 1);
     }, 500);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const apiUrl = process.env.REACT_APP_API_URL;
-        const response = await axios.get(
-          `${apiUrl}/api/v1/personal/?username=${username}`,
-          config
-        );
-
-        const data = response.data.data;
-
-        if (data) {
-          const {
-            first_name,
-            last_name,
-            age,
-            gender,
-            pincode,
-            address,
-            context,
-          } = data;
-          setFormData({
-            username,
-            first_name,
-            last_name,
-            age,
-            gender,
-            pincode,
-            country: address.country,
-            state: address.state,
-            district: address.district,
-            block: address.block,
-            context,
-          });
-        }
-      } catch (error) {
-        addAlert(
-          error.response.data.message || error.message,
-          "error",
-          "bottom_right"
-        );
-      }
-    };
-
-    // fetchData();
-  }, [username, authToken, addAlert]);
 
   return (
     <div className="profile__window">
