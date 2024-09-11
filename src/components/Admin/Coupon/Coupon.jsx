@@ -39,8 +39,7 @@ const Coupon = () => {
       setCouponStats(response.data.count);
       setCoupons(sortedCoupons);
     } catch (error) {
-      addAlert(
-        error.response.data.message || error.message,
+      addAlert(error.response ? error.response.data.message : error.message,
         "error",
         "bottom_right"
       );
@@ -69,13 +68,10 @@ const Coupon = () => {
 
       setCoupons(sortedCoupons);
       setCouponStats(response.data.count);
-      setNumCodesToGenerate("");
+      setNumberOfCoupons("");
+      setCreditsPerCoupon("");
     } catch (error) {
-      addAlert(
-        error.response.data.message || error.message,
-        "error",
-        "bottom_right"
-      );
+      addAlert(error.response ? error.response.data.message : error.message, "error", "bottom_right");
     }
   };
 
@@ -112,7 +108,7 @@ const Coupon = () => {
             type="text"
             className="admin__input admin__input--small"
             placeholder="Credits"
-            maxLength={2}
+            maxLength={3}
             value={creditsPerCoupon}
             onChange={(e) => setCreditsPerCoupon(e.target.value)}
           />
