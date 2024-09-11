@@ -31,11 +31,7 @@ const ChatHistory = () => {
       );
       setHistory(response.data);
     } catch (error) {
-      addAlert(
-        error.response.data.message || error.message,
-        "error",
-        "bottom_right"
-      );
+      addAlert(error.response ? error.response.data.message : error.message, "error", "bottom_right");
     }
   };
 
