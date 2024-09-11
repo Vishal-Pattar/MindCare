@@ -1,15 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SignBox.css";
 import axios from "axios";
 import { useAlert } from "../../context/AlertContext";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const NewPassword = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isValidToken, setIsValidToken] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { addAlert } = useAlert();
   const { token } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const verifyToken = async () => {
+      try {
+        const apiUrl = process.env.REACT_APP_API_URL;
+        const response = await axios.get(
+          `${apiUrl}/api/v1/users/verifyToken/${token}`,
+        );
+        if (response.data.status === "success") {
+          setIsValidToken(true);
+        } else {
+          addAlert("Invalid or expired token. Please request a new password reset link", "info", "center")
+        }
+      } catch (error) {
+        addAlert("Page not found or token invalid", "error", "center");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    verifyToken();
+  }, [token, addAlert, navigate]);
 
   const handleNewPassword = async (event) => {
     event.preventDefault();
@@ -24,32 +49,42 @@ const NewPassword = () => {
       return;
     }
 
-    addAlert("Password updated successfully", "info", "bottom_center");
-
-    // try {
-    //   const apiUrl = process.env.REACT_APP_API_URL;
-    //   const response = await axios.post(`${apiUrl}/api/v1/users/login`,
-    //     { username, password }
-    //   );
-    //   if (response.data.status === "success") {
-    //     addAlert("Login Successful!", "info", "bottom_center");
-    //   }
-    // } catch (error) {
-    //   addAlert(
-    //     error.response ? error.response.data.message : error.message,
-    //     "error",
-    //     "bottom_right"
-    //   );
-    // }
+    try {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.post(`${apiUrl}/api/v1/users/newPassword`, {
+        token,
+        newPassword,
+      });
+      if (response.data.status === "success") {
+        addAlert("Password Updated Successfully", "info", "bottom_center");
+        navigate("/login"); // Redirect to login or another page after success
+      }
+    } catch (error) {
+      addAlert(
+        error.response ? error.response.data.message : error.message,
+        "error",
+        "bottom_right"
+      );
+    }
   };
+
+  if (loading) {
+    return <></>;
+  }
+
+  if (!isValidToken) {
+    return (
+      <></>
+    );
+  }
 
   return (
     <div className="signbox__container">
       <div className="signbox__title">New Password</div>
       <div className="signbox__input">
-        <label htmlFor="username">*New Password</label>
+        <label htmlFor="newPassword">*New Password</label>
         <input
-          type={showPassword ? "password" : "text"}
+          type={showPassword ? "text" : "password"}
           id="newPassword"
           placeholder="Enter your Password"
           value={newPassword}
@@ -60,7 +95,7 @@ const NewPassword = () => {
         </div>
       </div>
       <div className="signbox__input">
-        <label htmlFor="username">*Confirm Password</label>
+        <label htmlFor="confirmPassword">*Confirm Password</label>
         <input
           type="password"
           id="confirmPassword"
