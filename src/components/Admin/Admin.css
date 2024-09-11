@@ -72,7 +72,7 @@
 }
 
 .admin__input--small {
-  width: 3rem;
+  width: 3.5rem;
 }
 
 .admin__button {
@@ -103,7 +103,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   padding: 1rem;
   box-sizing: border-box;
   background-color: var(--color-bg-body);
@@ -141,8 +141,6 @@
 
 .admin__box--table {
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .admin__box--tr td,
@@ -202,6 +200,17 @@
 
 .admin__table_code {
   cursor: pointer;
+}
+
+.admin__table_code span {
+  padding: 0.1rem 0.5rem;
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+  border-radius: 0.25rem;
+}
+
+.admin__table_code span:hover {
+  background-color: var(--color-text-secondary);
 }
 
 /* ChatHistory */
@@ -403,7 +412,7 @@
   background: var(--color-bg-body);
 }
 
-.admin__form--input input:focus {
+.admin__form--input input:focus, .admin__form--input select:focus, .admin__form--input textarea:focus {
   border-color: var(--color-text-secondary);
 }
 
@@ -445,4 +454,16 @@
   user-select: none;
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.admin__email{
+  border: none;
+  background: none;
+  color: var(--color-text-primary);
+  font-family: "Geist-Regular", sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  border: 1px solid var(--color-border);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
 }
