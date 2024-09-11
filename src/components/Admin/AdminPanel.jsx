@@ -42,6 +42,9 @@ const AdminPanel = () => {
             <Link to="/admin/sessions" className="menu-item">
               Sessions
             </Link>
+            <Link to="/admin/email" className="menu-item">
+              Email
+            </Link>
           </div>
         ) : (
           <div className="menu-button-container">
