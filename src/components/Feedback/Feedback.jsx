@@ -47,7 +47,7 @@ const Feedback = () => {
 
   return (
     <div className="feedback__container">
-      <div className="feedback__title">Give Feedback</div>
+      <div className="feedback__title">Give Your Feedback</div>
       <div className="feedback__description">
         How was your experience with our service?
       </div>
