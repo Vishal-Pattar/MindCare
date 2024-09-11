@@ -11,21 +11,17 @@ const ResetPassword = () => {
     event.preventDefault();
 
     if (!email) {
-      addAlert("Please enter your email", "error", "bottom_center");
+      addAlert("Please enter your email", "error", "bottom_right");
       return;
     }
 
-    addAlert("Reset Password link to your registered email address", "info", "bottom_center");
-
-
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/v1/users/login`,
-        { username, password }
-      );
+      const response = await axios.get(`${apiUrl}/api/v1/users/resetPassword/${email}`);
       if (response.data.status === "success") {
-        addAlert("Login Successful!", "info", "bottom_center");
+        addAlert("Reset Password link sent to your registered email address", "info", "bottom_right");
       }
+      
     } catch (error) {
       setEmail("");
       addAlert(
