@@ -19,13 +19,13 @@
 .landingpage__boardborder {
     height: 60vh;
     width: 50vw;
-    background-color: #fafafaee;
+    background-color: var(--color-border);
     border-radius: 1rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.2);
+    box-shadow: var(--box-shadow-black);
     box-sizing: border-box;
     padding: 0.75rem;
 }
