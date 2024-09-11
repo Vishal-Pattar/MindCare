@@ -2,12 +2,14 @@
   height: 93vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   box-sizing: border-box;
 }
 
 .profile__container {
   min-height: 20vh;
   min-width: 35vw;
+  max-width: 50vw;
   display: inline-flex;
   flex-direction: column;
   background: var(--color-bg);
@@ -15,7 +17,6 @@
   border: 2px solid var(--color-border);
   box-sizing: border-box;
   position: relative;
-  margin-top: 5rem;
   border-radius: 10px;
   padding: 1.5rem;
   row-gap: 1rem;
@@ -52,7 +53,7 @@
   width: 100%;
 }
 
-.profile__input label {
+.profile__input label, .profile__input--label {
   font-size: 0.85rem;
   font-family: "Geist-Medium", sans-serif;
   user-select: none;
@@ -65,7 +66,9 @@
 
 .profile__input input,
 .profile__input select,
-.profile__input textarea {
+.profile__input textarea,
+.profile__input--value,
+.profile__input--textarea {
   border: none;
   background: none;
   color: var(--color-text-primary);
@@ -82,10 +85,29 @@
   width: 100%;
 }
 
-.profile__input textarea {
+.profile__input textarea, .profile__input--textarea {
   resize: none;
   min-width: 30vw;
   height: 20vh;
+  overflow-y: auto;
+}
+
+.profile__input textarea::placeholder, .profile__input--textarea::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.profile__input textarea::-webkit-scrollbar, .profile__input--textarea::-webkit-scrollbar {
+  width: 12px;
+}
+
+.profile__input textarea::-webkit-scrollbar-track, .profile__input--textarea::-webkit-scrollbar-track {
+  background: var(--color-bg-body);
+}
+
+.profile__input textarea::-webkit-scrollbar-thumb, .profile__input--textarea::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-tertiary);
+  border-radius: 20px;
+  border: 3px solid var(--color-bg-body);
 }
 
 .profile__input select option {
@@ -140,7 +162,7 @@
 }
 
 .profile__button--fetch {
-  width: 50%;
+  width: 30%;
 }
 
 .disabled input:hover {
