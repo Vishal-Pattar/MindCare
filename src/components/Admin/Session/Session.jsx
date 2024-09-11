@@ -10,7 +10,7 @@ import { useAlert } from "../../../context/AlertContext";
 const Session = () => {
   const [sessions, setSessions] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [showAdminSessions, setShowAdminSessions] = useState(false);
+  const [showPromptSessions, setShowPromptSessions] = useState(true);
   const authToken = sessionStorage.getItem("authToken");
   const config = {
     headers: {
@@ -27,11 +27,17 @@ const Session = () => {
   const fetchSessions = async () => {
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(`${apiUrl}/api/v1/admin/sessions`, config
+      const response = await axios.get(
+        `${apiUrl}/api/v1/admin/sessions`,
+        config
       );
       setSessions(response.data.data);
     } catch (error) {
-      addAlert(error.response.data.message || error.message, "error", "bottom_right");
+      addAlert(
+        error.response.data.message || error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
@@ -44,12 +50,16 @@ const Session = () => {
   };
 
   const handleToggle = () => {
-    setShowAdminSessions((prevShowAdminSessions) => !prevShowAdminSessions);
+    setShowPromptSessions((prevShowPromptSessions) => !prevShowPromptSessions);
   };
 
   const filteredSessions = sessions
-    .filter((session) => session.username.toLowerCase().includes(searchQuery.toLowerCase()))
-    .filter((session) => showAdminSessions || session.username !== "Admin");
+    .filter((session) =>
+      session.username.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .filter((session) =>
+      showPromptSessions ? session.prompt_count > 0 : true
+    );
 
   const sortedSessions = filteredSessions.sort((a, b) => {
     return new Date(b.logged_in) - new Date(a.logged_in);
@@ -72,7 +82,7 @@ const Session = () => {
             onChange={handleSearchChange}
           />
           <div className="admin__checkbox">
-            <Toggle permit={showAdminSessions} onClick={handleToggle} />
+            <Toggle permit={showPromptSessions} onClick={handleToggle} />
           </div>
           <button className="admin__button" onClick={handleRefresh}>
             Refresh
