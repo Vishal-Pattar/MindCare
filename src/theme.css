@@ -189,7 +189,10 @@
   --color-border-success: #aed581;
 
   /* Gradient Variables */
-  --gradient-header: linear-gradient(rgb(255, 224, 178), rgba(255, 205, 159, 1));
+  --gradient-header: linear-gradient(
+    rgb(255, 224, 178),
+    rgba(255, 205, 159, 1)
+  );
   --box-shadow-black: 8px 8px 16px #e3b7a0, -8px -8px 16px #fff5ec;
 }
 
@@ -219,6 +222,75 @@
   --color-border-success: #81c784;
 
   /* Gradient Variables */
-  --gradient-header: linear-gradient(rgb(255, 229, 217), rgba(255, 214, 193, 1));
+  --gradient-header: linear-gradient(
+    rgb(255, 229, 217),
+    rgba(255, 214, 193, 1)
+  );
   --box-shadow-black: 8px 8px 16px #e3b0a1, -8px -8px 16px #fff5ef;
+}
+
+.blue-green-theme {
+  /* Color Variables */
+  --color-border: #a0d6d4;
+  --color-bg: #e0f2f1;
+  --color-bg-body: #b2dfdb;
+  --color-bg-hover: #b9fbc0;
+  --color-accent: #a5d6a7;
+  --color-text-primary: #004d40;
+  --color-text-secondary: #00796b;
+  --color-text-tertiary: #004d40;
+  --color-text-error: #e57373;
+  --color-red: #e57373;
+  --color-green: #81c784;
+  --color-blue: #64b5f6;
+
+  --color-bg-error: #ffebee;
+  --color-bg-warning: #fff3e0;
+  --color-bg-info: #e3f2fd;
+  --color-bg-success: #e8f5e9;
+
+  --color-border-error: #e57373;
+  --color-border-warning: #ffb74d;
+  --color-border-info: #64b5f6;
+  --color-border-success: #a5d6a7;
+
+  /* Gradient Variables */
+  --gradient-header: linear-gradient(
+    rgb(224, 242, 241),
+    rgba(178, 223, 219, 1)
+  );
+  --box-shadow-black: 8px 8px 16px #a0d6d4, -8px -8px 16px #e0f2f1;
+}
+
+.green-theme {
+  /* Color Variables */
+  --color-border: #a5d6a7;
+  --color-bg: #e8f5e9;
+  --color-bg-body: #c8e6c9;
+  --color-bg-hover: #b9fbc0;
+  --color-accent: #81c784;
+  --color-text-primary: #1b5e20;
+  --color-text-secondary: #2e7d32;
+  --color-text-tertiary: #4caf50;
+  --color-text-error: #e57373;
+  --color-red: #e57373;
+  --color-green: #66bb6a;
+  --color-blue: #64b5f6;
+
+  --color-bg-error: #fbe9e7;
+  --color-bg-warning: #fff9c4;
+  --color-bg-info: #e8f5e9;
+  --color-bg-success: #e8f5e9;
+
+  --color-border-error: #f48fb1;
+  --color-border-warning: #ffe082;
+  --color-border-info: #81c784;
+  --color-border-success: #a5d6a7;
+
+  /* Gradient Variables */
+  --gradient-header: linear-gradient(
+    rgb(237, 245, 233),
+    rgba(204, 255, 204, 1)
+  );
+  --box-shadow-black: 8px 8px 16px #a5d6a7, -8px -8px 16px #e8f5e9;
 }
