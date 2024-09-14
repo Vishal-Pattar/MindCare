@@ -2,20 +2,21 @@ import React, { useEffect, useState, useContext, useMemo } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Header.css";
 import axios from "axios";
-import useMessages from "../../hooks/useMessages";
 import AuthContext from "../../context/AuthContext";
 import useCredits from "../../hooks/useCredits";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { HiOutlineMenu } from "react-icons/hi";
+import { useDispatch } from "react-redux";
+import { clearMessages } from "../../slices/messagesSlice";
 
 const Header = () => {
-  const [messages, addMessage, clearMessages] = useMessages();
   const credits = useCredits();
   const location = useLocation();
   const navigate = useNavigate();
   const { logout, ussr } = useContext(AuthContext);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const token = useMemo(() => sessionStorage.getItem("authToken"), [location]);
 
@@ -25,6 +26,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     handleMenu();
+    dispatch(clearMessages());
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
       const response = await axios.get(`${apiUrl}/api/v1/users/logout`, {
@@ -35,7 +37,6 @@ const Header = () => {
       if (response.status === 200) {
         sessionStorage.removeItem("authToken");
         sessionStorage.removeItem("username");
-        clearMessages();
         logout();
         setIsAuthenticated(false);
         navigate("/login");
@@ -96,6 +97,14 @@ const Header = () => {
                   onClick={handleMenu}
                 >
                   Profile
+                </button>
+              </Link>
+              <Link to="/settings">
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleMenu}
+                >
+                  Settings
                 </button>
               </Link>
               <Link>
