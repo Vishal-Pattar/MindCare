@@ -1,91 +1,92 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import WelcomeBox from "../WelcomeBox/WelcomeBox";
 import "./OutputBox.css";
 import img from "../../assets/logo.png";
-import Loader from "../../assets/loader.gif";
 import Markdown from "markdown-to-jsx";
+import { BsPersonCircle } from "react-icons/bs";
+import { responseRecieved, startWordEffect } from "../../slices/messagesSlice";
 import withAuthorization from "../../utils/withAuthorization";
 import { Permissions } from "../../utils/roles";
-import { BsPersonCircle } from "react-icons/bs";
 
-const OutputBox = ({ messages }) => {
-  const [showWelcomeBox, setShowWelcomeBox] = useState(true);
-  const [displayedText, setDisplayedText] = useState("");
-  const [currentIndex, setCurrentIndex] = useState(0);
+const OutputBox = ({ messages, currentResponse, onStopEffect }) => {
+  const dispatch = useDispatch();
+  const isWordEffectRunning = useSelector(
+    (state) => state.messages.isWordEffectRunning
+  );
+  const [currentOutput, setCurrentOutput] = useState("");
   const containerRef = useRef(null);
+  const timeoutRef = useRef(null); // Ref for setTimeout ID
+
+  // Word-by-word effect with stop functionality
+  const runWordEffect = useCallback(() => {
+    if (currentResponse && currentResponse.output) {
+      const words = currentResponse.output.split(" ");
+      let index = 0;
+      setCurrentOutput(""); // Start with an empty output
+
+      dispatch(startWordEffect()); // Mark the word effect as running
+
+      const wordEffect = () => {
+        if (index < words.length) {
+          setCurrentOutput((prev) => prev + words[index] + " "); // Append word
+          index++;
+          timeoutRef.current = setTimeout(wordEffect, 150); // Recursive timeout
+        } else {
+          dispatch(responseRecieved()); // Word effect completed
+          setCurrentOutput(currentResponse.output); // Show full output
+          onStopEffect(); // Notify parent component to re-enable input field
+        }
+      };
+
+      wordEffect(); // Start the recursive function
+    }
+  }, [currentResponse, dispatch, onStopEffect]);
+
+  // Stop the word effect and show full response
+  const handleStop = () => {
+    clearTimeout(timeoutRef.current); // Clear the timeout
+    setCurrentOutput(currentResponse.output); // Show full response immediately
+    dispatch(responseRecieved()); // Stop word effect
+    onStopEffect(); // Notify parent component to handle UI changes
+  };
 
   useEffect(() => {
-    setShowWelcomeBox(messages.length === 0);
-  }, [messages]);
+    if (currentResponse && isWordEffectRunning) {
+      runWordEffect(); // Run word effect when the state indicates
+    }
+    return () => clearTimeout(timeoutRef.current); // Cleanup on unmount
+  }, [currentResponse, isWordEffectRunning, runWordEffect]);
 
+  // Auto-scroll to the bottom when new messages arrive
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
-  }, [messages, displayedText]);
-
-  useEffect(() => {
-    if (messages.length > 0) {
-      const lastMessage = messages[messages.length - 1];
-      if (lastMessage && !lastMessage.loading && lastMessage.output) {
-        const words = lastMessage.output.split(" ");
-        setCurrentIndex(0);
-
-        const interval = setInterval(() => {
-          setCurrentIndex((prevIndex) => {
-            if (prevIndex < words.length - 1) {
-              return prevIndex + 1;
-            } else {
-              clearInterval(interval);
-              return prevIndex;
-            }
-          });
-        }, 100);
-
-        return () => clearInterval(interval);
-      }
-    }
   }, [messages]);
 
-  useEffect(() => {
-    if (messages.length > 0) {
-      const lastMessage = messages[messages.length - 1];
-      if (lastMessage && !lastMessage.loading && lastMessage.output) {
-        const words = lastMessage.output.split(" ");
-        setDisplayedText(words.slice(0, currentIndex + 1).join(" "));
-      }
-    }
-  }, [currentIndex, messages]);
-
-  const MessageItem = ({ msg, isLast }) => (
-    <div className="outputbox__content">
-      <span>
-        <img src={img} alt="output" className="outputbox__image" />
-        <div className="outputbox__textspace">{msg.user}</div>
-      </span>
-      <span>
-        <BsPersonCircle className="outputbox__image" />
-        <div className="outputbox__textspace outputbox__textspace_output">
-          {msg.loading ? (
-            <img src={Loader} alt="loading" className="loader" />
-          ) : (
-            <Markdown>{isLast ? displayedText : msg.output}</Markdown>
-          )}
-        </div>
-      </span>
-    </div>
-  );
-
-  return showWelcomeBox ? (
+  return messages.length === 0 ? (
     <WelcomeBox />
   ) : (
     <div className="outputbox__container" ref={containerRef}>
-      {messages.slice(-2).map((msg, index) => (
-        <MessageItem
-          key={index}
-          msg={msg}
-          isLast={index === messages.length - 1}
-        />
+      {messages.map((msg, index) => (
+        <div key={index} className="outputbox__content">
+          <span>
+            <img src={img} alt="output" className="outputbox__image" />
+            <div className="outputbox__textspace">{msg.prompt}</div>
+          </span>
+          <span>
+            <BsPersonCircle className="outputbox__image" />
+            <div className="outputbox__textspace outputbox__textspace_output">
+              {/* Display word-by-word effect for the last message */}
+              {index === messages.length - 1 && isWordEffectRunning ? (
+                <Markdown>{currentOutput}</Markdown>
+              ) : (
+                <Markdown>{msg.response}</Markdown>
+              )}
+            </div>
+          </span>
+        </div>
       ))}
     </div>
   );
