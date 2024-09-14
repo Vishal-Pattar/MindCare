@@ -52,7 +52,7 @@ const Users = () => {
         config
       );
       setUsers(updatedUsers);
-      addAlert(response.data.message, "success", "bottom_right");
+      addAlert(response.data.message, "warning", "bottom_right");
     } catch (error) {
       console.log(error);
       addAlert(
@@ -76,7 +76,7 @@ const Users = () => {
         config
       );
       setUsers(updatedUsers);
-      addAlert(response.data.message, "success", "bottom_right");
+      addAlert(response.data.message, "warning", "bottom_right");
     } catch (error) {
       addAlert(
         error.response.data.message || error.message,
