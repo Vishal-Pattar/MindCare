@@ -35,3 +35,5 @@ chatlit
 data
 templates
 netlify
+src/assets/other
+work.py
