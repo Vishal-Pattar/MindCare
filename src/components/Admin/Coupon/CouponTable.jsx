@@ -3,7 +3,8 @@ import { IoShieldCheckmarkSharp } from "react-icons/io5";
 import { MdIndeterminateCheckBox } from "react-icons/md";
 import formatDateTime from "../../../utils/formatDateTime";
 import { useAlert } from "../../../context/AlertContext";
-import { MdOutlineContentCopy } from "react-icons/md";
+import withAuthorization from "../../../utils/withAuthorization";
+import { Permissions } from "../../../utils/roles";
 
 const CouponTable = ({ coupon }) => {
   const { addAlert } = useAlert();
@@ -75,4 +76,4 @@ const CouponTable = ({ coupon }) => {
   );
 };
 
-export default CouponTable;
+export default withAuthorization(Permissions.Admin_Access)(CouponTable);
