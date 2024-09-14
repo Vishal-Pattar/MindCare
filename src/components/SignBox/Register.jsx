@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SignBox.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useAlert } from "../../context/AlertContext";
 
@@ -9,8 +9,27 @@ const RegisterBox = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [coupon, setCoupon] = useState("");
+  const [isCouponDisabled, setIsCouponDisabled] = useState(false);
+  const [isEmailDisabled, setIsEmailDisabled] = useState(false);
+
   const navigate = useNavigate();
   const { addAlert } = useAlert();
+  const location = useLocation();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const queryEmail = searchParams.get("email");
+    const queryCoupon = searchParams.get("coupon");
+
+    if (queryEmail) {
+      setEmail(queryEmail);
+      setIsEmailDisabled(true);
+    }
+    if (queryCoupon) {
+      setCoupon(queryCoupon);
+      setIsCouponDisabled(true);
+    }
+  }, [location.search]);
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -28,7 +47,7 @@ const RegisterBox = () => {
         addAlert("Redirecting to Login Page", "info", "bottom_right");
         setTimeout(() => {
           navigate("/login");
-        }, 2000);
+        }, 1000);
       }
     } catch (error) {
       addAlert(
@@ -73,6 +92,8 @@ const RegisterBox = () => {
             placeholder="Enter your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            disabled={isEmailDisabled}
+            className={isEmailDisabled ? "disabled-input" : ""}
             required={true}
           />
         </div>
@@ -86,6 +107,8 @@ const RegisterBox = () => {
             placeholder="Enter your Coupon code"
             value={coupon}
             onChange={(e) => setCoupon(e.target.value)}
+            disabled={isCouponDisabled}
+            className={isCouponDisabled ? "disabled-input" : ""}
             required={true}
           />
         </div>
