@@ -235,13 +235,14 @@ const Profile = () => {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="admin__form--input">
+                <div className="admin__form--select ">
                   <label htmlFor="gender">*Gender</label>
                   <select
                     id="gender"
                     name="gender"
                     value={formData.gender}
                     onChange={handleChange}
+                    className="admin__form--select--gender"
                   >
                     <option value="">Select</option>
                     <option value="Male">Male</option>
@@ -252,7 +253,7 @@ const Profile = () => {
               </span>
             </div>
             <div className="admin__form--container">
-              <span className="admin__form--group">
+              <span className="admin__form--group admin__form--group-address">
                 <div className="admin__form--input">
                   <label htmlFor="pincode">*Pincode</label>
                   <input
@@ -270,7 +271,7 @@ const Profile = () => {
                   className="admin__form--button"
                   onClick={handleFetchAddress}
                 >
-                  Fetch Address
+                  Fetch
                 </button>
               </span>
               <span className="admin__form--group">
