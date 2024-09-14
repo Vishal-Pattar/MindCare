@@ -17,12 +17,12 @@
 }
 
 .landingpage__boardborder {
-    height: 60vh;
-    width: 50vw;
+    height: 50vh;
+    width: 40vw;
     background-color: var(--color-border);
     border-radius: 1rem;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     box-shadow: var(--box-shadow-black);
