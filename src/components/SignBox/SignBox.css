@@ -32,6 +32,11 @@
   flex-direction: column;
 }
 
+.disabled-input {
+  user-select: none;
+  cursor: not-allowed;
+}
+
 .signbox__input.invalid input {
   border-color: var(--color-text-error);
 }
