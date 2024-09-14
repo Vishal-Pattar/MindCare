@@ -30,3 +30,7 @@ Health-LLM
 
 # Local Netlify folder
 .netlify
+
+chatlit
+data
+templates
