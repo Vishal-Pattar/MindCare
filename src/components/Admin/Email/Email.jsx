@@ -93,7 +93,7 @@ const Email = () => {
               />
             </div>
             <div className="admin__form--input">
-              <label htmlFor="username">Body</label>
+              <label htmlFor="body">Body</label>
               <textarea
                 type="text"
                 id="body"
