@@ -470,3 +470,8 @@
   padding: 0.5rem;
   border-radius: 0.5rem;
 }
+
+.delete {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
