@@ -3,6 +3,7 @@ import "./SignBox.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useAlert } from "../../context/AlertContext";
+import decodeFromBase64Url from "../../utils/decodeFromBase64Url";
 
 const RegisterBox = () => {
   const [username, setUsername] = useState("");
@@ -18,18 +19,29 @@ const RegisterBox = () => {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const queryEmail = searchParams.get("email");
-    const queryCoupon = searchParams.get("coupon");
+    const token = searchParams.get("token");
 
-    if (queryEmail) {
-      setEmail(queryEmail);
-      setIsEmailDisabled(true);
+    if (token) {
+      try {
+        const decodedData = decodeFromBase64Url(token);
+
+        if (decodedData.email) {
+          setEmail(decodedData.email);
+          setIsEmailDisabled(true);
+        }
+        if (decodedData.coupon) {
+          setCoupon(decodedData.coupon);
+          setIsCouponDisabled(true);
+        }
+      } catch (error) {
+        addAlert(
+          "Invalid token provided. Unable to decode.",
+          "error",
+          "bottom_right"
+        );
+      }
     }
-    if (queryCoupon) {
-      setCoupon(queryCoupon);
-      setIsCouponDisabled(true);
-    }
-  }, [location.search]);
+  }, [location.search, addAlert]);
 
   const handleRegister = async (event) => {
     event.preventDefault();
@@ -45,9 +57,7 @@ const RegisterBox = () => {
       if (response.status === 201) {
         addAlert("Registration Successful", "success", "bottom_right");
         addAlert("Redirecting to Login Page", "info", "bottom_right");
-        setTimeout(() => {
-          navigate("/login");
-        }, 1000);
+        navigate("/login");
       }
     } catch (error) {
       addAlert(
