@@ -17,28 +17,22 @@ const LoginBox = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/v1/users/login`,
-        { username, password }
-      );
+      const response = await axios.post(`${apiUrl}/api/v1/users/login`, {
+        username,
+        password,
+      });
       if (response.data.status === "success") {
         const { token, role } = response.data;
         sessionStorage.setItem("authToken", token);
 
-        login({
-          username: username,
-          role: role,
-        });
-
         addAlert("Login Successful!", "success", "bottom_right");
 
-        setTimeout(() => {
-          login({ username, role });
-          if (role === "Admin") {
-            navigate("/admin");
-          } else {
-            navigate("/chat");
-          }
-        }, 1000);
+        login({ username, role });
+        if (role === "Admin" || role === "Root") {
+          navigate("/admin");
+        } else {
+          navigate("/chat");
+        }
       }
     } catch (error) {
       setUsername("");
