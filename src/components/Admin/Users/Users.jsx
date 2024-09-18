@@ -28,7 +28,7 @@ const Users = () => {
       setUsers(response.data.data);
     } catch (error) {
       addAlert(
-        error.response.data.message || error.message,
+        error.response ? error.response.data.message : error.message,
         "error",
         "bottom_right"
       );
@@ -56,7 +56,7 @@ const Users = () => {
     } catch (error) {
       console.log(error);
       addAlert(
-        error.response.data.message || error.message,
+        error.response ? error.response.data.message : error.message,
         "error",
         "bottom_right"
       );
@@ -79,7 +79,7 @@ const Users = () => {
       addAlert(response.data.message, "warning", "bottom_right");
     } catch (error) {
       addAlert(
-        error.response.data.message || error.message,
+        error.response ? error.response.data.message : error.message,
         "error",
         "bottom_right"
       );
@@ -95,6 +95,27 @@ const Users = () => {
       user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
       user.email.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleDeleteUser = async(user) => {
+    try {
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await axios.delete(
+        `${apiUrl}/api/v1/admin/users/${user.username}`,
+        config
+      );
+      if (response.data.status === "success"){
+        window.location.reload();
+      }
+      addAlert(response.data.message, "warning", "bottom_right");
+    } catch (error) {
+      console.log(error);
+      addAlert(
+        error.response ? error.response.data.message : error.message,
+        "error",
+        "bottom_right"
+      );
+    }
+  }
 
   return (
     <>
@@ -125,6 +146,7 @@ const Users = () => {
               <th>Role</th>
               <th>Permit</th>
               <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -171,9 +193,11 @@ const Users = () => {
                   </Link>
                 </td>
                 <td>
-                  <button className="admin__button admin__button--small">
-                    Delete
-                  </button>
+                  {user.role !== "Root" && (
+                    <button className="admin__button admin__button--small delete" onClick={() => handleDeleteUser(user)}>
+                      Delete
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
