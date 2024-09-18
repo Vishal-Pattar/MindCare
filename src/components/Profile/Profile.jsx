@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { useAlert } from "../../context/AlertContext";
 import axios from "axios";
+import { triggerFetchCredits } from "../../hooks/useCredits";
+import withAuthorization from "../../utils/withAuthorization";
+import { Permissions } from "../../utils/roles";
 
 const Profile = () => {
   const { addAlert } = useAlert();
@@ -128,6 +131,10 @@ const Profile = () => {
       setContainer(container - 1);
     }, 500);
   };
+
+  useEffect(() => {
+    triggerFetchCredits();
+  }, []);
 
   return (
     <div className="profile__window">
@@ -349,4 +356,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default withAuthorization(Permissions.User_Access)(Profile);
