@@ -170,6 +170,11 @@ const Users = () => {
                     </button>
                   </Link>
                 </td>
+                <td>
+                  <button className="admin__button admin__button--small">
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
