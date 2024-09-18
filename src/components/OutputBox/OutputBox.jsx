@@ -6,6 +6,7 @@ import img from "../../assets/logo.png";
 import Markdown from "markdown-to-jsx";
 import { BsPersonCircle } from "react-icons/bs";
 import { responseRecieved, startWordEffect } from "../../slices/messagesSlice";
+import { triggerFetchCredits } from "../../hooks/useCredits";
 import withAuthorization from "../../utils/withAuthorization";
 import { Permissions } from "../../utils/roles";
 
@@ -26,7 +27,6 @@ const OutputBox = ({ messages, currentResponse, onStopEffect }) => {
       setCurrentOutput(""); // Start with an empty output
 
       dispatch(startWordEffect()); // Mark the word effect as running
-
       const wordEffect = () => {
         if (index < words.length) {
           setCurrentOutput((prev) => prev + words[index] + " "); // Append word
@@ -64,6 +64,10 @@ const OutputBox = ({ messages, currentResponse, onStopEffect }) => {
       containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, [messages]);
+
+  useEffect(() => {
+    triggerFetchCredits();
+  }, [currentResponse]);
 
   return messages.length === 0 ? (
     <WelcomeBox />
