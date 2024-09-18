@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./SettingsPage.css";
+import { triggerFetchCredits } from "../../hooks/useCredits";
+import withAuthorization from "../../utils/withAuthorization";
+import { Permissions } from "../../utils/roles";
 
 const SettingsPage = () => {
   const [theme, setTheme] = useState(
@@ -18,13 +21,15 @@ const SettingsPage = () => {
   };
 
   const handleSaveChanges = () => {
-    // Save the theme and notification preferences in localStorage
     localStorage.setItem("theme", theme);
     localStorage.setItem("notifications", notifications);
 
-    // Refresh the page to apply changes
     window.location.reload();
   };
+
+  useEffect(() => {
+    triggerFetchCredits();
+  }, []);
 
   return (
     <div className="settings__container">
@@ -82,4 +87,4 @@ const SettingsPage = () => {
   );
 };
 
-export default SettingsPage;
+export default withAuthorization(Permissions.User_Access)(SettingsPage);
