@@ -70,56 +70,78 @@ const DisplayProfile = () => {
 
   return (
     <div className="profile__window">
-      <div className="profile__container">
-        <span className="profile__group">
-          <div className="profile__input">
-            <div className="profile__input--label">First Name</div>
-            <div className="profile__input--value">{formData.first_name}</div>
-          </div>
-          <div className="profile__input">
-            <div className="profile__input--label">Last Name</div>
-            <div className="profile__input--value">{formData.last_name}</div>
-          </div>
-        </span>
-        <span className="profile__group">
-          <div className="profile__input">
-            <div className="profile__input--label">Age</div>
-            <div className="profile__input--value">{formData.age}</div>
-          </div>
-          <div className="profile__input">
-            <div className="profile__input--label">Gender</div>
-            <div className="profile__input--value">{formData.gender}</div>
-          </div>
-          <div className="profile__input">
-            <div className="profile__input--label">Pincode</div>
-            <div className="profile__input--value">{formData.pincode}</div>
-          </div>
-        </span>
-        <span className="profile__group">
-          <div className="profile__input">
-            <div className="profile__input--label">Country</div>
-            <div className="profile__input--value">{formData.country}</div>
-          </div>
-          <div className="profile__input">
-            <div className="profile__input--label">State</div>
-            <div className="profile__input--value">{formData.state}</div>
-          </div>
-          <div className="profile__input">
-            <div className="profile__input--label">District</div>
-            <div className="profile__input--value">{formData.district}</div>
-          </div>
-          <div className="profile__input">
-            <div className="profile__input--label">Block</div>
-            <div className="profile__input--value">{formData.block}</div>
-          </div>
-        </span>
-        <div className="profile__input">
-          <div className="profile__input--label">Context</div>
-          <div className="profile__input--textarea">{formData.context}</div>
+      <div className="profile__block">
+        <div className="profile__span">
+          <span className="profile__header">
+            <div className="profile__title">Personal Information</div>
+            <div className="profile__description">
+              Review and update your personal details
+            </div>
+          </span>
         </div>
-        <button type="submit" className="profile__button">
-          Save
-        </button>
+        <div className="profile__span">
+          <div className="profile__container profile__container--big">
+            <span className="profile__group">
+              <div className="profile__input">
+                <div className="profile__input--label">First Name</div>
+                <div className="profile__input--value">
+                  {formData.first_name}
+                </div>
+              </div>
+              <div className="profile__input">
+                <div className="profile__input--label">Last Name</div>
+                <div className="profile__input--value">
+                  {formData.last_name}
+                </div>
+              </div>
+            </span>
+            <span className="profile__group">
+              <div className="profile__input">
+                <div className="profile__input--label">Age</div>
+                <div className="profile__input--value">{formData.age}</div>
+              </div>
+              <div className="profile__input">
+                <div className="profile__input--label">Gender</div>
+                <div className="profile__input--value">{formData.gender}</div>
+              </div>
+              <div className="profile__input">
+                <div className="profile__input--label">Pincode</div>
+                <div className="profile__input--value">{formData.pincode}</div>
+              </div>
+            </span>
+            <span className="profile__group">
+              <div className="profile__input">
+                <div className="profile__input--label">Country</div>
+                <div className="profile__input--value">{formData.country}</div>
+              </div>
+              <div className="profile__input">
+                <div className="profile__input--label">State</div>
+                <div className="profile__input--value">{formData.state}</div>
+              </div>
+            </span>
+            <span className="profile__group">
+              <div className="profile__input">
+                <div className="profile__input--label">District</div>
+                <div className="profile__input--value">{formData.district}</div>
+              </div>
+              <div className="profile__input">
+                <div className="profile__input--label">Block</div>
+                <div className="profile__input--value">{formData.block}</div>
+              </div>
+            </span>
+          </div>
+          <div className="profile__container profile__container--big">
+            <div className="profile__input">
+              <div className="profile__input--label">Context</div>
+              <div className="profile__input--textarea">{formData.context}</div>
+            </div>
+          </div>
+        </div>
+        <div className="profile__span">
+          <button type="submit" className="profile__button">
+            Edit
+          </button>
+        </div>
       </div>
     </div>
   );
