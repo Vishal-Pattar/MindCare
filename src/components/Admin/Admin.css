@@ -496,7 +496,13 @@
   border: 1px solid var(--color-border);
   box-sizing: border-box;
   user-select: none;
-  width: 100%;
+  width: 50%;
+}
+
+.admin__notification:hover {
+  background: var(--color-bg-hover);
+  border-color: var(--color-text-tertiary);
+  cursor:cell;
 }
 
 .admin__notification--header {
@@ -507,7 +513,7 @@
 }
 
 .admin__notification--title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-family: "Geist-Medium", sans-serif;
   display: flex;
   justify-content: center;
@@ -517,21 +523,22 @@
 .admin__notification--time {
   color: var(--color-text-secondary);
   font-size: 0.85rem;
-  font-family: "Geist-Thin", sans-serif;
+  font-family: "Geist-Light", sans-serif;
 }
 
 .admin__notification--description {
+  color: var(--color-text-secondary);
   font-size: 1rem;
   font-family: "Geist-Regular", sans-serif;
   display: flex;
   justify-content: center;
-  align-items: center;
+  text-align: justify;
 }
 
 .admin__box--notification {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: start;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.5rem;
 }
