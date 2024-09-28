@@ -1,3 +1,52 @@
+:root {
+  /* Background Colors */
+  --bg-main: #f2f7ff; /* Light, soft blue for main background */
+  --bg-content: #e0ebf9; /* Slightly darker blue for content background */
+  --bg-hover: #d6e2f1; /* Light blue for hover states */
+  --bg-muted: #cbd5e1; /* Muted background for inactive areas */
+
+  /* Accent Colors */
+  --accent-primary: #4a90e2; /* Main blue accent for buttons, links, etc. */
+  --accent-light: #a8d0f2; /* Light blue for hover states */
+  --accent-dark: #2b6cb0; /* Darker blue for strong emphasis */
+  --accent-muted: #7189a1; /* Muted blue for subtle elements */
+  
+  /* Text Colors */
+  --text-main: #1f2933; /* Main text color (dark charcoal) */
+  --text-secondary: #5f6b7a; /* Secondary text color (muted blue-gray) */
+  --text-muted: #8492a6; /* Lighter muted text */
+  --text-accent: #4a90e2; /* Text accents matching the primary blue */
+  --text-error: #ff6b6b; /* Red for error messages */
+  --text-success: #2ecc71; /* Green for success messages */
+  
+  /* Feedback Colors */
+  --bg-error: #ffe3e3; /* Light red background for errors */
+  --bg-success: #d4edda; /* Light green background for success */
+  --bg-warning: #fff3cd; /* Light yellow background for warnings */
+  --bg-info: #e0f7ff; /* Light blue for informational messages */
+
+  /* Border Colors */
+  --border-main: #cbd5e1; /* Neutral border */
+  --border-accent: #4a90e2; /* Accent blue for borders */
+  --border-error: #ff6b6b; /* Red borders for errors */
+  --border-success: #2ecc71; /* Green borders for success */
+  --border-muted: #a8d0f2; /* Light blue border for muted elements */
+
+  /* Button Colors */
+  --button-primary-bg: #4a90e2; /* Primary button background */
+  --button-primary-hover: #357ABD; /* Hover state for primary button */
+  --button-secondary-bg: #a8d0f2; /* Secondary button background */
+  --button-secondary-hover: #92c0e8; /* Hover state for secondary button */
+
+  /* Gradients */
+  --gradient-header: linear-gradient(135deg, #bdd6f6, #a8d0f2); /* Blue gradient for headers or buttons */
+  --gradient-accent: linear-gradient(135deg, #4a90e2, #357ABD); /* Darker blue gradient for strong emphasis */
+
+  /* Shadows */
+  --shadow-light: 0px 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow for light elements */
+  --shadow-dark: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow for emphasis */
+}
+
 .light-theme {
   /* Color Variables */
   --color-border: #e0e0e0;
