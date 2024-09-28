@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import WelcomeBox from "../WelcomeBox/WelcomeBox";
 import "./OutputBox.css";
 import img from "../../assets/logo.png";
+import loading from "../../assets/loader.gif";
 import Markdown from "markdown-to-jsx";
 import { BsPersonCircle } from "react-icons/bs";
 import { responseRecieved, startWordEffect } from "../../slices/messagesSlice";
@@ -85,6 +86,8 @@ const OutputBox = ({ messages, currentResponse, onStopEffect }) => {
               {/* Display word-by-word effect for the last message */}
               {index === messages.length - 1 && isWordEffectRunning ? (
                 <Markdown>{currentOutput}</Markdown>
+              ) : msg.response === "Loading..." ? (
+                <img src={loading} alt="loading" className="loader" />
               ) : (
                 <Markdown>{msg.response}</Markdown>
               )}
