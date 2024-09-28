@@ -22,22 +22,22 @@ import Session from "./components/Admin/Session/Session.jsx";
 import ChatHistory from "./components/Admin/ChatHistory/ChatHistory.jsx";
 import Email from "./components/Admin/Email/Email.jsx";
 import Invitation from "./components/Admin/Invitation/Invitation.jsx";
+import Notification from "./components/Admin/Notification/Notification.jsx";
 
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import { AuthProvider } from "./context/AuthContext.js";
 import { AlertProvider } from "./context/AlertContext.js";
 import AlertBox from "./components/AlertBox/AlertBox.jsx";
 import PasswordInput from "./components/SignBox/PasswordInput.jsx";
-import UserProfile from "./components/Profile/Profile.jsx";
-import DisplayProfile from "./components/Profile/DisplayProfile.jsx";
+import ProfileContainer from "./components/Profile/ProfileContainer.jsx";
 import PageNotFound from "./components/Error/PageNotFound.jsx";
 import SettingsPage from "./components/Settings/SettingsPage.jsx";
 
 const App = () => {
-  const [theme, setTheme] = useState("light"); // Default theme
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("theme") || "soft-coral-theme";
+    const storedTheme = localStorage.getItem("theme");
     setTheme(storedTheme);
   }, []);
 
@@ -56,6 +56,7 @@ const App = () => {
                 <Route path="history/:sessionId" element={<ChatHistory />} />
                 <Route path="email" element={<Email />} />
                 <Route path="invitation" element={<Invitation />} />
+                <Route path="notification" element={<Notification />} />
               </Route>
               <Route path="/" element={<LandingPage />} />
               <Route path="/chat" element={<HomeArea />} />
@@ -66,8 +67,7 @@ const App = () => {
               <Route path="/try" element={<PasswordInput />} />
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/reportIssue" element={<ReportIssue />} />
-              <Route path="/profile" element={<UserProfile />} />
-              <Route path="/profileDisplay" element={<DisplayProfile />} />
+              <Route path="/profile" element={<ProfileContainer />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
