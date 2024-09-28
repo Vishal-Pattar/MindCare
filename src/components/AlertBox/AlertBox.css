@@ -84,25 +84,25 @@
 .alert__error {
   border: 2px solid var(--color-border-error);
   background: var(--color-bg-error);
-  color: var(--color-text-primary);
+  color: var(--color-white);
 }
 
 .alert__success {
   border: 2px solid var(--color-border-success);
   background: var(--color-bg-success);
-  color: var(--color-text-primary);
+  color: var(--color-white);
 }
 
 .alert__info {
   border: 2px solid var(--color-border-info);
   background: var(--color-bg-info);
-  color: var(--color-text-primary);
+  color: var(--color-white);
 }
 
 .alert__warning {
   border: 2px solid var(--color-border-warning);
   background: var(--color-bg-warning);
-  color: var(--color-text-primary);
+  color: var(--color-white);
 }
 
 .alertbox__symbol {
