@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./AdminPanel.css";
 import "./Admin.css";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import withAuthorization from "../../utils/withAuthorization";
 import { Permissions } from "../../utils/roles";
 import { triggerFetchCredits } from "../../hooks/useCredits";
@@ -18,11 +18,16 @@ import {
 } from "react-icons/md";
 
 const AdminPanel = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleNavigation = (path) => {
+    navigate(path);
   };
 
   useEffect(() => {
@@ -41,27 +46,39 @@ const AdminPanel = () => {
         {isSidebarOpen ? (
           <div className="adminpanel__sidebar--content">
             <div className="adminpanel__sidebar--content-btn">
-              <Link
-                to="/admin"
-                onClick={toggleSidebar}
+              <div className="adminpanel__menu--item" onClick={toggleSidebar}>
+                Toggle
+              </div>
+              <div
+                className="adminpanel__menu--item"
+                onClick={() => handleNavigation("/admin/users")}
               >
-                <div className="adminpanel__menu--item">Toggle</div>
-              </Link>
-              <Link to="/admin/users">
-                <div className="adminpanel__menu--item">Users</div>
-              </Link>
-              <Link to="/admin/coupons">
-                <div className="adminpanel__menu--item">Coupons</div>
-              </Link>
-              <Link to="/admin/sessions">
-                <div className="adminpanel__menu--item">Sessions</div>
-              </Link>
-              <Link to="/admin/email">
-                <div className="adminpanel__menu--item">Email</div>
-              </Link>
-              <Link to="/admin/invitation">
-                <div className="adminpanel__menu--item">Invitation</div>
-              </Link>
+                Users
+              </div>
+              <div
+                className="adminpanel__menu--item"
+                onClick={() => handleNavigation("/admin/coupons")}
+              >
+                Coupons
+              </div>
+              <div
+                className="adminpanel__menu--item"
+                onClick={() => handleNavigation("/admin/sessions")}
+              >
+                Sessions
+              </div>
+              <div
+                className="adminpanel__menu--item"
+                onClick={() => handleNavigation("/admin/email")}
+              >
+                Email
+              </div>
+              <div
+                className="adminpanel__menu--item"
+                onClick={() => handleNavigation("/admin/invitation")}
+              >
+                Invitation
+              </div>
             </div>
             <div className="adminpanel__sidebar--toggle">
               <MdArrowBackIosNew
@@ -77,30 +94,31 @@ const AdminPanel = () => {
                 className="adminpanel__menu--button"
                 onClick={toggleSidebar}
               />
-              <Link to="/admin/users">
-                <FaUser className="adminpanel__menu--button" title="Users" />
-              </Link>
-              <Link to="/admin/coupons">
-                <BiSolidCoupon
-                  className="adminpanel__menu--button"
-                  title="Coupons"
-                />
-              </Link>
-              <Link to="/admin/sessions">
-                <MdEvent
-                  className="adminpanel__menu--button"
-                  title="Sessions"
-                />
-              </Link>
-              <Link to="/admin/email">
-                <MdEmail className="adminpanel__menu--button" title="Email" />
-              </Link>
-              <Link to="/admin/invitation">
-                <MdCoPresent
-                  className="adminpanel__menu--button"
-                  title="Invitation"
-                />
-              </Link>
+              <FaUser
+                className="adminpanel__menu--button"
+                title="Users"
+                onClick={() => handleNavigation("/admin/users")}
+              />
+              <BiSolidCoupon
+                className="adminpanel__menu--button"
+                title="Coupons"
+                onClick={() => handleNavigation("/admin/coupons")}
+              />
+              <MdEvent
+                className="adminpanel__menu--button"
+                title="Sessions"
+                onClick={() => handleNavigation("/admin/sessions")}
+              />
+              <MdEmail
+                className="adminpanel__menu--button"
+                title="Email"
+                onClick={() => handleNavigation("/admin/email")}
+              />
+              <MdCoPresent
+                className="adminpanel__menu--button"
+                title="Invitation"
+                onClick={() => handleNavigation("/admin/invitation")}
+              />
             </div>
             <div className="adminpanel__sidebar--toggle">
               <MdArrowForwardIos
