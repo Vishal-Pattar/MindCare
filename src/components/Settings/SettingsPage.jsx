@@ -23,7 +23,6 @@ const SettingsPage = () => {
   const handleSaveChanges = () => {
     localStorage.setItem("theme", theme);
     localStorage.setItem("notifications", notifications);
-
     window.location.reload();
   };
 
