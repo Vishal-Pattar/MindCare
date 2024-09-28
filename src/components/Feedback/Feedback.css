@@ -52,13 +52,13 @@
 }
 
 .feedback__rating input:checked + label {
-  background-color: var(--color-bg-hover);
+  background-color: var(--color-accent);
   border-color: var(--color-text-secondary);
 }
 
 .feedback__rating input:hover + label {
-  background-color: var(--color-bg);
-  border-color: var(--color-text-secondary);
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-text-tertiary);
 }
 
 .feedback__rating label {
@@ -184,7 +184,7 @@
 }
 
 .feedback__checkboxGroup {
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   font-family: "Geist-Regular", sans-serif;
   font-size: 1rem;
   outline: none;
@@ -198,6 +198,21 @@
   align-items: justify;
   flex-direction: row;
   gap: 1rem;
+}
+
+.feedback__checkboxGroup label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.feedback__checkboxGroup input {
+  display: none;
+}
+
+.feedback__checkboxGroup:hover {
+  border-color: var(--color-text-secondary);
 }
 
 .feedback__checkbox--container {
@@ -216,7 +231,7 @@
 
 .feedback__checkbox--container .path {
   fill: none;
-  stroke: var(--color-text-primary);
+  stroke: var(--color-text-secondary);
   stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
