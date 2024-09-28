@@ -13,14 +13,11 @@
   right: 0;
   background-color: var(--color-bg-body);
   overflow-y: auto;
+  width: 95vw;
 }
 
 .adminpanel__container--open {
   width: 87vw;
-}
-
-.adminpanel__container--closed {
-  width: 95vw;
 }
 
 .adminpanel__sidebar {
@@ -47,7 +44,6 @@
 }
 
 .adminpanel__menu--content-btn {
-  transition: transform 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -65,7 +61,6 @@
   color: var(--color-bg-body);
   background-color: var(--color-text-primary);
   font-size: 1.5rem;
-  font-family: "Geist-Bold", sans-serif;
 }
 
 .adminpanel__sidebar--content {
@@ -74,63 +69,34 @@
   flex-direction: row;
   justify-content: start;
   align-items: center;
-  box-sizing: border-box;
 }
 
 .adminpanel__sidebar--content-btn {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  transition: transform 0.3s ease-in-out;
-  box-sizing: border-box;
   height: 100%;
   width: 12vw;
+  background-color: var(--color-accent);
 }
 
 .adminpanel__menu--item {
-  padding: 0.6rem;
+  height: 1.5rem;
+  padding: 0.5rem;
   margin: 1rem 1rem 0 1rem;
-  margin-bottom: 0;
   background-color: var(--color-text-primary);
-  border-radius: 0.5rem;
-  box-sizing: border-box;
+  border-radius: 0.25rem;
+  box-sizing: content-box;
   font-size: 1.1rem;
   user-select: none;
   cursor: pointer;
-  transition: background-color 0.1s ease-in-out;
   text-align: center;
-  box-shadow: var(--box-shadow-white);
   text-decoration: none;
   color: var(--color-bg);
 }
 
 .adminpanel__menu--item:hover {
   background-color: var(--color-text-secondary);
-}
-
-.adminpanel__stats--section {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  align-items: center;
-}
-
-.adminpanel__container::-webkit-scrollbar {
-  width: 12px;
-}
-
-.adminpanel__container::-webkit-scrollbar-track {
-  background: var(--color-bg-body);
-}
-
-.adminpanel__container::-webkit-scrollbar-thumb {
-  background-color: var(--color-text-tertiary);
-  border-radius: 20px;
-  border: 3px solid var(--color-bg-body);
-}
-
-.adminpanel__container::placeholder {
-  color: var(--color-text-secondary);
 }
 
 .adminpanel__sidebar--toggle {
@@ -141,37 +107,18 @@
   font-size: 1rem;
   cursor: pointer;
   user-select: none;
-  box-sizing: border-box;
   width: 1vw;
-  background-color: var(--color-accent);
 }
 
 .adminpanel__sidebar--toggle-icon {
   font-size: 1rem;
-  background-color: var(--color-accent);
-  color: var(--color-text-primary);
+  background-color: var(--color-bg-body);
+  color: var(--color-bg-body);
   padding: 0.5rem 0;
   text-align: center;
 }
 
-@media (max-width: 768px) {
-  .adminpanel__container--open {
-    width: 70vw;
-  }
-
-  .adminpanel__container--closed {
-    width: 90vw;
-  }
-
-  .adminpanel__sidebar--open {
-    width: 30vw;
-  }
-
-  .adminpanel__sidebar--closed {
-    width: 8vw;
-  }
-
-  .adminpanel__menu--button {
-    font-size: 1.2rem;
-  }
+.adminpanel__sidebar--toggle-icon:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text-primary);
 }
