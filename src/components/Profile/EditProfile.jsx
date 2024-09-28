@@ -142,8 +142,8 @@ const EditProfile = ({ setEditing }) => {
         `https://api.postalpincode.in/pincode/${pincode}`
       );
       const data = response.data[0];
-
-      if (data.status === "Success" && data.PostOffice?.length > 0) {
+      console.log(data);
+      if (data.Status === "Success" && data.PostOffice?.length > 0) {
         const { Country, State, District, Block } = data.PostOffice[0];
         setFormData((prevData) => ({
           ...prevData,
