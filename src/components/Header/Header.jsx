@@ -39,7 +39,7 @@ const Header = () => {
         sessionStorage.removeItem("username");
         logout();
         setIsAuthenticated(false);
-        navigate("/login");
+        navigate("/feedback");
       }
     } catch (error) {
       console.error("Error logging out:", error);
@@ -63,12 +63,18 @@ const Header = () => {
             </Link>
           )}
           {isAuthenticated && (
-            <div className="header__stats roboto-regular">
-              Credits:{" "}
-              <span className={credits > 0 ? "greenColor" : "redColor"}>
-                {credits}
-              </span>
-            </div>
+            <>
+              <div className="header__stats roboto-regular">
+                Credits:{" "}
+                <span className={credits > 0 ? "greenColor" : "redColor"}>
+                  {credits}
+                </span>
+              </div>
+              <div className="header__notification roboto-regular">
+                Notifications
+              </div>
+              <span className="header__notify">0</span>
+            </>
           )}
           <div className="header__menu--button" onClick={handleMenu}>
             {isMenuOpen ? (
@@ -105,6 +111,14 @@ const Header = () => {
                   onClick={handleMenu}
                 >
                   Settings
+                </button>
+              </Link>
+              <Link to="/reportIssue">
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleMenu}
+                >
+                  Report Issue
                 </button>
               </Link>
               <Link>
