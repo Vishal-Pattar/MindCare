@@ -80,7 +80,7 @@ const TypeBox = ({ addMessage, isResponsePending, handleStop }) => {
       </div>
       <div className="typebox__footer">
         <span>
-          Open source AI chatbot built by <span>Creative Minds</span>
+          Companion ChatBot built by Creative Minds
         </span>
       </div>
     </div>
