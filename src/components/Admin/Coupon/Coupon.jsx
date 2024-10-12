@@ -95,7 +95,7 @@ const Coupon = () => {
             Refresh
           </div>
         </div>
-        <div className="admin__cover">
+        <div className="admin__cover admin__cover--mobile">
           <input
             type="text"
             className="admin__input admin__input--small"
