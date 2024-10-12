@@ -17,11 +17,16 @@ const ResetPassword = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(`${apiUrl}/api/v1/users/resetPassword/${email}`);
+      const response = await axios.get(
+        `${apiUrl}/api/v1/users/resetPassword/${email}`
+      );
       if (response.data.status === "success") {
-        addAlert("Reset Password link sent to your registered email address", "info", "bottom_right");
+        addAlert(
+          "Reset Password link sent to your registered email address",
+          "info",
+          "bottom_right"
+        );
       }
-      
     } catch (error) {
       setEmail("");
       addAlert(
@@ -33,7 +38,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="signbox__container">
+    <form className="signbox__container">
       <div className="signbox__title">Reset Password</div>
       <div className="signbox__input">
         <label htmlFor="username">*Email</label>
@@ -43,12 +48,13 @@ const ResetPassword = () => {
           placeholder="Enter your Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="off"
         />
       </div>
       <button className="signbox__button" onClick={handleResetPassword}>
         Continue
       </button>
-    </div>
+    </form>
   );
 };
 
