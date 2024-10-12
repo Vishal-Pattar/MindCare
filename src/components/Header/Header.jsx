@@ -36,7 +36,6 @@ const Header = () => {
       });
       if (response.status === 200) {
         sessionStorage.removeItem("authToken");
-        sessionStorage.removeItem("username");
         logout();
         setIsAuthenticated(false);
         navigate("/feedback");
