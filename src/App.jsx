@@ -23,6 +23,7 @@ import ChatHistory from "./components/Admin/ChatHistory/ChatHistory.jsx";
 import Email from "./components/Admin/Email/Email.jsx";
 import Invitation from "./components/Admin/Invitation/Invitation.jsx";
 import Notification from "./components/Admin/Notification/Notification.jsx";
+import DisplayProfile from "./components/Admin/Profile/DisplayProfile.jsx";
 
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import { AuthProvider } from "./context/AuthContext.js";
@@ -32,6 +33,11 @@ import PasswordInput from "./components/SignBox/PasswordInput.jsx";
 import ProfileContainer from "./components/Profile/ProfileContainer.jsx";
 import PageNotFound from "./components/Error/PageNotFound.jsx";
 import SettingsPage from "./components/Settings/SettingsPage.jsx";
+
+import Tutorials from "./components/Tutorials/Tutorials.jsx";
+import BlogList from "./components/Blog/BlogList.jsx";
+import BlogDetail from "./components/Blog/BlogDetail.jsx";
+import FAQ from "./components/FAQ/FAQ.jsx";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -53,6 +59,7 @@ const App = () => {
                 <Route path="coupons" element={<Coupon />} />
                 <Route path="sessions" element={<Session />} />
                 <Route path="profile/:username" element={<Profile />} />
+                <Route path="profiles" element={<DisplayProfile />} />
                 <Route path="history/:sessionId" element={<ChatHistory />} />
                 <Route path="email" element={<Email />} />
                 <Route path="invitation" element={<Invitation />} />
@@ -60,15 +67,23 @@ const App = () => {
               </Route>
               <Route path="/" element={<LandingPage />} />
               <Route path="/chat" element={<HomeArea />} />
+
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
               <Route path="/newPassword/:token" element={<NewPassword />} />
               <Route path="/try" element={<PasswordInput />} />
+
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/reportIssue" element={<ReportIssue />} />
+
               <Route path="/profile" element={<ProfileContainer />} />
               <Route path="/settings" element={<SettingsPage />} />
+
+              <Route path="/tutorials" element={<Tutorials />} />
+              <Route path="/blogs" element={<BlogList />} />
+              <Route path="/blogs/:id" element={<BlogDetail />} />
+              <Route path="/faq" element={<FAQ />} />
               <Route path="*" element={<PageNotFound />} />
             </Routes>
             <AlertBox />
