@@ -70,7 +70,7 @@ const RegisterBox = () => {
 
   return (
     <>
-      <div className="signbox__container">
+      <form className="signbox__container">
         <div className="signbox__title">Sign up for an account!</div>
         <div className="signbox__input">
           <label htmlFor="username">*Username</label>
@@ -81,6 +81,7 @@ const RegisterBox = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required={true}
+            autoComplete="off"
           />
         </div>
         <div className="signbox__input">
@@ -92,6 +93,7 @@ const RegisterBox = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required={true}
+            autoComplete="off"
           />
         </div>
         <div className="signbox__input">
@@ -105,6 +107,7 @@ const RegisterBox = () => {
             disabled={isEmailDisabled}
             className={isEmailDisabled ? "disabled-input" : ""}
             required={true}
+            autoComplete="off"
           />
         </div>
         <div className="signbox__input">
@@ -120,12 +123,13 @@ const RegisterBox = () => {
             disabled={isCouponDisabled}
             className={isCouponDisabled ? "disabled-input" : ""}
             required={true}
+            autoComplete="off"
           />
         </div>
         <button className="signbox__button" onClick={handleRegister}>
           Create Account
         </button>
-      </div>
+      </form>
       <div className="signbox__footer">
         Already have an account? <Link to="/login">Log in</Link>
       </div>
