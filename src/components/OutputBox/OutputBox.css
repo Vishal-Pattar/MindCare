@@ -1,46 +1,89 @@
 .outputbox__container {
-    max-height: 74vh;
-    width: 50vw;
-    position: relative;
-    top: 0px;
-    left: 50%;
-    transform: translateX(-50%);
-    overflow-y: scroll;
+  max-height: 74vh;
+  width: 50vw;
+  position: relative;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow-y: scroll;
 }
 
 .outputbox__container::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
-.outputbox__content span{
-    display: flex;
-    flex-direction: row;
-    font-family: 'Geist-Regular', sans-serif;
+.outputbox__content span {
+  display: flex;
+  flex-direction: row;
+  font-family: "Geist-Regular", sans-serif;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .outputbox__image {
-    height: 20px;
-    width: 20px;
-    margin: 1.25rem;
+  height: 20px;
+  width: 20px;
+  margin: 1.25rem;
+  color: var(--color-text-primary);
 }
 
 .outputbox__textspace {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    color: var(--color-text-primary);
-    box-sizing: border-box;
-    flex-wrap: wrap;
-    padding: 1rem 0;
-    white-space: pre-wrap;
-    border-bottom: 1px solid var(--color-border);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: var(--color-text-primary);
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  white-space: pre-wrap;
 }
 
 .outputbox__textspace_output {
-    padding: 0;
+  padding: 0;
 }
 
 .loader {
-    height: 20px;
-    width: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+/* Media Queries */
+
+/* Small devices (phones) */
+@media (max-width: 767px) {
+  .outputbox__container {
+    max-height: 80vh;
+    width: 95vw; /* Adjust width for small devices */
+  }
+
+  .outputbox__content span {
+    font-size: 0.8rem; /* Adjust font size for smaller screens */
+  }
+
+  .outputbox__image {
+    height: 15px;
+    width: 15px; /* Adjust image size for smaller screens */
+    margin: 1rem 0.5rem;
+    margin-left: 0;
+  }
+
+  .outputbox__textspace {
+    padding: 0.75rem 0; /* Adjust padding for smaller screens */
+  }
+
+  .outputbox__textspace p {
+    margin: 0;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .outputbox__container {
+    width: 80vw; /* Adjust width for tablets */
+  }
+
+  .outputbox__image {
+    height: 18px;
+    width: 18px; /* Adjust image size for tablets */
+    margin: 1.15rem;
+  }
 }
