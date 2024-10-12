@@ -22,8 +22,10 @@ const LoginBox = () => {
         password,
       });
       if (response.data.status === "success") {
-        const { token, role } = response.data;
+        const { token, role, session } = response.data;
         sessionStorage.setItem("authToken", token);
+        sessionStorage.setItem("username", username);
+        sessionStorage.setItem("session", session);
 
         addAlert("Login Successful!", "success", "bottom_right");
 
@@ -47,7 +49,7 @@ const LoginBox = () => {
 
   return (
     <>
-      <div className="signbox__container">
+      <form className="signbox__container">
         <div className="signbox__title">Please Login to Continue</div>
         <div className="signbox__input">
           <label htmlFor="username">Username</label>
@@ -57,6 +59,7 @@ const LoginBox = () => {
             placeholder="Enter your Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <div className="signbox__input">
@@ -67,12 +70,13 @@ const LoginBox = () => {
             placeholder="Enter your Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="off"
           />
         </div>
         <button className="signbox__button" onClick={handleLogin}>
           Login
         </button>
-      </div>
+      </form>
       <div className="signbox__footer">
         <Link to="/register">Forgot Password?</Link>
       </div>
