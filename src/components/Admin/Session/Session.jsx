@@ -89,7 +89,7 @@ const Session = () => {
           </button>
         </div>
       </div>
-      <div className="admin__box">
+      <div className="admin__box admin__box--mobiletb">
         <table className="admin__box--table">
           <thead>
             <tr className="admin__box--tr">
@@ -99,6 +99,7 @@ const Session = () => {
               <th>Prompt count</th>
               <th>Logged In</th>
               <th>Logged Out</th>
+              <th>Ratings</th>
               <th>History</th>
             </tr>
           </thead>
@@ -115,6 +116,7 @@ const Session = () => {
                 ) : (
                   <td>Not Logged Out</td>
                 )}
+                <td>{session.session_ratings}</td>
                 <td>
                   <button
                     className="admin__button admin__button--small"
