@@ -3,6 +3,8 @@ import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
 import { useAlert } from "../../../context/AlertContext";
 import axios from "axios";
+import timeAgo from "../../../utils/timeAgo";
+import Checkbox from "./Checkbox";
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
@@ -22,9 +24,7 @@ const Notification = () => {
           `${apiUrl}/api/v1/notification`,
           config
         );
-        console.log(response.data.data);
         setNotifications(response.data.data);
-
       } catch (error) {
         addAlert(
           error.response ? error.response.data.message : error.message,
@@ -50,17 +50,21 @@ const Notification = () => {
       <div className="admin__box admin__box--notification">
         {notifications.map((notification, index) => (
           <div key={index} className="admin__notification">
-            <span className="admin__notification--header">
-              <div className="admin__notification--title">
-                {notification.title}
+            <div className="admin__notification--checkbox">
+              <Checkbox name={index} />
+            </div>
+            <div className="admin__notification--content">
+              <div className="admin__notification--header">
+                <div className="admin__notification--title">
+                  {notification.title}
+                </div>
+                <div className="admin__notification--time">
+                  {timeAgo(notification.date)}
+                </div>
               </div>
-              <div className="admin__notification--time">
-                {new Date(notification.date).toLocaleString()}{" "}
-                {/* Format date */}
+              <div className="admin__notification--description">
+                {notification.message}
               </div>
-            </span>
-            <div className="admin__notification--description">
-              {notification.message}
             </div>
           </div>
         ))}
