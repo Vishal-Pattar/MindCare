@@ -83,23 +83,23 @@
 }
 
 .feedback__rating1 {
-  color: #FF4C4C;
+  color: #ff4c4c;
 }
 
 .feedback__rating2 {
-  color: #FF7F50;
+  color: #ff7f50;
 }
 
 .feedback__rating3 {
-  color: #FFD700;
+  color: #ffd700;
 }
 
 .feedback__rating4 {
-  color: #ADFF2F;
+  color: #adff2f;
 }
 
 .feedback__rating5 {
-  color: #32CD32;
+  color: #32cd32;
 }
 
 .feedback__inputGroup {
@@ -117,7 +117,8 @@
   user-select: none;
 }
 
-.feedback__inputGroup textarea, .feedback__inputGroup input {
+.feedback__inputGroup textarea,
+.feedback__inputGroup input {
   border: none;
   background: none;
   color: var(--color-text-primary);
@@ -134,7 +135,8 @@
   resize: none;
 }
 
-.feedback__inputGroup textarea::placeholder, .feedback__inputGroup input::placeholder {
+.feedback__inputGroup textarea::placeholder,
+.feedback__inputGroup input::placeholder {
   color: var(--color-text-secondary);
 }
 
@@ -153,13 +155,14 @@
   border: 3px solid var(--color-bg-body);
 }
 
-.feedback__inputGroup textarea:focus, .feedback__inputGroup input:focus {
+.feedback__inputGroup textarea:focus,
+.feedback__inputGroup input:focus {
   border-color: var(--color-text-secondary);
 }
 
 .feedback__inputGroup span {
   font-size: 0.75rem;
-  user-select: none;;
+  user-select: none;
   display: flex;
   justify-content: right;
   margin-top: 0.5rem;
@@ -221,6 +224,7 @@
   gap: 0.5rem;
   font-size: 0.9rem;
 }
+
 .feedback__checkbox--container input {
   display: none;
 }
@@ -244,4 +248,65 @@
   stroke-dasharray: 70.5096664428711 9999999;
   stroke-dashoffset: -262.2723388671875;
   stroke: var(--color-green);
+}
+
+/* Media Queries */
+
+/* Small devices (phones) */
+@media (max-width: 767px) {
+  .feedback__container {
+    width: 90vw; /* Expand width to 90vw for small devices */
+    padding: 1.5rem;
+  }
+
+  .feedback__title {
+    font-size: 1.25rem;
+  }
+
+  .feedback__ratingGroup {
+    flex-direction: row;
+  }
+
+  .feedback__rating {
+    width: 100%;
+    height: 4rem;
+  }
+
+  .feedback__icon {
+    font-size: 1.15rem;
+  }
+
+  .feedback__rating label {
+    font-size: 0.6rem;
+    padding: 0.25rem;
+  }
+
+  .feedback__submitBtn {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .feedback__container {
+    width: 50vw;
+    padding: 2rem;
+  }
+
+  .feedback__title {
+    font-size: 1.35rem;
+  }
+
+  .feedback__rating {
+    width: 3.5rem;
+    height: 4.5rem;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1025px) {
+  .feedback__container {
+    width: 35vw;
+  }
 }
