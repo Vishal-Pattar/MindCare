@@ -79,7 +79,7 @@ const NewPassword = () => {
   }
 
   return (
-    <div className="signbox__container">
+    <form className="signbox__container">
       <div className="signbox__title">New Password</div>
       <div className="signbox__input">
         <label htmlFor="newPassword">*New Password</label>
@@ -89,6 +89,7 @@ const NewPassword = () => {
           placeholder="Enter your Password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
+          autoComplete="off"
         />
         <div type="button" onClick={() => setShowPassword(!showPassword)}>
           {showPassword ? "🙈" : "👁️"}
@@ -102,12 +103,13 @@ const NewPassword = () => {
           placeholder="Enter your Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+          autoComplete="off"
         />
       </div>
       <button className="signbox__button" onClick={handleNewPassword}>
         Submit
       </button>
-    </div>
+    </form>
   );
 };
 
