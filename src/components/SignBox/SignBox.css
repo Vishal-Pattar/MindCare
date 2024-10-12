@@ -17,7 +17,7 @@
 }
 
 .signbox__title {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-family: "Geist-SemiBold", sans-serif;
   user-select: none;
   margin-bottom: 1rem;
@@ -100,4 +100,47 @@
   cursor: pointer;
   text-decoration: underline;
   color: var(--color-text-secondary);
+}
+
+/* Media Queries */
+
+/* For tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .signbox__container {
+    width: 50vw;
+    padding: 2rem;
+  }
+
+  .signbox__title {
+    font-size: 1.5rem;
+  }
+
+  .signbox__button {
+    font-size: 1.1rem;
+    padding: 0.75rem;
+  }
+}
+
+/* For large screens */
+@media (min-width: 1025px) {
+  .signbox__container {
+    width: 25vw;
+  }
+}
+
+/* For small devices */
+@media (max-width: 767px) {
+  .signbox__container {
+    width: 80vw;
+    padding: 1.5rem;
+  }
+
+  .signbox__title {
+    font-size: 1.25rem;
+  }
+
+  .signbox__button {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
 }
