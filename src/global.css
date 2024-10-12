@@ -22,6 +22,11 @@
   --color-bg-info: #3498db;
   --color-bg-success: #2ecc71;
 
+  --color-text-error: #ffffff;
+  --color-text-warning: #ffffff;
+  --color-text-info: #ffffff;
+  --color-text-success: #ffffff;
+
   --color-border-error: #d32f2f;
   --color-border-warning: #e67e22;
   --color-border-info: #2980b9;
