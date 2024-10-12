@@ -195,7 +195,7 @@ const EditProfile = ({ setEditing }) => {
             </div>
           </span>
 
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input">
               <label htmlFor="first_name">First Name</label>
               <input
@@ -218,7 +218,7 @@ const EditProfile = ({ setEditing }) => {
             </div>
           </span>
 
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input">
               <label htmlFor="age">Age</label>
               <input
@@ -266,7 +266,7 @@ const EditProfile = ({ setEditing }) => {
               Update your profile details
             </div>
           </span>
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input profile__input--pincode">
               <label htmlFor="pincode">Pincode</label>
               <input
@@ -287,7 +287,7 @@ const EditProfile = ({ setEditing }) => {
             </button>
           </span>
 
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input">
               <label htmlFor="country">Country</label>
               <input
@@ -310,7 +310,7 @@ const EditProfile = ({ setEditing }) => {
             </div>
           </span>
 
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input">
               <label htmlFor="district">District</label>
               <input
