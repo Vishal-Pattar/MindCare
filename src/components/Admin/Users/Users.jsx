@@ -135,7 +135,7 @@ const Users = () => {
           <div className="admin__checkbox">Show</div>
         </div>
       </div>
-      <div className="admin__box">
+      <div className="admin__box admin__box--mobiletb">
         <table className="admin__box--table">
           <thead>
             <tr className="admin__box--tr">
