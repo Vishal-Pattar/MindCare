@@ -147,7 +147,7 @@ const BuildProfile = ({ setProfileExists }) => {
               Tell the model about yourself
             </div>
           </span>
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input">
               <label htmlFor="first_name">First Name</label>
               <input
@@ -171,7 +171,7 @@ const BuildProfile = ({ setProfileExists }) => {
               />
             </div>
           </span>
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input">
               <label htmlFor="age">Age</label>
               <input
@@ -221,7 +221,7 @@ const BuildProfile = ({ setProfileExists }) => {
               Where do you live? Tell us about your address
             </div>
           </span>
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input profile__input--pincode">
               <label htmlFor="pincode">Pincode</label>
               <input
@@ -242,7 +242,7 @@ const BuildProfile = ({ setProfileExists }) => {
               Fetch
             </button>
           </span>
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input">
               <label htmlFor="country">Country</label>
               <input
@@ -266,7 +266,7 @@ const BuildProfile = ({ setProfileExists }) => {
               />
             </div>
           </span>
-          <span className="profile__group">
+          <span className="profile__group profile__group--col">
             <div className="profile__input">
               <label htmlFor="district">District</label>
               <input
