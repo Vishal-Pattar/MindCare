@@ -3,11 +3,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 93vh;;
+    height: 93vh;
 }
 
 .error__code {
-    font-size: 10rem;
+    font-size: 10rem; /* Adjusted for smaller screens */
     font-weight: 700;
     color: var(--color-text-primary);
     user-select: none;
@@ -20,11 +20,13 @@
     user-select: none;
 }
 
-.error__desc{
+.error__desc {
     font-size: 1rem;
     font-weight: 400;
     color: var(--color-text-secondary);
     user-select: none;
+    text-align: center;
+    margin: 0.5rem;
 }
 
 .error__button {
@@ -43,4 +45,46 @@
 .error__button:hover {
     background-color: var(--color-text-secondary);
     color: var(--color-bg);
+}
+
+/* Media Queries */
+
+/* Small devices (phones) */
+@media (max-width: 767px) {
+    .error__code {
+        font-size: 6rem; /* Reduce size for small screens */
+    }
+
+    .error__title {
+        font-size: 1.25rem; /* Adjust font size for small devices */
+    }
+
+    .error__desc {
+        font-size: 0.9rem;
+    }
+
+    .error__button {
+        font-size: 1rem; /* Adjust button size for smaller screens */
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .error__code {
+        font-size: 8rem; /* Slightly smaller for tablets */
+    }
+
+    .error__title {
+        font-size: 1.5rem; /* Keep as default */
+    }
+
+    .error__desc {
+        font-size: 1rem; /* Keep as default */
+    }
+
+    .error__button {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
 }
