@@ -1,347 +1,343 @@
-.test-theme {
-  /* Background Colors */
-  --bg-main: #f2f7ff; /* Light, soft blue for main background */
-  --bg-content: #e0ebf9; /* Slightly darker blue for content background */
-  --bg-hover: #d6e2f1; /* Light blue for hover states */
-  --bg-muted: #cbd5e1; /* Muted background for inactive areas */
-
-  /* Accent Colors */
-  --accent-primary: #4a90e2; /* Main blue accent for buttons, links, etc. */
-  --accent-light: #a8d0f2; /* Light blue for hover states */
-  --accent-dark: #2b6cb0; /* Darker blue for strong emphasis */
-  --accent-muted: #7189a1; /* Muted blue for subtle elements */
-  
-  /* Text Colors */
-  --text-main: #1f2933; /* Main text color (dark charcoal) */
-  --text-secondary: #5f6b7a; /* Secondary text color (muted blue-gray) */
-  --text-muted: #8492a6; /* Lighter muted text */
-  --text-accent: #4a90e2; /* Text accents matching the primary blue */
-  --text-error: #ff6b6b; /* Red for error messages */
-  --text-success: #2ecc71; /* Green for success messages */
-  
-  /* Feedback Colors */
-  --bg-error: #ffe3e3; /* Light red background for errors */
-  --bg-success: #d4edda; /* Light green background for success */
-  --bg-warning: #fff3cd; /* Light yellow background for warnings */
-  --bg-info: #e0f7ff; /* Light blue for informational messages */
-
-  /* Border Colors */
-  --border-main: #cbd5e1; /* Neutral border */
-  --border-accent: #4a90e2; /* Accent blue for borders */
-  --border-error: #ff6b6b; /* Red borders for errors */
-  --border-success: #2ecc71; /* Green borders for success */
-  --border-muted: #a8d0f2; /* Light blue border for muted elements */
-
-  /* Button Colors */
-  --button-primary-bg: #4a90e2; /* Primary button background */
-  --button-primary-hover: #357ABD; /* Hover state for primary button */
-  --button-secondary-bg: #a8d0f2; /* Secondary button background */
-  --button-secondary-hover: #92c0e8; /* Hover state for secondary button */
-
-  /* Gradients */
-  --gradient-header: linear-gradient(135deg, #bdd6f6, #a8d0f2); /* Blue gradient for headers or buttons */
-  --gradient-accent: linear-gradient(135deg, #4a90e2, #357ABD); /* Darker blue gradient for strong emphasis */
-
-  /* Shadows */
-  --shadow-light: 0px 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow for light elements */
-  --shadow-dark: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow for emphasis */
-}
-
 .light-theme {
   /* Color Variables */
-  --color-border: #e0e0e0;
-  --color-bg: #ffffff;
-  --color-bg-body: #f9f9f9;
-  --color-bg-hover: #f0f0f0;
-  --color-accent: #e6e6e6;
-  --color-text-primary: #0a0a0a;
-  --color-text-secondary: #333333;
-  --color-text-tertiary: #666666;
-  --color-text-error: #b20000;
-  --color-red: #cc0000;
-  --color-green: #008000;
-  --color-blue: #0000cc;
+  --color-border: #dcdcdc; /* A soft neutral border color */
+  --color-bg: #f7f7f7; /* A subtle off-white background for reduced eye strain */
+  --color-bg-body: #f2f2f2; /* A very light gray for page body background */
+  --color-bg-hover: #ebebeb; /* A slightly darker hover background to add contrast */
+  --color-accent: #d1d1d1; /* Gentle accent color that doesn't overpower the design */
+  --color-text-primary: #1c1c1c; /* Dark charcoal for better readability */
+  --color-text-secondary: #4a4a4a; /* Medium gray for secondary text, still readable */
+  --color-text-tertiary: #7e7e7e; /* Lighter gray for tertiary text */
+  --color-text-error: #d32f2f; /* Vibrant red for error text, contrasts well on light background */
+  --color-red: #e53935; /* Slightly brighter red for red accents */
+  --color-green: #388e3c; /* Muted but strong green for success and positive actions */
+  --color-blue: #1e88e5; /* A rich blue for interactive elements */
 
-  --color-bg-error: #fddede;
-  --color-bg-warning: #fff4cc;
-  --color-bg-info: #e7f3fd;
-  --color-bg-success: #e6f4ea;
+  --color-bg-error: #fdecea; /* Soft, pastel red background for error messages */
+  --color-bg-warning: #fff3e0; /* Warm light yellow for warnings */
+  --color-bg-info: #e1f5fe; /* Gentle light blue for info messages */
+  --color-bg-success: #e8f5e9; /* Soft light green for success messages */
 
-  --color-border-error: #e0a0a0;
-  --color-border-warning: #e6c370;
-  --color-border-info: #a0c4e6;
-  --color-border-success: #8cd4a4;
+  --color-text-error: #c62828; /* Deep red for error text, readable and bold */
+  --color-text-warning: #ff8f00; /* Vivid amber for warning text */
+  --color-text-info: #0277bd; /* Strong blue for informational text */
+  --color-text-success: #2e7d32; /* Forest green for success text */
+
+  --color-border-error: #f19999; /* Subtle red for error borders */
+  --color-border-warning: #ffcc80; /* Orange-yellow border for warnings */
+  --color-border-info: #81d4fa; /* Light blue for info borders */
+  --color-border-success: #a5d6a7; /* Pale green for success borders */
 
   /* Gradient Variables */
   --gradient-header: linear-gradient(
     rgb(255, 255, 255),
-    rgba(240, 240, 240, 1)
-  );
-  --box-shadow-black: 8px 8px 16px #d0d0d0, -8px -8px 16px #ffffff;
+    rgba(235, 235, 235, 1)
+  ); /* A soft gradient for a clean and light header */
+  --box-shadow-black: 8px 8px 16px #e0e0e0, -8px -8px 16px #ffffff; /* Subtle shadow for a modern 3D effect */
 }
 
 .blue-theme {
   /* Color Variables */
-  --color-border: #b3c7d6;
-  --color-bg: #e6f1f5;
-  --color-bg-body: #d9eef3;
-  --color-bg-hover: #c8e3eb;
-  --color-accent: #a6c5d8;
-  --color-text-primary: #2e3a4e;
-  --color-text-secondary: #4b5c6b;
-  --color-text-tertiary: #718096;
-  --color-text-error: #e57373;
-  --color-red: #e57373;
-  --color-green: #81c784;
-  --color-blue: #64b5f6;
+  --color-border: #a1b8c6; /* A slightly muted blue-gray for borders */
+  --color-bg: #dfeff5; /* A soft, light blue background for the page */
+  --color-bg-body: #d0e7f1; /* A pastel blue to differentiate the body background */
+  --color-bg-hover: #bcd8e5; /* A medium-light blue for hover states, providing noticeable feedback */
+  --color-accent: #8fb7cb; /* A more saturated blue for accents, still gentle on the eyes */
+  --color-text-primary: #243a50; /* Deep navy for primary text, maintaining excellent readability */
+  --color-text-secondary: #3f5164; /* A medium blue-gray for secondary text */
+  --color-text-tertiary: #65798a; /* A soft blue-gray for less prominent text */
+  --color-text-error: #d74f4f; /* A rich, yet soft red for error text */
+  --color-red: #d74f4f; /* Matching the error red for consistency */
+  --color-green: #66bb6a; /* A fresh green for positive actions */
+  --color-blue: #4a90e2; /* A bold, eye-catching blue for links or buttons */
 
-  --color-bg-error: #fbe9e7;
-  --color-bg-warning: #fff3e0;
-  --color-bg-info: #e3f2fd;
-  --color-bg-success: #e8f5e9;
+  --color-bg-error: #f8d7da; /* A muted pastel red background for errors */
+  --color-bg-warning: #fff7e0; /* Soft pastel yellow for warnings */
+  --color-bg-info: #d0e9fc; /* Light pastel blue for info boxes */
+  --color-bg-success: #e0f4e5; /* Gentle pastel green for success messages */
 
-  --color-border-error: #ef9a9a;
-  --color-border-warning: #ffb74d;
-  --color-border-info: #90caf9;
-  --color-border-success: #a5d6a7;
+  --color-text-error: #c62828; /* Deep red for error messages */
+  --color-text-warning: #f57c00; /* Bright orange for warning messages */
+  --color-text-info: #0277bd; /* Strong blue for informational text */
+  --color-text-success: #2e7d32; /* Forest green for success text */
+
+  --color-border-error: #e57373; /* Light red for error borders */
+  --color-border-warning: #ffcc80; /* Warm yellow-orange for warning borders */
+  --color-border-info: #64b5f6; /* Sky blue for info borders */
+  --color-border-success: #81c784; /* Light green for success borders */
 
   /* Gradient Variables */
   --gradient-header: linear-gradient(
-    rgb(214, 234, 248),
+    rgb(220, 240, 250),
     rgba(198, 222, 237, 1)
-  );
-  --box-shadow-black: 8px 8px 16px #c0d0d8, -8px -8px 16px #f0f8fc;
+  ); /* Subtle gradient for the header with a fresh, clean blue */
+  --box-shadow-black: 8px 8px 16px #a8b8c8, -8px -8px 16px #f0f8fc; /* Softer shadows with a light blue tint for depth */
 }
 
 .lavender-theme {
   /* Color Variables */
-  --color-border: #d4c1e8;
-  --color-bg: #f3e5f5;
-  --color-bg-body: #ede7f6;
-  --color-bg-hover: #e1bee7;
-  --color-accent: #d1c4e9;
-  --color-text-primary: #5e4572;
-  --color-text-secondary: #6d587b;
-  --color-text-tertiary: #83698e;
-  --color-text-error: #f48fb1;
-  --color-red: #f48fb1;
-  --color-green: #81c784;
-  --color-blue: #64b5f6;
+  --color-border: #c9b3e1; /* A slightly muted lavender for subtle borders */
+  --color-bg: #f5eaf7; /* Soft lavender background to keep it light and pleasant */
+  --color-bg-body: #e8dff5; /* A more noticeable lavender for body background */
+  --color-bg-hover: #dabee1; /* A medium lavender hover state to enhance interaction */
+  --color-accent: #c2a8df; /* A stronger lavender for accents, keeping the theme cohesive */
+  --color-text-primary: #4d3860; /* Deep plum for primary text to ensure readability */
+  --color-text-secondary: #6a4a77; /* Slightly lighter for secondary text, but still contrasts well */
+  --color-text-tertiary: #7f638b; /* A softer lavender-gray for tertiary text */
+  --color-text-error: #e57373; /* Warm, soft pink for error text */
+  --color-red: #e57373; /* Soft red-pink for error or alert accents */
+  --color-green: #66bb6a; /* Soft green for positive actions and success */
+  --color-blue: #64b5f6; /* Cool blue for interactive elements like links or buttons */
 
-  --color-bg-error: #fde0dc;
-  --color-bg-warning: #fff9c4;
-  --color-bg-info: #e3f2fd;
-  --color-bg-success: #e8f5e9;
+  --color-bg-error: #fcd6d2; /* Soft, pale pink for error backgrounds */
+  --color-bg-warning: #fff6b3; /* Gentle pastel yellow for warnings */
+  --color-bg-info: #dfe9fc; /* Pale blue for info messages */
+  --color-bg-success: #e0f4e5; /* Soft pastel green for success messages */
 
-  --color-border-error: #f8bbd0;
-  --color-border-warning: #ffe082;
-  --color-border-info: #90caf9;
-  --color-border-success: #a5d6a7;
+  --color-text-error: #d81b60; /* A vibrant pink for error text, bold but readable */
+  --color-text-warning: #f57f17; /* Warm amber for warning messages */
+  --color-text-info: #3f51b5; /* Classic blue for informational text */
+  --color-text-success: #4caf50; /* Bright green for success messages */
+
+  --color-border-error: #f8a5b9; /* Soft pinkish red for error borders */
+  --color-border-warning: #ffd180; /* Light orange-yellow for warning borders */
+  --color-border-info: #90caf9; /* Light blue for info borders */
+  --color-border-success: #a5d6a7; /* Light green for success borders */
 
   /* Gradient Variables */
   --gradient-header: linear-gradient(
     rgb(237, 231, 246),
     rgba(243, 229, 245, 1)
-  );
-  --box-shadow-black: 8px 8px 16px #d4c1e8, -8px -8px 16px #f9f3fd;
+  ); /* Soft lavender gradient for a clean, subtle header effect */
+  --box-shadow-black: 8px 8px 16px #c9b3e1, -8px -8px 16px #f3e5f7; /* Gentle lavender shadows for a soft 3D effect */
 }
 
 .pastel-theme {
   /* Color Variables */
-  --color-border: #e0d5d5;
-  --color-bg: #fbeae7;
-  --color-bg-body: #faf3f0;
-  --color-bg-hover: #f5e5e1;
-  --color-accent: #d5e8d4;
-  --color-text-primary: #5b4a4a;
-  --color-text-secondary: #7a6868;
-  --color-text-tertiary: #9e8c8c;
-  --color-text-error: #ff8a80;
-  --color-red: #ff8a80;
-  --color-green: #a5d6a7;
-  --color-blue: #4fc3f7;
+  --color-border: #ddd1d1; /* Soft neutral border that doesn’t overpower */
+  --color-bg: #f9e7e4; /* Light pastel peach for background, maintaining warmth */
+  --color-bg-body: #f8f2ef; /* A very soft, light cream for body background */
+  --color-bg-hover: #f3dedb; /* A subtle peach shade for hover states */
+  --color-accent: #cce4c7; /* Soft pastel green for accents, adding freshness */
+  --color-text-primary: #524343; /* Warm dark brown for readability without harshness */
+  --color-text-secondary: #6c5858; /* Medium brown-gray for secondary text */
+  --color-text-tertiary: #8f7575; /* A softer pastel brown for tertiary text */
+  --color-text-error: #ff6e6e; /* Warm red-pink for error text */
+  --color-red: #ff6e6e; /* Muted pastel red for error states or highlights */
+  --color-green: #a1d5a5; /* Fresh pastel green for positive messages */
+  --color-blue: #4fb6f0; /* Soft pastel blue for interactive elements */
 
-  --color-bg-error: #fce4ec;
-  --color-bg-warning: #fff8e1;
-  --color-bg-info: #e0f7fa;
-  --color-bg-success: #e8f5e9;
+  --color-bg-error: #fbe3e8; /* Soft pastel pink for error backgrounds */
+  --color-bg-warning: #fff5d4; /* Soft pale yellow for warning backgrounds */
+  --color-bg-info: #d8f4f7; /* Gentle pale blue for informational messages */
+  --color-bg-success: #e3f3e7; /* Light pastel green for success messages */
 
-  --color-border-error: #f48fb1;
-  --color-border-warning: #ffe082;
-  --color-border-info: #81d4fa;
-  --color-border-success: #aed581;
+  --color-text-error: #d32f2f; /* Bold red for error text */
+  --color-text-warning: #f57c00; /* Bright amber for warning text */
+  --color-text-info: #0277bd; /* Classic blue for info text */
+  --color-text-success: #388e3c; /* Strong green for success text */
+
+  --color-border-error: #f48b94; /* Light pastel red for error borders */
+  --color-border-warning: #ffd780; /* Soft pastel yellow for warning borders */
+  --color-border-info: #80d3f9; /* Light blue for info borders */
+  --color-border-success: #b3dfb0; /* Soft green for success borders */
 
   /* Gradient Variables */
   --gradient-header: linear-gradient(
-    rgb(251, 234, 231),
-    rgba(245, 229, 224, 1)
-  );
-  --box-shadow-black: 8px 8px 16px #dcd2d2, -8px -8px 16px #fff6f5;
+    rgb(249, 231, 228),
+    rgba(245, 224, 220, 1)
+  ); /* Warm peach gradient for the header */
+  --box-shadow-black: 8px 8px 16px #d8cfcf, -8px -8px 16px #fff4f3; /* Soft pastel shadow with a hint of warmth */
 }
 
 .mint-green-theme {
   /* Color Variables */
-  --color-border: #cfe8e3;
-  --color-bg: #e0f2f1;
-  --color-bg-body: #e8f5e9;
-  --color-bg-hover: #d1f2eb;
-  --color-accent: #b2dfdb;
-  --color-text-primary: #2c3e3e;
-  --color-text-secondary: #4f5f5f;
-  --color-text-tertiary: #78909c;
-  --color-text-error: #ff6f61;
-  --color-red: #ff6f61;
-  --color-green: #66bb6a;
-  --color-blue: #4fc3f7;
+  --color-border: #b9deda; /* A slightly muted mint green for soft borders */
+  --color-bg: #d9f0ef; /* A fresh, light mint green for the background */
+  --color-bg-body: #e0f5e8; /* A soft, gentle green for body backgrounds */
+  --color-bg-hover: #c7e7e2; /* A darker shade for hover, providing subtle feedback */
+  --color-accent: #9ed3d0; /* A bolder mint accent that stays within the green spectrum */
+  --color-text-primary: #264646; /* Dark teal for primary text, ensuring good contrast */
+  --color-text-secondary: #466666; /* Medium teal for secondary text, keeping it legible */
+  --color-text-tertiary: #607d8b; /* Soft blue-gray for tertiary text */
+  --color-text-error: #f44336; /* A strong red for error text to stand out */
+  --color-red: #f44336; /* Consistent with error text, a vibrant red for accents */
+  --color-green: #66bb6a; /* Fresh green for positive actions */
+  --color-blue: #4fc3f7; /* Bright pastel blue for interactive elements */
 
-  --color-bg-error: #ffebee;
-  --color-bg-warning: #fffde7;
-  --color-bg-info: #e0f7fa;
-  --color-bg-success: #e8f5e9;
+  --color-bg-error: #fdecea; /* Soft pastel red for error backgrounds */
+  --color-bg-warning: #fff9c4; /* Light pastel yellow for warning backgrounds */
+  --color-bg-info: #d9f3f5; /* Cool minty blue for info backgrounds */
+  --color-bg-success: #e5f6e3; /* A pale green for success backgrounds */
 
-  --color-border-error: #ffab91;
-  --color-border-warning: #ffd54f;
-  --color-border-info: #4dd0e1;
-  --color-border-success: #81c784;
+  --color-text-error: #c62828; /* Deep red for error messages, bold and clear */
+  --color-text-warning: #ef6c00; /* Vibrant orange for warning text */
+  --color-text-info: #00838f; /* Deep teal for info text */
+  --color-text-success: #388e3c; /* Strong green for success messages */
+
+  --color-border-error: #ff8a80; /* Light red for error borders */
+  --color-border-warning: #ffeb3b; /* Bright yellow for warning borders */
+  --color-border-info: #4dd0e1; /* Soft blue-green for info borders */
+  --color-border-success: #81c784; /* Light green for success borders */
 
   /* Gradient Variables */
   --gradient-header: linear-gradient(
     rgb(224, 242, 241),
     rgba(200, 230, 227, 1)
-  );
-  --box-shadow-black: 8px 8px 16px #b3ccc9, -8px -8px 16px #f0f8f7;
+  ); /* A fresh, subtle gradient with mint green tones */
+  --box-shadow-black: 8px 8px 16px #a8c7c3, -8px -8px 16px #eaf6f5; /* Soft mint shadows for depth without harshness */
 }
 
 .peachy-pink-theme {
   /* Color Variables */
-  --color-border: #f5c6b3;
-  --color-bg: #ffe0b2;
-  --color-bg-body: #fff3e0;
-  --color-bg-hover: #ffccbc;
-  --color-accent: #f48fb1;
-  --color-text-primary: #5c3d2e;
-  --color-text-secondary: #795548;
-  --color-text-tertiary: #8d6e63;
-  --color-text-error: #d32f2f;
-  --color-red: #e57373;
-  --color-green: #a5d6a7;
-  --color-blue: #4fc3f7;
+  --color-border: #f2bca4; /* A softer peach-pink for subtle borders */
+  --color-bg: #ffd8a8; /* A warm peach background that stays light and soft */
+  --color-bg-body: #ffeedd; /* A very light peach tone for the body background */
+  --color-bg-hover: #ffbda4; /* A darker peach-pink for hover interactions */
+  --color-accent: #f48f9d; /* A brighter pink for accents to add vibrancy */
+  --color-text-primary: #4b2e1e; /* Rich brown for primary text, ensuring strong contrast */
+  --color-text-secondary: #6d4737; /* Warm brown for secondary text */
+  --color-text-tertiary: #7e5a4d; /* A muted brown-pink for tertiary text */
+  --color-text-error: #d32f2f; /* Bold red for error messages */
+  --color-red: #e57373; /* Soft pink-red for error states */
+  --color-green: #81c784; /* Muted green for success states */
+  --color-blue: #4fc3f7; /* Bright blue for interactive elements like links or buttons */
 
-  --color-bg-error: #ffebee;
-  --color-bg-warning: #fff8e1;
-  --color-bg-info: #e1f5fe;
-  --color-bg-success: #e8f5e9;
+  --color-bg-error: #fce4e5; /* Soft pastel pink for error backgrounds */
+  --color-bg-warning: #fff4cc; /* Gentle pastel yellow for warnings */
+  --color-bg-info: #e0f3fc; /* Cool pastel blue for info messages */
+  --color-bg-success: #e3f5e7; /* Soft pastel green for success backgrounds */
 
-  --color-border-error: #ef9a9a;
-  --color-border-warning: #ffb74d;
-  --color-border-info: #81d4fa;
-  --color-border-success: #aed581;
+  --color-text-error: #c62828; /* Deep red for error text */
+  --color-text-warning: #ef6c00; /* Bright orange for warning text */
+  --color-text-info: #0288d1; /* Strong blue for informational text */
+  --color-text-success: #388e3c; /* Rich green for success text */
+
+  --color-border-error: #f19999; /* Light red for error borders */
+  --color-border-warning: #ffcc80; /* Warm yellow-orange for warning borders */
+  --color-border-info: #80d4fa; /* Light blue for info borders */
+  --color-border-success: #aed581; /* Soft green for success borders */
 
   /* Gradient Variables */
   --gradient-header: linear-gradient(
     rgb(255, 224, 178),
     rgba(255, 205, 159, 1)
-  );
-  --box-shadow-black: 8px 8px 16px #e3b7a0, -8px -8px 16px #fff5ec;
+  ); /* Soft peach gradient for a warm, inviting header */
+  --box-shadow-black: 8px 8px 16px #dfae96, -8px -8px 16px #ffeedd; /* Warm peachy-pink shadows for subtle depth */
 }
 
 .soft-coral-theme {
   /* Color Variables */
-  --color-border: #ffc1a1;
-  --color-bg: #ffe5d9;
-  --color-bg-body: #fff3e0;
-  --color-bg-hover: #ffd4ba;
-  --color-accent: #ffab91;
-  --color-text-primary: #5a3e36;
-  --color-text-secondary: #7e5348;
-  --color-text-tertiary: #9e7d6b;
-  --color-text-error: #e57373;
-  --color-red: #ef5350;
-  --color-green: #66bb6a;
-  --color-blue: #64b5f6;
+  --color-border: #ffb99a; /* Soft coral for a subtle yet noticeable border */
+  --color-bg: #ffe0d3; /* A warm, soft coral background to create a gentle feel */
+  --color-bg-body: #fff2e0; /* Light peachy coral for the body background */
+  --color-bg-hover: #ffc7a8; /* A deeper coral for hover states */
+  --color-accent: #ff9473; /* A bolder coral accent to add vibrancy */
+  --color-text-primary: #5a3a33; /* Rich brown for primary text, ensuring strong contrast */
+  --color-text-secondary: #7c5247; /* A medium brown for secondary text */
+  --color-text-tertiary: #9a6e61; /* Muted brown for tertiary text, providing softer contrast */
+  --color-text-error: #e57373; /* Warm, muted red for error text */
+  --color-red: #ef5350; /* Coral red for error states and highlights */
+  --color-green: #66bb6a; /* Fresh green for success and positive actions */
+  --color-blue: #64b5f6; /* Cool blue for interactive elements like buttons or links */
 
-  --color-bg-error: #ffebee;
-  --color-bg-warning: #fff3e0;
-  --color-bg-info: #e0f7fa;
-  --color-bg-success: #e8f5e9;
+  --color-bg-error: #fddfdc; /* Soft pastel coral for error backgrounds */
+  --color-bg-warning: #fff3d2; /* Warm pastel yellow for warning backgrounds */
+  --color-bg-info: #d6f2f6; /* Gentle pastel blue for info messages */
+  --color-bg-success: #e6f4e6; /* Soft green for success backgrounds */
 
-  --color-border-error: #e57373;
-  --color-border-warning: #ffb74d;
-  --color-border-info: #4fc3f7;
-  --color-border-success: #81c784;
+  --color-text-error: #d32f2f; /* Strong red for error text */
+  --color-text-warning: #f57c00; /* Bright orange for warning text */
+  --color-text-info: #0288d1; /* Clear blue for info text */
+  --color-text-success: #388e3c; /* Bold green for success messages */
+
+  --color-border-error: #e57373; /* Warm coral red for error borders */
+  --color-border-warning: #ffb74d; /* Soft orange-yellow for warning borders */
+  --color-border-info: #4fc3f7; /* Light blue for info borders */
+  --color-border-success: #81c784; /* Light green for success borders */
 
   /* Gradient Variables */
   --gradient-header: linear-gradient(
     rgb(255, 229, 217),
     rgba(255, 214, 193, 1)
-  );
-  --box-shadow-black: 8px 8px 16px #e3b0a1, -8px -8px 16px #fff5ef;
+  ); /* Soft coral gradient for a smooth, calming header */
+  --box-shadow-black: 8px 8px 16px #e0aa94, -8px -8px 16px #fff4ed; /* Warm coral shadows to maintain depth */
 }
 
 .blue-green-theme {
   /* Color Variables */
-  --color-border: #a0d6d4;
-  --color-bg: #e0f2f1;
-  --color-bg-body: #b2dfdb;
-  --color-bg-hover: #b9fbc0;
-  --color-accent: #a5d6a7;
-  --color-text-primary: #004d40;
-  --color-text-secondary: #00796b;
-  --color-text-tertiary: #004d40;
-  --color-text-error: #e57373;
-  --color-red: #e57373;
-  --color-green: #81c784;
-  --color-blue: #64b5f6;
+  --color-border: #88ccc9; /* Soft blue-green for subtle borders */
+  --color-bg: #d1f0ef; /* Light blue-green background for a refreshing feel */
+  --color-bg-body: #a8dbd7; /* A stronger blue-green for body backgrounds */
+  --color-bg-hover: #b5f4bf; /* Soft green for hover states */
+  --color-accent: #81d4a3; /* Vibrant green accent for dynamic elements */
+  --color-text-primary: #003c35; /* Deep teal for primary text to ensure high contrast */
+  --color-text-secondary: #00695c; /* Rich teal for secondary text */
+  --color-text-tertiary: #004d40; /* A slightly lighter deep teal for tertiary text */
+  --color-text-error: #e57373; /* Warm red for error text to stand out */
+  --color-red: #e57373; /* Consistent soft red for error states */
+  --color-green: #66bb6a; /* Fresh green for positive actions */
+  --color-blue: #64b5f6; /* Bright blue for interactive elements like links and buttons */
 
-  --color-bg-error: #ffebee;
-  --color-bg-warning: #fff3e0;
-  --color-bg-info: #e3f2fd;
-  --color-bg-success: #e8f5e9;
+  --color-bg-error: #fbe9e7; /* Soft pastel red for error backgrounds */
+  --color-bg-warning: #fff5cc; /* Light pastel yellow for warnings */
+  --color-bg-info: #dceff9; /* Gentle pastel blue for informational messages */
+  --color-bg-success: #e0f5e7; /* Soft green for success backgrounds */
 
-  --color-border-error: #e57373;
-  --color-border-warning: #ffb74d;
-  --color-border-info: #64b5f6;
-  --color-border-success: #a5d6a7;
+  --color-text-error: #c62828; /* Bold red for error text */
+  --color-text-warning: #f57c00; /* Bright orange for warning text */
+  --color-text-info: #0288d1; /* Strong blue for info text */
+  --color-text-success: #2e7d32; /* Rich green for success text */
+
+  --color-border-error: #f19999; /* Light red for error borders */
+  --color-border-warning: #ffcc80; /* Soft orange-yellow for warning borders */
+  --color-border-info: #80d3f9; /* Light blue for info borders */
+  --color-border-success: #81d4a3; /* Soft green for success borders */
 
   /* Gradient Variables */
   --gradient-header: linear-gradient(
     rgb(224, 242, 241),
     rgba(178, 223, 219, 1)
-  );
-  --box-shadow-black: 8px 8px 16px #a0d6d4, -8px -8px 16px #e0f2f1;
+  ); /* Light blue-green gradient for a fresh, airy header */
+  --box-shadow-black: 8px 8px 16px #8cc8c5, -8px -8px 16px #e0f2f1; /* Soft blue-green shadows for gentle depth */
 }
 
 .green-theme {
   /* Color Variables */
-  --color-border: #a5d6a7;
-  --color-bg: #e8f5e9;
-  --color-bg-body: #c8e6c9;
-  --color-bg-hover: #b9fbc0;
-  --color-accent: #81c784;
-  --color-text-primary: #1b5e20;
-  --color-text-secondary: #2e7d32;
-  --color-text-tertiary: #4caf50;
-  --color-text-error: #e57373;
-  --color-red: #e57373;
-  --color-green: #66bb6a;
-  --color-blue: #64b5f6;
+  --color-border: #94c494; /* Slightly muted green for softer borders */
+  --color-bg: #e4f4e6; /* Soft pastel green for a light, fresh background */
+  --color-bg-body: #c4e3c6; /* A stronger green for the body background */
+  --color-bg-hover: #abefb5; /* Brighter green for hover states to provide feedback */
+  --color-accent: #74b376; /* A vibrant but balanced green for accents */
+  --color-text-primary: #164d17; /* Dark forest green for primary text to ensure contrast */
+  --color-text-secondary: #226e26; /* A rich green for secondary text */
+  --color-text-tertiary: #3f8f3b; /* A brighter green for tertiary text, creating a hierarchy */
+  --color-text-error: #e57373; /* Warm red for error text */
+  --color-red: #e57373; /* Consistent soft red for error states */
+  --color-green: #66bb6a; /* Fresh green for success messages */
+  --color-blue: #64b5f6; /* Bright blue for interactive elements */
 
-  --color-bg-error: #fbe9e7;
-  --color-bg-warning: #fff9c4;
-  --color-bg-info: #e8f5e9;
-  --color-bg-success: #e8f5e9;
+  --color-bg-error: #fbe5e4; /* Light pastel red for error backgrounds */
+  --color-bg-warning: #fff7b0; /* Soft yellow for warning backgrounds */
+  --color-bg-info: #e4f4e6; /* Gentle green for informational backgrounds */
+  --color-bg-success: #e4f4e6; /* Soft green for success backgrounds */
 
-  --color-border-error: #f48fb1;
-  --color-border-warning: #ffe082;
-  --color-border-info: #81c784;
-  --color-border-success: #a5d6a7;
+  --color-text-error: #c62828; /* Deep red for error text */
+  --color-text-warning: #ef6c00; /* Vibrant orange for warning text */
+  --color-text-info: #2e7d32; /* Deep green for info text */
+  --color-text-success: #2e7d32; /* Strong green for success messages */
+
+  --color-border-error: #f48fb1; /* Soft pink-red for error borders */
+  --color-border-warning: #ffcc80; /* Light orange-yellow for warning borders */
+  --color-border-info: #74b376; /* Muted green for info borders */
+  --color-border-success: #94c494; /* Soft green for success borders */
 
   /* Gradient Variables */
   --gradient-header: linear-gradient(
     rgb(237, 245, 233),
     rgba(204, 255, 204, 1)
-  );
-  --box-shadow-black: 8px 8px 16px #a5d6a7, -8px -8px 16px #e8f5e9;
+  ); /* A fresh, soft green gradient for headers */
+  --box-shadow-black: 8px 8px 16px #94c494, -8px -8px 16px #e4f4e6; /* Soft green shadows to maintain depth */
 }
 
 .theme-calm-breeze {
@@ -364,6 +360,11 @@
   --color-bg-warning: #ffe08a;
   --color-bg-info: #87bdd8;
   --color-bg-success: #76c7c0;
+
+  --color-text-error: #d32f2f;
+  --color-text-warning: #f57f17;
+  --color-text-info: #00acc1;
+  --color-text-success: #388e3c;
 
   --color-border-error: #f28b82;
   --color-border-warning: #f9cb8b;
@@ -395,6 +396,11 @@
   --color-bg-info: #71c7ec;
   --color-bg-success: #4ecdc4;
 
+  --color-text-error: #d32f2f;
+  --color-text-warning: #f57c00;
+  --color-text-info: #0288d1;
+  --color-text-success: #43a047;
+
   --color-border-error: #ff8888;
   --color-border-warning: #f9cb8b;
   --color-border-info: #a8def7;
@@ -424,6 +430,11 @@
   --color-bg-warning: #ffe08a;
   --color-bg-info: #8ab6d6;
   --color-bg-success: #6b8e23;
+
+  --color-text-error: #c62828;
+  --color-text-warning: #f57f17;
+  --color-text-info: #0288d1;
+  --color-text-success: #2e7d32;
 
   --color-border-error: #f28b82;
   --color-border-warning: #f9cb8b;
@@ -455,6 +466,11 @@
   --color-bg-info: #87bdd8;
   --color-bg-success: #a8d5ba;
 
+  --color-text-error: #d32f2f;
+  --color-text-warning: #f9a825;
+  --color-text-info: #3f51b5;
+  --color-text-success: #4caf50;
+
   --color-border-error: #f28b82;
   --color-border-warning: #f9cb8b;
   --color-border-info: #c3c7ee;
@@ -484,6 +500,11 @@
   --color-bg-warning: #ffe08a;
   --color-bg-info: #f8b195;
   --color-bg-success: #99b898;
+
+  --color-text-error: #d32f2f;
+  --color-text-warning: #ff8f00;
+  --color-text-info: #f48fb1;
+  --color-text-success: #388e3c;
 
   --color-border-error: #f9cb8b;
   --color-border-warning: #f39c12;
@@ -515,6 +536,11 @@
   --color-bg-info: #5e92f3;
   --color-bg-success: #a2d5ab;
 
+  --color-text-error: #c62828;
+  --color-text-warning: #f57c00;
+  --color-text-info: #0288d1;
+  --color-text-success: #388e3c;
+
   --color-border-error: #ff8888;
   --color-border-warning: #f9cb8b;
   --color-border-info: #88c4f5;
@@ -544,6 +570,11 @@
   --color-bg-warning: #ffe08a;
   --color-bg-info: #d4bb8a;
   --color-bg-success: #bfc4a1;
+
+  --color-text-error: #d32f2f;
+  --color-text-warning: #ffa000;
+  --color-text-info: #8ab6d6;
+  --color-text-success: #a7c6a5;
 
   --color-border-error: #ff8888;
   --color-border-warning: #f9cb8b;
@@ -575,6 +606,11 @@
   --color-bg-info: #b2e7f1;
   --color-bg-success: #88d498;
 
+  --color-text-error: #c62828;
+  --color-text-warning: #ffa726;
+  --color-text-info: #039be5;
+  --color-text-success: #43a047;
+
   --color-border-error: #ff8888;
   --color-border-warning: #f9cb8b;
   --color-border-info: #c8f0f5;
@@ -605,6 +641,11 @@
   --color-bg-info: #afb0b8;
   --color-bg-success: #b8ccb4;
 
+  --color-text-error: #d32f2f;
+  --color-text-warning: #f9a825;
+  --color-text-info: #afb0b8;
+  --color-text-success: #b8ccb4;
+
   --color-border-error: #ff8888;
   --color-border-warning: #f9cb8b;
   --color-border-info: #c8c9d1;
@@ -634,6 +675,11 @@
   --color-bg-warning: #ffe08a;
   --color-bg-info: #f7a7bb;
   --color-bg-success: #b8d4b8;
+
+  --color-text-error: #c62828;
+  --color-text-warning: #ffa000;
+  --color-text-info: #e57373;
+  --color-text-success: #b8d4b8;
 
   --color-border-error: #ff8888;
   --color-border-warning: #f9cb8b;
