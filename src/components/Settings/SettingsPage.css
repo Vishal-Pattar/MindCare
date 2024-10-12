@@ -76,3 +76,49 @@
 .settings__button:hover {
   opacity: 0.9;
 }
+
+/* Media Queries */
+
+/* Small devices (phones) */
+@media (max-width: 767px) {
+  .settings__container {
+    width: 90vw; /* Adjusted for small screens */
+    padding: 1.5rem;
+  }
+
+  .settings__title {
+    font-size: 1.5rem; /* Adjusted font size for smaller screens */
+  }
+
+  .settings__select {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .settings__button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .settings__container {
+    width: 60vw; /* More space on tablets */
+    padding: 2rem;
+  }
+
+  .settings__title {
+    font-size: 1.65rem; /* Slightly larger font for readability */
+  }
+
+  .settings__select {
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+
+  .settings__button {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+}
