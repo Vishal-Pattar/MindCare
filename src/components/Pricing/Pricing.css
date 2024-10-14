@@ -1,0 +1,90 @@
+.pricing__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.pricing__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.pricing__title {
+  font-size: 2rem;
+  font-family: "Geist-SemiBold", sans-serif;
+}
+
+.pricing__toggle {
+  display: flex;
+  gap: 1rem;
+  font-size: 1rem;
+  align-items: center;
+}
+
+.pricing__plans {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.pricing__card {
+  background: var(--color-bg-card);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: var(--box-shadow-black);
+  width: 30%;
+}
+
+.pricing__plan-title {
+  font-size: 1.8rem;
+  font-family: "Geist-Bold", sans-serif;
+  margin-bottom: 1rem;
+}
+
+.pricing__plan-price {
+  font-size: 2.5rem;
+  color: #4caf50;
+  font-family: "Geist-Bold", sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+.pricing__features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.pricing__features li {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.pricing__btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.pricing__card--free {
+  background-color: #ffcccc;
+}
+
+.pricing__card--pro {
+  background-color: #b3e5fc;
+}
+
+.pricing__card--custom {
+  background-color: #ffeb3b;
+}
+
+.pricing__card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
