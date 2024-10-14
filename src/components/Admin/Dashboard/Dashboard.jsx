@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import StatCard from "../Graphs/StatCard/StatCard";
 import { useAlert } from "../../../context/AlertContext";
+import { FaStar } from "react-icons/fa";
 
 const Dashboard = () => {
   const { addAlert } = useAlert();
@@ -12,7 +13,7 @@ const Dashboard = () => {
     },
   };
 
-  const [data, setData] = useState([]);
+  const [feedback, setFeedback] = useState([]);
   const [stats, setStats] = useState([
     { title: "Total Users", value: 0, icon: "👤" },
     { title: "Total Sessions", value: 0, icon: "📅" },
@@ -38,22 +39,40 @@ const Dashboard = () => {
         const totalPrompts = metricsData.count.total_prompt_count;
         const totalCreditsUsed = metricsData.count.total_credits_used;
         const totalCreditsAvailable = metricsData.count.total_credits_available;
+        const userRating = metricsData.count.overall_average_rating;
 
         // Update stats state
         setStats([
           { title: "Total Users", value: totalUsers, icon: "👤" },
           { title: "Total Sessions", value: totalSessions, icon: "📅" },
-          { title: "Report Issues", value: 0, icon: "📝" }, // Placeholder for now
+          { title: "Report Issues", value: 0, icon: "📝" },
           { title: "Total Prompts", value: totalPrompts, icon: "💬" },
           {
             title: "Total Credits",
             value: `${totalCreditsUsed}/${totalCreditsAvailable}`,
             icon: "💳",
           },
-          { title: "User Rating", value: "N/A", icon: "⭐" }, // Placeholder for rating
+          { title: "User Rating", value: userRating, icon: "⭐" },
         ]);
+      } catch (error) {
+        console.error(error);
+        addAlert(
+          error.response ? error.response.data.message : error.message,
+          "error",
+          "bottom_right"
+        );
+      }
+    };
 
-        setData(metricsData.data);
+    const fetchFeedback = async () => {
+      try {
+        const apiURL = process.env.REACT_APP_API_URL;
+        const feedbackResponse = await axios.get(
+          `${apiURL}/api/v1/feed/feedback`,
+          config
+        );
+        console.log(feedbackResponse);
+        setFeedback(feedbackResponse.data.data);
       } catch (error) {
         console.error(error);
         addAlert(
@@ -65,7 +84,8 @@ const Dashboard = () => {
     };
 
     fetchData();
-  }, [addAlert, config]);
+    fetchFeedback();
+  }, []);
 
   return (
     <>
@@ -78,6 +98,40 @@ const Dashboard = () => {
             icon={stat.icon}
           />
         ))}
+      </div>
+
+      <div className="adminpanel__feedback--section">
+        <div className="adminpanel__feedback--title">Feedback</div>
+        <div className="adminpanel__feedback--content">
+          {feedback.length > 0 ? (
+            feedback
+              .filter(
+                (item) => item.feedback_text && item.feedback_text.trim() !== ""
+              )
+              .map((item, index) => (
+                <div key={index} className="adminpanel__feedback--item">
+                  <div className="adminpanel__feedback--username">
+                    <span>{item.username}</span>
+                    <span className="adminpanel__feedback--rating">
+                      {[...Array(item.rating)].map((_, i) => (
+                        <FaStar 
+                          key={i}
+                          className="adminpanel__feedback--star"
+                        />
+                      ))}{" "}
+                    </span>
+                  </div>
+                  <div className="adminpanel__feedback--text">
+                    {item.feedback_text}
+                  </div>
+                </div>
+              ))
+          ) : (
+            <div className="adminpanel__feedback--no">
+              No feedback available
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
