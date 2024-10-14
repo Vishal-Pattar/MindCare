@@ -23,7 +23,7 @@ import ChatHistory from "./components/Admin/ChatHistory/ChatHistory.jsx";
 import Email from "./components/Admin/Email/Email.jsx";
 import Invitation from "./components/Admin/Invitation/Invitation.jsx";
 import Notification from "./components/Admin/Notification/Notification.jsx";
-import DisplayProfile from "./components/Admin/Profile/DisplayProfile.jsx";
+import ControlProfile from "./components/Admin/Profile/ControlProfile.jsx";
 
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import { AuthProvider } from "./context/AuthContext.js";
@@ -38,6 +38,8 @@ import Tutorials from "./components/Tutorials/Tutorials.jsx";
 import BlogList from "./components/Blog/BlogList.jsx";
 import BlogDetail from "./components/Blog/BlogDetail.jsx";
 import FAQ from "./components/FAQ/FAQ.jsx";
+
+import Pricing from "./components/Pricing/Pricing.jsx";
 
 const App = () => {
   const [theme, setTheme] = useState("light");
@@ -59,7 +61,7 @@ const App = () => {
                 <Route path="coupons" element={<Coupon />} />
                 <Route path="sessions" element={<Session />} />
                 <Route path="profile/:username" element={<Profile />} />
-                <Route path="profiles" element={<DisplayProfile />} />
+                <Route path="profiles/:username" element={<ControlProfile />} />
                 <Route path="history/:sessionId" element={<ChatHistory />} />
                 <Route path="email" element={<Email />} />
                 <Route path="invitation" element={<Invitation />} />
@@ -79,6 +81,7 @@ const App = () => {
 
               <Route path="/profile" element={<ProfileContainer />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/pricing" element={<Pricing />} />
 
               <Route path="/tutorials" element={<Tutorials />} />
               <Route path="/blogs" element={<BlogList />} />
