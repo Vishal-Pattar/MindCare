@@ -1,8 +1,33 @@
 .pricing__container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
+  height: 93vh;
+  width: 100vw;
   text-align: center;
+  background-color: var(--color-bg-body);
+  color: var(--color-text-primary);
+  overflow-y: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.pricing__container::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.pricing__container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.pricing__container::-webkit-scrollbar-track {
+  background: var(--color-bg-body);
+}
+
+.pricing__container::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-tertiary);
+  border-radius: 20px;
+  border: 3px solid var(--color-bg-body);
 }
 
 .pricing__header {
@@ -15,6 +40,7 @@
 .pricing__title {
   font-size: 2rem;
   font-family: "Geist-SemiBold", sans-serif;
+  color: var(--color-text-primary);
 }
 
 .pricing__toggle {
@@ -22,69 +48,298 @@
   gap: 1rem;
   font-size: 1rem;
   align-items: center;
+  color: var(--color-text-secondary);
 }
 
 .pricing__plans {
+  width: 100%;
   display: flex;
-  justify-content: space-around;
-  gap: 2rem;
+  flex-direction: row;
+  justify-content: space-evenly;
+  box-sizing: border-box;
 }
 
 .pricing__card {
-  background: var(--color-bg-card);
-  border-radius: 10px;
+  background: var(--color-accent);
+  border-radius: 0.5rem;
   padding: 2rem;
-  box-shadow: var(--box-shadow-black);
-  width: 30%;
+  min-width: 20%;
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
 }
 
 .pricing__plan-title {
   font-size: 1.8rem;
   font-family: "Geist-Bold", sans-serif;
   margin-bottom: 1rem;
+  color: var(--color-text-primary);
 }
 
 .pricing__plan-price {
   font-size: 2.5rem;
-  color: #4caf50;
+  color: var(--color-bg-success);
   font-family: "Geist-Bold", sans-serif;
   margin-bottom: 1.5rem;
 }
 
 .pricing__features {
-  list-style: none;
   padding: 0;
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
-.pricing__features li {
+.pricing__feature {
   font-size: 1rem;
   margin: 0.5rem 0;
+  color: var(--color-text-secondary);
 }
 
 .pricing__btn {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
   border: none;
-  padding: 0.8rem 2rem;
-  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Geist-Regular", sans-serif;
+  margin-top: auto;
+}
+
+.pricing__btn:hover {
+  background-color: var(--color-text-secondary);
 }
 
 .pricing__card--free {
-  background-color: #ffcccc;
+  background-color: var(--color-bg);
 }
 
 .pricing__card--pro {
-  background-color: #b3e5fc;
+  background-color: var(--color-bg);
 }
 
 .pricing__card--custom {
-  background-color: #ffeb3b;
+  background-color: var(--color-bg);
 }
 
 .pricing__card:hover {
   transform: translateY(-5px);
   transition: all 0.3s ease;
+}
+
+/* Container for the entire checkout section */
+.pricing__container--checkout {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  background-color: var(--color-bg-body);
+}
+
+.pricing__checkout {
+  width: 30vw;
+  padding: 3rem;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  max-width: 500px;
+  margin: 3rem;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Title in the checkout container */
+.pricing__title {
+  font-size: 2rem;
+  color: var(--color-text-primary);
+  font-family: "Geist-Bold", sans-serif;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  user-select: none;
+}
+
+/* Form layout inside the checkout section */
+.pricing__checkout form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Form input containers */
+.pricing__input {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing__input label {
+  font-size: 0.85rem;
+  font-family: "Geist-Medium", sans-serif;
+  margin-bottom: 0.4rem;
+  color: var(--color-text-secondary);
+  user-select: none;
+}
+
+/* Stripe Elements and inputs styling */
+.pricing__input input,
+.StripeElement {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: "Geist-Regular", sans-serif;
+  transition: border-color 0.2s ease;
+}
+
+.StripeElement iframe {
+  box-shadow: none !important;
+}
+
+/* Disabled input styling for the amount field */
+.disabled-input {
+  background-color: var(--color-accent);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Focus state for input fields and Stripe Elements */
+.pricing__input input:focus,
+.StripeElement--focus {
+  border-color: var(--color-text-secondary);
+  outline: none;
+}
+
+/* Container for radio buttons */
+.pricing__radio-group {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* Radio button label */
+.pricing__radio-label {
+  display: flex;
+  align-items: center;
+  font-family: "Geist-Regular", sans-serif;
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Hide default radio button */
+.pricing__radio-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Custom radio button */
+.pricing__radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-border);
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+/* Radio button checked state */
+.pricing__radio-input:checked + .pricing__radio-custom {
+  border-color: var(--color-text-primary);
+  background-color: var(--color-text-primary);
+}
+
+.pricing__radio-input:checked + .pricing__radio-custom::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+}
+
+/* Button styles */
+.pricing__button {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-family: "Geist-SemiBold", sans-serif;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.pricing__button:disabled {
+  background-color: var(--color-border);
+  cursor: not-allowed;
+}
+
+.pricing__button:hover {
+  background-color: var(--color-text-secondary);
+}
+
+/* Footer message and error handling */
+.pricing__footer {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.pricing__footer.error {
+  color: var(--color-text-error);
+}
+
+/* Media Queries */
+
+/* For tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .pricing__checkout {
+    max-width: 600px;
+    padding: 2rem;
+  }
+
+  .pricing__checkout h2 {
+    font-size: 1.75rem;
+  }
+
+  .pricing__button {
+    font-size: 1rem;
+  }
+}
+
+/* For large screens */
+@media (min-width: 1025px) {
+  .pricing__checkout {
+    max-width: 500px;
+  }
+}
+
+/* For small devices */
+@media (max-width: 767px) {
+  .pricing__checkout {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .pricing__checkout h2 {
+    font-size: 1.5rem;
+  }
+
+  .pricing__button {
+    font-size: 0.95rem;
+    padding: 0.6rem;
+  }
 }
