@@ -1,72 +1,84 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Pricing.css";
 
 const Pricing = () => {
-  const [plan, setPlan] = useState("monthly");
+  const navigate = useNavigate();
 
-  const handlePlanToggle = (e) => {
-    setPlan(e.target.value);
+  const handlePlanSelection = (planName, price) => {
+    navigate(`/checkout?plan=${planName}&amount=${price}`);
   };
 
   return (
     <div className="pricing__container">
-      <div className="pricing__header">
-        <h1 className="pricing__title">Pricing</h1>
-        <div className="pricing__toggle">
-          <label>
-            <input
-              type="radio"
-              value="monthly"
-              checked={plan === "monthly"}
-              onChange={handlePlanToggle}
-            />
-            Monthly
-          </label>
-          <label>
-            <input
-              type="radio"
-              value="pay-as-you-go"
-              checked={plan === "pay-as-you-go"}
-              onChange={handlePlanToggle}
-            />
-            Pay as you go
-          </label>
-        </div>
-      </div>
-
       <div className="pricing__plans">
+        {/* Free Plan */}
         <div className="pricing__card pricing__card--free">
-          <h2 className="pricing__plan-title">Free</h2>
-          <p className="pricing__plan-price">₹0</p>
-          <ul className="pricing__features">
-            <li>50 credits monthly</li>
-            <li>Delay in messages</li>
-            <li>Email Support</li>
-            <li>Free Resources</li>
-          </ul>
-          <button className="pricing__btn">Get Free Plan</button>
+          <div className="pricing__plan-title">Free</div>
+          <div className="pricing__plan-price">₹0/month</div>
+          <div className="pricing__features">
+            <div className="pricing__feature">50 credits monthly</div>
+            <div className="pricing__feature">Delay in messages</div>
+            <div className="pricing__feature">Email Support (24-48 hours)</div>
+            <div className="pricing__feature">Free Resources</div>
+            <div className="pricing__feature">Access to Community Forum</div>
+          </div>
+          <button
+            className="pricing__btn"
+            onClick={() => handlePlanSelection("Free", 0)}
+          >
+            Get Free Plan
+          </button>
         </div>
 
+        {/* Pro Plan */}
         <div className="pricing__card pricing__card--pro">
-          <h2 className="pricing__plan-title">Pro</h2>
-          <p className="pricing__plan-price">₹500/month</p>
-          <ul className="pricing__features">
-            <li>500 credits monthly</li>
-            <li>Prompt service</li>
-            <li>Priority Support</li>
-            <li>All features in Free</li>
-          </ul>
-          <button className="pricing__btn">Get Pro Plan</button>
+          <div className="pricing__plan-title">Pro</div>
+          <div className="pricing__plan-price">
+            ₹5000/month <br />
+          </div>
+          <div className="pricing__features">
+            <div className="pricing__feature">500 credits monthly</div>
+            <div className="pricing__feature">All features in Free Plan</div>
+            <div className="pricing__feature">Prompt service</div>
+            <div className="pricing__feature">
+              Priority Email Support (12-24 hours)
+            </div>
+            <div className="pricing__feature">Theme customization</div>
+            <div className="pricing__feature">Early Access to New Features</div>
+            <div className="pricing__feature">Basic Usage Reports</div>
+          </div>
+          <button
+            className="pricing__btn"
+            onClick={() => handlePlanSelection("Pro", 500000)}
+          >
+            Get Pro Plan
+          </button>
         </div>
 
+        {/* Custom Plan */}
         <div className="pricing__card pricing__card--custom">
-          <h2 className="pricing__plan-title">Custom</h2>
-          <p className="pricing__plan-price">Pay as you go</p>
-          <ul className="pricing__features">
-            <li>All features in Pro</li>
-            <li>Pay as per your usage</li>
-          </ul>
-          <button className="pricing__btn">Get Custom Plan</button>
+          <div className="pricing__plan-title">Custom</div>
+          <div className="pricing__plan-price">Pay as you go</div>
+          <div className="pricing__features">
+            <div className="pricing__feature">All features in Pro Plan</div>
+            <div className="pricing__feature">Pay as per your usage</div>
+            <div className="pricing__feature">24/7 Dedicated Support</div>
+            <div className="pricing__feature">
+              Advanced Customization Options
+            </div>
+            <div className="pricing__feature">Advanced Usage Reports</div>
+            <div className="pricing__feature">
+              Custom Integrations & API Access
+            </div>
+            <div className="pricing__feature">Scalability for Enterprise</div>
+          </div>
+          <button
+            className="pricing__btn"
+            onClick={() => handlePlanSelection("Custom", 1000000)}
+          >
+            Get Custom Plan
+          </button>
         </div>
       </div>
     </div>
