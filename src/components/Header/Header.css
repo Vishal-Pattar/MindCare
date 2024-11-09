@@ -1,23 +1,20 @@
-/* General header container styling */
 .header__container {
   height: 7vh;
   width: 100vw;
   display: flex;
   align-items: center;
   text-align: center;
-  background: var(--gradient-header);
+  background: var(--color-bg-hover);
   color: var(--color-text-primary);
   border: 1px solid var(--color-border);
   box-sizing: border-box;
   justify-content: space-between;
 }
 
-/* Link styling */
 a {
   text-decoration: none;
 }
 
-/* Title Styling */
 .header__title {
   font-size: 1rem;
   font-family: "Geist-SemiBold", sans-serif;
@@ -26,7 +23,6 @@ a {
   color: var(--color-text-primary);
 }
 
-/* Button and Stats styling */
 .header__button,
 .header__stats {
   margin-right: 1rem;
@@ -47,13 +43,11 @@ a {
   border-color: var(--color-text-tertiary);
 }
 
-/* Flex span for aligning text */
 span {
   display: inline-flex;
   flex-direction: row;
 }
 
-/* Menu button styling */
 .header__menu--button {
   margin-right: 1rem;
   font-size: 1rem;
@@ -76,12 +70,10 @@ span {
   border-color: var(--color-text-tertiary);
 }
 
-/* Menu icon */
 .header__menu--icon {
   font-size: 1.25rem;
 }
 
-/* Menu dropdown styling */
 .header__menu {
   display: inline-flex;
   flex-direction: column;
@@ -109,7 +101,6 @@ span {
   align-items: center;
 }
 
-/* Menu item styling */
 .header__menu--item {
   font-size: 1rem;
   font-family: "Geist-Medium", sans-serif;
@@ -129,7 +120,6 @@ span {
   border-color: var(--color-text-tertiary);
 }
 
-/* Notification button styling */
 .header__notification {
   margin-right: 1rem;
   font-size: 1rem;
@@ -145,7 +135,6 @@ span {
   display: flex;
 }
 
-/* Notification badge styling */
 .header__notify {
   display: flex;
   justify-content: center;
@@ -165,9 +154,6 @@ span {
   padding: 0 0.25rem;
 }
 
-/* Media Queries for Responsiveness */
-
-/* For small devices (mobile phones) */
 @media (max-width: 767px) {
   .header__container {
     flex-direction: row;
@@ -208,7 +194,6 @@ span {
   }
 }
 
-/* For tablets */
 @media (min-width: 768px) and (max-width: 1024px) {
   .header__title {
     font-size: 0.95rem;
@@ -236,7 +221,6 @@ span {
   }
 }
 
-/* For large screens */
 @media (min-width: 1025px) {
   .header__title {
     font-size: 1rem;
