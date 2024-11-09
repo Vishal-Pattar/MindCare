@@ -42,16 +42,14 @@ const SettingsPage = () => {
           onChange={handleThemeChange}
           className="settings__select"
         >
-          <option value="light-theme">Light</option>
-          <option value="dark-theme">Dark</option>
-          <option value="blue-theme">Blue</option>
-          <option value="lavender-theme">Lavender</option>
-          <option value="pastel-theme">Pastel</option>
-          <option value="mint-green-theme">Mint Green</option>
-          <option value="peachy-pink-theme">Peachy Pink</option>
-          <option value="soft-coral-theme">Soft Coral</option>
-          <option value="blue-green-theme">Blue Green</option>
-          <option value="green-theme">Green Theme</option>
+          <option value="theme-developer">Developer</option>
+          <option value="theme-lavender">Lavender</option>
+          <option value="theme-pastel">Pastel</option>
+          <option value="theme-soft-blue">Soft Blue</option>
+          <option value="theme-mint-green">Mint Green</option>
+          <option value="theme-yellow">Yellow</option>
+          <option value="theme-soft-coral">Soft Coral</option>
+          <option value="theme-peach">Peach</option>
         </select>
       </div>
 
