@@ -40,9 +40,10 @@ import BlogDetail from "./components/Blog/BlogDetail.jsx";
 import FAQ from "./components/FAQ/FAQ.jsx";
 
 import Pricing from "./components/Pricing/Pricing.jsx";
+import Checkout from "./components/Pricing/Checkout.jsx";
 
 const App = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("");
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -81,7 +82,9 @@ const App = () => {
 
               <Route path="/profile" element={<ProfileContainer />} />
               <Route path="/settings" element={<SettingsPage />} />
+
               <Route path="/pricing" element={<Pricing />} />
+              <Route path="/checkout" element={<Checkout />} />
 
               <Route path="/tutorials" element={<Tutorials />} />
               <Route path="/blogs" element={<BlogList />} />
