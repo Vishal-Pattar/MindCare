@@ -104,6 +104,14 @@ const Header = () => {
                   Profile
                 </button>
               </Link>
+              <Link to="/pricing">
+                <button
+                  className="header__menu--item roboto-regular"
+                  onClick={handleMenu}
+                >
+                  Pricing
+                </button>
+              </Link>
               <Link to="/settings">
                 <button
                   className="header__menu--item roboto-regular"
