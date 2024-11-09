@@ -1,691 +1,280 @@
-.light-theme {
-  /* Color Variables */
-  --color-border: #dcdcdc; /* A soft neutral border color */
-  --color-bg: #f7f7f7; /* A subtle off-white background for reduced eye strain */
-  --color-bg-body: #f2f2f2; /* A very light gray for page body background */
-  --color-bg-hover: #ebebeb; /* A slightly darker hover background to add contrast */
-  --color-accent: #d1d1d1; /* Gentle accent color that doesn't overpower the design */
-  --color-text-primary: #1c1c1c; /* Dark charcoal for better readability */
-  --color-text-secondary: #4a4a4a; /* Medium gray for secondary text, still readable */
-  --color-text-tertiary: #7e7e7e; /* Lighter gray for tertiary text */
-  --color-text-error: #d32f2f; /* Vibrant red for error text, contrasts well on light background */
-  --color-red: #e53935; /* Slightly brighter red for red accents */
-  --color-green: #388e3c; /* Muted but strong green for success and positive actions */
-  --color-blue: #1e88e5; /* A rich blue for interactive elements */
+.theme-developer {
+  --color-border: #27272a;
+  --color-bg: #09090b;
+  --color-bg-body: #181818;
+  --color-bg-hover: #171717e6;
+  --color-accent: #202020;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-tertiary: #52525b;
+  --color-text-error: #ff3333;
+  --color-red: #ff0000;
+  --color-green: #00ff00;
+  --color-blue: #0000ff;
+  --color-white: #ffffff;
+  --color-black: #000000;
 
-  --color-bg-error: #fdecea; /* Soft, pastel red background for error messages */
-  --color-bg-warning: #fff3e0; /* Warm light yellow for warnings */
-  --color-bg-info: #e1f5fe; /* Gentle light blue for info messages */
-  --color-bg-success: #e8f5e9; /* Soft light green for success messages */
+  --color-bg-error: #9c2b2e;
+  --color-bg-warning: #f39c12;
+  --color-bg-info: #3498db;
+  --color-bg-success: #2ecc71;
 
-  --color-text-error: #c62828; /* Deep red for error text, readable and bold */
-  --color-text-warning: #ff8f00; /* Vivid amber for warning text */
-  --color-text-info: #0277bd; /* Strong blue for informational text */
-  --color-text-success: #2e7d32; /* Forest green for success text */
+  --color-text-error: #ffffff;
+  --color-text-warning: #ffffff;
+  --color-text-info: #ffffff;
+  --color-text-success: #ffffff;
 
-  --color-border-error: #f19999; /* Subtle red for error borders */
-  --color-border-warning: #ffcc80; /* Orange-yellow border for warnings */
-  --color-border-info: #81d4fa; /* Light blue for info borders */
-  --color-border-success: #a5d6a7; /* Pale green for success borders */
-
-  /* Gradient Variables */
-  --gradient-header: linear-gradient(
-    rgb(255, 255, 255),
-    rgba(235, 235, 235, 1)
-  ); /* A soft gradient for a clean and light header */
-  --box-shadow-black: 8px 8px 16px #e0e0e0, -8px -8px 16px #ffffff; /* Subtle shadow for a modern 3D effect */
-}
-
-.blue-theme {
-  /* Color Variables */
-  --color-border: #a1b8c6; /* A slightly muted blue-gray for borders */
-  --color-bg: #dfeff5; /* A soft, light blue background for the page */
-  --color-bg-body: #d0e7f1; /* A pastel blue to differentiate the body background */
-  --color-bg-hover: #bcd8e5; /* A medium-light blue for hover states, providing noticeable feedback */
-  --color-accent: #8fb7cb; /* A more saturated blue for accents, still gentle on the eyes */
-  --color-text-primary: #243a50; /* Deep navy for primary text, maintaining excellent readability */
-  --color-text-secondary: #3f5164; /* A medium blue-gray for secondary text */
-  --color-text-tertiary: #65798a; /* A soft blue-gray for less prominent text */
-  --color-text-error: #d74f4f; /* A rich, yet soft red for error text */
-  --color-red: #d74f4f; /* Matching the error red for consistency */
-  --color-green: #66bb6a; /* A fresh green for positive actions */
-  --color-blue: #4a90e2; /* A bold, eye-catching blue for links or buttons */
-
-  --color-bg-error: #f8d7da; /* A muted pastel red background for errors */
-  --color-bg-warning: #fff7e0; /* Soft pastel yellow for warnings */
-  --color-bg-info: #d0e9fc; /* Light pastel blue for info boxes */
-  --color-bg-success: #e0f4e5; /* Gentle pastel green for success messages */
-
-  --color-text-error: #c62828; /* Deep red for error messages */
-  --color-text-warning: #f57c00; /* Bright orange for warning messages */
-  --color-text-info: #0277bd; /* Strong blue for informational text */
-  --color-text-success: #2e7d32; /* Forest green for success text */
-
-  --color-border-error: #e57373; /* Light red for error borders */
-  --color-border-warning: #ffcc80; /* Warm yellow-orange for warning borders */
-  --color-border-info: #64b5f6; /* Sky blue for info borders */
-  --color-border-success: #81c784; /* Light green for success borders */
+  --color-border-error: #d32f2f;
+  --color-border-warning: #e67e22;
+  --color-border-info: #2980b9;
+  --color-border-success: #27ae60;
 
   /* Gradient Variables */
-  --gradient-header: linear-gradient(
-    rgb(220, 240, 250),
-    rgba(198, 222, 237, 1)
-  ); /* Subtle gradient for the header with a fresh, clean blue */
-  --box-shadow-black: 8px 8px 16px #a8b8c8, -8px -8px 16px #f0f8fc; /* Softer shadows with a light blue tint for depth */
+  --gradient-header: linear-gradient(rgb(25, 25, 31), rgba(9, 9, 11, 1));
+  --box-shadow-black: 6px 6px 12px #000000, -6px -6px 12px #242424;
 }
 
-.lavender-theme {
-  /* Color Variables */
-  --color-border: #c9b3e1; /* A slightly muted lavender for subtle borders */
-  --color-bg: #f5eaf7; /* Soft lavender background to keep it light and pleasant */
-  --color-bg-body: #e8dff5; /* A more noticeable lavender for body background */
-  --color-bg-hover: #dabee1; /* A medium lavender hover state to enhance interaction */
-  --color-accent: #c2a8df; /* A stronger lavender for accents, keeping the theme cohesive */
-  --color-text-primary: #4d3860; /* Deep plum for primary text to ensure readability */
-  --color-text-secondary: #6a4a77; /* Slightly lighter for secondary text, but still contrasts well */
-  --color-text-tertiary: #7f638b; /* A softer lavender-gray for tertiary text */
-  --color-text-error: #e57373; /* Warm, soft pink for error text */
-  --color-red: #e57373; /* Soft red-pink for error or alert accents */
-  --color-green: #66bb6a; /* Soft green for positive actions and success */
-  --color-blue: #64b5f6; /* Cool blue for interactive elements like links or buttons */
-
-  --color-bg-error: #fcd6d2; /* Soft, pale pink for error backgrounds */
-  --color-bg-warning: #fff6b3; /* Gentle pastel yellow for warnings */
-  --color-bg-info: #dfe9fc; /* Pale blue for info messages */
-  --color-bg-success: #e0f4e5; /* Soft pastel green for success messages */
-
-  --color-text-error: #d81b60; /* A vibrant pink for error text, bold but readable */
-  --color-text-warning: #f57f17; /* Warm amber for warning messages */
-  --color-text-info: #3f51b5; /* Classic blue for informational text */
-  --color-text-success: #4caf50; /* Bright green for success messages */
-
-  --color-border-error: #f8a5b9; /* Soft pinkish red for error borders */
-  --color-border-warning: #ffd180; /* Light orange-yellow for warning borders */
-  --color-border-info: #90caf9; /* Light blue for info borders */
-  --color-border-success: #a5d6a7; /* Light green for success borders */
-
-  /* Gradient Variables */
-  --gradient-header: linear-gradient(
-    rgb(237, 231, 246),
-    rgba(243, 229, 245, 1)
-  ); /* Soft lavender gradient for a clean, subtle header effect */
-  --box-shadow-black: 8px 8px 16px #c9b3e1, -8px -8px 16px #f3e5f7; /* Gentle lavender shadows for a soft 3D effect */
-}
-
-.pastel-theme {
-  /* Color Variables */
-  --color-border: #ddd1d1; /* Soft neutral border that doesn’t overpower */
-  --color-bg: #f9e7e4; /* Light pastel peach for background, maintaining warmth */
-  --color-bg-body: #f8f2ef; /* A very soft, light cream for body background */
-  --color-bg-hover: #f3dedb; /* A subtle peach shade for hover states */
-  --color-accent: #cce4c7; /* Soft pastel green for accents, adding freshness */
-  --color-text-primary: #524343; /* Warm dark brown for readability without harshness */
-  --color-text-secondary: #6c5858; /* Medium brown-gray for secondary text */
-  --color-text-tertiary: #8f7575; /* A softer pastel brown for tertiary text */
-  --color-text-error: #ff6e6e; /* Warm red-pink for error text */
-  --color-red: #ff6e6e; /* Muted pastel red for error states or highlights */
-  --color-green: #a1d5a5; /* Fresh pastel green for positive messages */
-  --color-blue: #4fb6f0; /* Soft pastel blue for interactive elements */
-
-  --color-bg-error: #fbe3e8; /* Soft pastel pink for error backgrounds */
-  --color-bg-warning: #fff5d4; /* Soft pale yellow for warning backgrounds */
-  --color-bg-info: #d8f4f7; /* Gentle pale blue for informational messages */
-  --color-bg-success: #e3f3e7; /* Light pastel green for success messages */
-
-  --color-text-error: #d32f2f; /* Bold red for error text */
-  --color-text-warning: #f57c00; /* Bright amber for warning text */
-  --color-text-info: #0277bd; /* Classic blue for info text */
-  --color-text-success: #388e3c; /* Strong green for success text */
-
-  --color-border-error: #f48b94; /* Light pastel red for error borders */
-  --color-border-warning: #ffd780; /* Soft pastel yellow for warning borders */
-  --color-border-info: #80d3f9; /* Light blue for info borders */
-  --color-border-success: #b3dfb0; /* Soft green for success borders */
-
-  /* Gradient Variables */
-  --gradient-header: linear-gradient(
-    rgb(249, 231, 228),
-    rgba(245, 224, 220, 1)
-  ); /* Warm peach gradient for the header */
-  --box-shadow-black: 8px 8px 16px #d8cfcf, -8px -8px 16px #fff4f3; /* Soft pastel shadow with a hint of warmth */
-}
-
-.mint-green-theme {
-  /* Color Variables */
-  --color-border: #b9deda; /* A slightly muted mint green for soft borders */
-  --color-bg: #d9f0ef; /* A fresh, light mint green for the background */
-  --color-bg-body: #e0f5e8; /* A soft, gentle green for body backgrounds */
-  --color-bg-hover: #c7e7e2; /* A darker shade for hover, providing subtle feedback */
-  --color-accent: #9ed3d0; /* A bolder mint accent that stays within the green spectrum */
-  --color-text-primary: #264646; /* Dark teal for primary text, ensuring good contrast */
-  --color-text-secondary: #466666; /* Medium teal for secondary text, keeping it legible */
-  --color-text-tertiary: #607d8b; /* Soft blue-gray for tertiary text */
-  --color-text-error: #f44336; /* A strong red for error text to stand out */
-  --color-red: #f44336; /* Consistent with error text, a vibrant red for accents */
-  --color-green: #66bb6a; /* Fresh green for positive actions */
-  --color-blue: #4fc3f7; /* Bright pastel blue for interactive elements */
-
-  --color-bg-error: #fdecea; /* Soft pastel red for error backgrounds */
-  --color-bg-warning: #fff9c4; /* Light pastel yellow for warning backgrounds */
-  --color-bg-info: #d9f3f5; /* Cool minty blue for info backgrounds */
-  --color-bg-success: #e5f6e3; /* A pale green for success backgrounds */
-
-  --color-text-error: #c62828; /* Deep red for error messages, bold and clear */
-  --color-text-warning: #ef6c00; /* Vibrant orange for warning text */
-  --color-text-info: #00838f; /* Deep teal for info text */
-  --color-text-success: #388e3c; /* Strong green for success messages */
-
-  --color-border-error: #ff8a80; /* Light red for error borders */
-  --color-border-warning: #ffeb3b; /* Bright yellow for warning borders */
-  --color-border-info: #4dd0e1; /* Soft blue-green for info borders */
-  --color-border-success: #81c784; /* Light green for success borders */
-
-  /* Gradient Variables */
-  --gradient-header: linear-gradient(
-    rgb(224, 242, 241),
-    rgba(200, 230, 227, 1)
-  ); /* A fresh, subtle gradient with mint green tones */
-  --box-shadow-black: 8px 8px 16px #a8c7c3, -8px -8px 16px #eaf6f5; /* Soft mint shadows for depth without harshness */
-}
-
-.peachy-pink-theme {
-  /* Color Variables */
-  --color-border: #f2bca4; /* A softer peach-pink for subtle borders */
-  --color-bg: #ffd8a8; /* A warm peach background that stays light and soft */
-  --color-bg-body: #ffeedd; /* A very light peach tone for the body background */
-  --color-bg-hover: #ffbda4; /* A darker peach-pink for hover interactions */
-  --color-accent: #f48f9d; /* A brighter pink for accents to add vibrancy */
-  --color-text-primary: #4b2e1e; /* Rich brown for primary text, ensuring strong contrast */
-  --color-text-secondary: #6d4737; /* Warm brown for secondary text */
-  --color-text-tertiary: #7e5a4d; /* A muted brown-pink for tertiary text */
-  --color-text-error: #d32f2f; /* Bold red for error messages */
-  --color-red: #e57373; /* Soft pink-red for error states */
-  --color-green: #81c784; /* Muted green for success states */
-  --color-blue: #4fc3f7; /* Bright blue for interactive elements like links or buttons */
-
-  --color-bg-error: #fce4e5; /* Soft pastel pink for error backgrounds */
-  --color-bg-warning: #fff4cc; /* Gentle pastel yellow for warnings */
-  --color-bg-info: #e0f3fc; /* Cool pastel blue for info messages */
-  --color-bg-success: #e3f5e7; /* Soft pastel green for success backgrounds */
-
-  --color-text-error: #c62828; /* Deep red for error text */
-  --color-text-warning: #ef6c00; /* Bright orange for warning text */
-  --color-text-info: #0288d1; /* Strong blue for informational text */
-  --color-text-success: #388e3c; /* Rich green for success text */
-
-  --color-border-error: #f19999; /* Light red for error borders */
-  --color-border-warning: #ffcc80; /* Warm yellow-orange for warning borders */
-  --color-border-info: #80d4fa; /* Light blue for info borders */
-  --color-border-success: #aed581; /* Soft green for success borders */
-
-  /* Gradient Variables */
-  --gradient-header: linear-gradient(
-    rgb(255, 224, 178),
-    rgba(255, 205, 159, 1)
-  ); /* Soft peach gradient for a warm, inviting header */
-  --box-shadow-black: 8px 8px 16px #dfae96, -8px -8px 16px #ffeedd; /* Warm peachy-pink shadows for subtle depth */
-}
-
-.soft-coral-theme {
-  /* Color Variables */
-  --color-border: #ffb99a; /* Soft coral for a subtle yet noticeable border */
-  --color-bg: #ffe0d3; /* A warm, soft coral background to create a gentle feel */
-  --color-bg-body: #fff2e0; /* Light peachy coral for the body background */
-  --color-bg-hover: #ffc7a8; /* A deeper coral for hover states */
-  --color-accent: #ff9473; /* A bolder coral accent to add vibrancy */
-  --color-text-primary: #5a3a33; /* Rich brown for primary text, ensuring strong contrast */
-  --color-text-secondary: #7c5247; /* A medium brown for secondary text */
-  --color-text-tertiary: #9a6e61; /* Muted brown for tertiary text, providing softer contrast */
-  --color-text-error: #e57373; /* Warm, muted red for error text */
-  --color-red: #ef5350; /* Coral red for error states and highlights */
-  --color-green: #66bb6a; /* Fresh green for success and positive actions */
-  --color-blue: #64b5f6; /* Cool blue for interactive elements like buttons or links */
-
-  --color-bg-error: #fddfdc; /* Soft pastel coral for error backgrounds */
-  --color-bg-warning: #fff3d2; /* Warm pastel yellow for warning backgrounds */
-  --color-bg-info: #d6f2f6; /* Gentle pastel blue for info messages */
-  --color-bg-success: #e6f4e6; /* Soft green for success backgrounds */
-
-  --color-text-error: #d32f2f; /* Strong red for error text */
-  --color-text-warning: #f57c00; /* Bright orange for warning text */
-  --color-text-info: #0288d1; /* Clear blue for info text */
-  --color-text-success: #388e3c; /* Bold green for success messages */
-
-  --color-border-error: #e57373; /* Warm coral red for error borders */
-  --color-border-warning: #ffb74d; /* Soft orange-yellow for warning borders */
-  --color-border-info: #4fc3f7; /* Light blue for info borders */
-  --color-border-success: #81c784; /* Light green for success borders */
-
-  /* Gradient Variables */
-  --gradient-header: linear-gradient(
-    rgb(255, 229, 217),
-    rgba(255, 214, 193, 1)
-  ); /* Soft coral gradient for a smooth, calming header */
-  --box-shadow-black: 8px 8px 16px #e0aa94, -8px -8px 16px #fff4ed; /* Warm coral shadows to maintain depth */
-}
-
-.blue-green-theme {
-  /* Color Variables */
-  --color-border: #88ccc9; /* Soft blue-green for subtle borders */
-  --color-bg: #d1f0ef; /* Light blue-green background for a refreshing feel */
-  --color-bg-body: #a8dbd7; /* A stronger blue-green for body backgrounds */
-  --color-bg-hover: #b5f4bf; /* Soft green for hover states */
-  --color-accent: #81d4a3; /* Vibrant green accent for dynamic elements */
-  --color-text-primary: #003c35; /* Deep teal for primary text to ensure high contrast */
-  --color-text-secondary: #00695c; /* Rich teal for secondary text */
-  --color-text-tertiary: #004d40; /* A slightly lighter deep teal for tertiary text */
-  --color-text-error: #e57373; /* Warm red for error text to stand out */
-  --color-red: #e57373; /* Consistent soft red for error states */
-  --color-green: #66bb6a; /* Fresh green for positive actions */
-  --color-blue: #64b5f6; /* Bright blue for interactive elements like links and buttons */
-
-  --color-bg-error: #fbe9e7; /* Soft pastel red for error backgrounds */
-  --color-bg-warning: #fff5cc; /* Light pastel yellow for warnings */
-  --color-bg-info: #dceff9; /* Gentle pastel blue for informational messages */
-  --color-bg-success: #e0f5e7; /* Soft green for success backgrounds */
-
-  --color-text-error: #c62828; /* Bold red for error text */
-  --color-text-warning: #f57c00; /* Bright orange for warning text */
-  --color-text-info: #0288d1; /* Strong blue for info text */
-  --color-text-success: #2e7d32; /* Rich green for success text */
-
-  --color-border-error: #f19999; /* Light red for error borders */
-  --color-border-warning: #ffcc80; /* Soft orange-yellow for warning borders */
-  --color-border-info: #80d3f9; /* Light blue for info borders */
-  --color-border-success: #81d4a3; /* Soft green for success borders */
-
-  /* Gradient Variables */
-  --gradient-header: linear-gradient(
-    rgb(224, 242, 241),
-    rgba(178, 223, 219, 1)
-  ); /* Light blue-green gradient for a fresh, airy header */
-  --box-shadow-black: 8px 8px 16px #8cc8c5, -8px -8px 16px #e0f2f1; /* Soft blue-green shadows for gentle depth */
-}
-
-.green-theme {
-  /* Color Variables */
-  --color-border: #94c494; /* Slightly muted green for softer borders */
-  --color-bg: #e4f4e6; /* Soft pastel green for a light, fresh background */
-  --color-bg-body: #c4e3c6; /* A stronger green for the body background */
-  --color-bg-hover: #abefb5; /* Brighter green for hover states to provide feedback */
-  --color-accent: #74b376; /* A vibrant but balanced green for accents */
-  --color-text-primary: #164d17; /* Dark forest green for primary text to ensure contrast */
-  --color-text-secondary: #226e26; /* A rich green for secondary text */
-  --color-text-tertiary: #3f8f3b; /* A brighter green for tertiary text, creating a hierarchy */
-  --color-text-error: #e57373; /* Warm red for error text */
-  --color-red: #e57373; /* Consistent soft red for error states */
-  --color-green: #66bb6a; /* Fresh green for success messages */
-  --color-blue: #64b5f6; /* Bright blue for interactive elements */
-
-  --color-bg-error: #fbe5e4; /* Light pastel red for error backgrounds */
-  --color-bg-warning: #fff7b0; /* Soft yellow for warning backgrounds */
-  --color-bg-info: #e4f4e6; /* Gentle green for informational backgrounds */
-  --color-bg-success: #e4f4e6; /* Soft green for success backgrounds */
-
-  --color-text-error: #c62828; /* Deep red for error text */
-  --color-text-warning: #ef6c00; /* Vibrant orange for warning text */
-  --color-text-info: #2e7d32; /* Deep green for info text */
-  --color-text-success: #2e7d32; /* Strong green for success messages */
-
-  --color-border-error: #f48fb1; /* Soft pink-red for error borders */
-  --color-border-warning: #ffcc80; /* Light orange-yellow for warning borders */
-  --color-border-info: #74b376; /* Muted green for info borders */
-  --color-border-success: #94c494; /* Soft green for success borders */
-
-  /* Gradient Variables */
-  --gradient-header: linear-gradient(
-    rgb(237, 245, 233),
-    rgba(204, 255, 204, 1)
-  ); /* A fresh, soft green gradient for headers */
-  --box-shadow-black: 8px 8px 16px #94c494, -8px -8px 16px #e4f4e6; /* Soft green shadows to maintain depth */
-}
-
-.theme-calm-breeze {
-  --color-border: #d1e8e2;
-  --color-bg: #f5fbfb;
-  --color-bg-body: #e3f8f1;
-  --color-bg-hover: #d1f1e6;
-  --color-accent: #a6e3e9;
-  --color-text-primary: #2b4743;
-  --color-text-secondary: #537178;
-  --color-text-tertiary: #839595;
+.theme-lavender {
+  --color-border: #dbcdf0;
+  --color-bg: #f5f0fa;
+  --color-bg-body: #ece4f5;
+  --color-bg-hover: #e3d9f0;
+  --color-accent: #c6aee0;
+  --color-text-primary: #6a4a87;
+  --color-text-secondary: #8a72a3;
+  --color-text-tertiary: #b5a5d4;
   --color-text-error: #e57373;
   --color-red: #ff6f6f;
-  --color-green: #a7d7c5;
-  --color-blue: #83c5be;
-  --color-white: #ffffff;
-  --color-black: #000000;
-
-  --color-bg-error: #e57373;
-  --color-bg-warning: #ffe08a;
-  --color-bg-info: #87bdd8;
-  --color-bg-success: #76c7c0;
-
-  --color-text-error: #d32f2f;
-  --color-text-warning: #f57f17;
-  --color-text-info: #00acc1;
-  --color-text-success: #388e3c;
-
-  --color-border-error: #f28b82;
-  --color-border-warning: #f9cb8b;
-  --color-border-info: #a3d5d3;
-  --color-border-success: #68b0ab;
-
-  --gradient-header: linear-gradient(135deg, #c0fdfb, #e0fff4);
-  --box-shadow-black: 4px 4px 12px #b4dedc, -4px -4px 12px #ffffff;
-}
-
-.theme-ocean-serenity {
-  --color-border: #b3cde0;
-  --color-bg: #f0faff;
-  --color-bg-body: #d8ecf3;
-  --color-bg-hover: #cfeaf3;
-  --color-accent: #71c7ec;
-  --color-text-primary: #234559;
-  --color-text-secondary: #5d7e8f;
-  --color-text-tertiary: #b3c3d1;
-  --color-text-error: #f05454;
-  --color-red: #ff6f6f;
-  --color-green: #4ecdc4;
-  --color-blue: #4e9fb1;
-  --color-white: #ffffff;
-  --color-black: #000000;
-
-  --color-bg-error: #ff6f6f;
-  --color-bg-warning: #ffe08a;
-  --color-bg-info: #71c7ec;
-  --color-bg-success: #4ecdc4;
-
-  --color-text-error: #d32f2f;
-  --color-text-warning: #f57c00;
-  --color-text-info: #0288d1;
-  --color-text-success: #43a047;
-
-  --color-border-error: #ff8888;
-  --color-border-warning: #f9cb8b;
-  --color-border-info: #a8def7;
-  --color-border-success: #80ded9;
-
-  --gradient-header: linear-gradient(135deg, #8fd0ea, #e6f7ff);
-  --box-shadow-black: 4px 4px 12px #d9e8f1, -4px -4px 12px #ffffff;
-}
-
-.theme-forest-whisper {
-  --color-border: #a7c6a5;
-  --color-bg: #eef5ee;
-  --color-bg-body: #d5e8d5;
-  --color-bg-hover: #c7e0c5;
-  --color-accent: #94b49f;
-  --color-text-primary: #283618;
-  --color-text-secondary: #6c7575;
-  --color-text-tertiary: #9eaea7;
-  --color-text-error: #e57373;
-  --color-red: #ff6f6f;
-  --color-green: #6b8e23;
-  --color-blue: #8ab6d6;
-  --color-white: #ffffff;
-  --color-black: #000000;
-
-  --color-bg-error: #e57373;
-  --color-bg-warning: #ffe08a;
-  --color-bg-info: #8ab6d6;
-  --color-bg-success: #6b8e23;
-
-  --color-text-error: #c62828;
-  --color-text-warning: #f57f17;
-  --color-text-info: #0288d1;
-  --color-text-success: #2e7d32;
-
-  --color-border-error: #f28b82;
-  --color-border-warning: #f9cb8b;
-  --color-border-info: #a6cce8;
-  --color-border-success: #83a95d;
-
-  --gradient-header: linear-gradient(135deg, #accdba, #e6f7ec);
-  --box-shadow-black: 4px 4px 12px #c9e2c8, -4px -4px 12px #ffffff;
-}
-
-.theme-lavender-mist {
-  --color-border: #e0e0eb;
-  --color-bg: #f8f8fc;
-  --color-bg-body: #eceef7;
-  --color-bg-hover: #e0e2f1;
-  --color-accent: #c1b3d4;
-  --color-text-primary: #4e4a59;
-  --color-text-secondary: #747479;
-  --color-text-tertiary: #a2a2b0;
-  --color-text-error: #e57373;
-  --color-red: #ff6f6f;
-  --color-green: #88d498;
-  --color-blue: #869dff;
-  --color-white: #ffffff;
-  --color-black: #000000;
-
-  --color-bg-error: #e57373;
-  --color-bg-warning: #ffe08a;
-  --color-bg-info: #87bdd8;
-  --color-bg-success: #a8d5ba;
-
-  --color-text-error: #d32f2f;
-  --color-text-warning: #f9a825;
-  --color-text-info: #3f51b5;
-  --color-text-success: #4caf50;
-
-  --color-border-error: #f28b82;
-  --color-border-warning: #f9cb8b;
-  --color-border-info: #c3c7ee;
-  --color-border-success: #c1f2d6;
-
-  --gradient-header: linear-gradient(135deg, #e1d3f6, #faf9fe);
-  --box-shadow-black: 4px 4px 12px #d9d9e6, -4px -4px 12px #ffffff;
-}
-
-.theme-sunset-glow {
-  --color-border: #f8b195;
-  --color-bg: #fff1e6;
-  --color-bg-body: #fceade;
-  --color-bg-hover: #fad5c0;
-  --color-accent: #f67280;
-  --color-text-primary: #6c5b7b;
-  --color-text-secondary: #957d95;
-  --color-text-tertiary: #e9d4d8;
-  --color-text-error: #ff6f6f;
-  --color-red: #f67280;
-  --color-green: #99b898;
-  --color-blue: #c06c84;
-  --color-white: #ffffff;
-  --color-black: #000000;
-
-  --color-bg-error: #ff6f6f;
-  --color-bg-warning: #ffe08a;
-  --color-bg-info: #f8b195;
-  --color-bg-success: #99b898;
-
-  --color-text-error: #d32f2f;
-  --color-text-warning: #ff8f00;
-  --color-text-info: #f48fb1;
-  --color-text-success: #388e3c;
-
-  --color-border-error: #f9cb8b;
-  --color-border-warning: #f39c12;
-  --color-border-info: #e87f7f;
-  --color-border-success: #9dcbad;
-
-  --gradient-header: linear-gradient(135deg, #ffd1ba, #fff6e5);
-  --box-shadow-black: 4px 4px 12px #edd6c8, -4px -4px 12px #ffffff;
-}
-
-.theme-mountain-sky {
-  --color-border: #cce7ff;
-  --color-bg: #f5faff;
-  --color-bg-body: #e0f1ff;
-  --color-bg-hover: #cce4f4;
-  --color-accent: #5e92f3;
-  --color-text-primary: #1d3b5a;
-  --color-text-secondary: #527aaf;
-  --color-text-tertiary: #a0b4d4;
-  --color-text-error: #e57373;
-  --color-red: #ff6f6f;
-  --color-green: #a2d5ab;
-  --color-blue: #71a9f7;
-  --color-white: #ffffff;
-  --color-black: #000000;
-
-  --color-bg-error: #ff6f6f;
-  --color-bg-warning: #ffe08a;
-  --color-bg-info: #5e92f3;
-  --color-bg-success: #a2d5ab;
-
-  --color-text-error: #c62828;
-  --color-text-warning: #f57c00;
-  --color-text-info: #0288d1;
-  --color-text-success: #388e3c;
-
-  --color-border-error: #ff8888;
-  --color-border-warning: #f9cb8b;
-  --color-border-info: #88c4f5;
-  --color-border-success: #add8ba;
-
-  --gradient-header: linear-gradient(135deg, #9dd5fc, #e8f7ff);
-  --box-shadow-black: 4px 4px 12px #cfeaf6, -4px -4px 12px #ffffff;
-}
-
-.theme-serene-sands {
-  --color-border: #e2d9c3;
-  --color-bg: #f7f3eb;
-  --color-bg-body: #f0e4d4;
-  --color-bg-hover: #eae0d0;
-  --color-accent: #cfb998;
-  --color-text-primary: #75664a;
-  --color-text-secondary: #a09174;
-  --color-text-tertiary: #d5cab6;
-  --color-text-error: #e57373;
-  --color-red: #ff6f6f;
-  --color-green: #bfc4a1;
+  --color-green: #a4d4b4;
   --color-blue: #9dbfba;
   --color-white: #ffffff;
   --color-black: #000000;
 
   --color-bg-error: #e57373;
   --color-bg-warning: #ffe08a;
-  --color-bg-info: #d4bb8a;
-  --color-bg-success: #bfc4a1;
+  --color-bg-info: #c6aee0;
+  --color-bg-success: #a4d4b4;
 
   --color-text-error: #d32f2f;
   --color-text-warning: #ffa000;
-  --color-text-info: #8ab6d6;
-  --color-text-success: #a7c6a5;
+  --color-text-info: #7a5e99;
+  --color-text-success: #80b597;
 
   --color-border-error: #ff8888;
   --color-border-warning: #f9cb8b;
-  --color-border-info: #dcc9aa;
+  --color-border-info: #dbcdf0;
   --color-border-success: #c8d1ae;
 
-  --gradient-header: linear-gradient(135deg, #ded5c4, #f9f6ed);
-  --box-shadow-black: 4px 4px 12px #e4ddd0, -4px -4px 12px #ffffff;
+  --gradient-header: linear-gradient(135deg, #e7dff3, #f5f0fa);
+  --box-shadow-black: 4px 4px 12px #e2d7f1, -4px -4px 12px #ffffff;
 }
 
-.theme-morning-dew {
-  --color-border: #c9d9b6;
-  --color-bg: #eef8e7;
-  --color-bg-body: #e1f1da;
-  --color-bg-hover: #d7e9ce;
-  --color-accent: #a3d9a5;
-  --color-text-primary: #2a4025;
-  --color-text-secondary: #7b9c78;
-  --color-text-tertiary: #c3d0ba;
+.theme-pastel {
+  --color-border: #f3d1dc;
+  --color-bg: #fef6f9;
+  --color-bg-body: #fdf0f5;
+  --color-bg-hover: #f9e8ee;
+  --color-accent: #f7b8d4;
+  --color-text-primary: #8a648a;
+  --color-text-secondary: #b27fa3;
+  --color-text-tertiary: #dcbad1;
   --color-text-error: #e57373;
   --color-red: #ff6f6f;
-  --color-green: #88d498;
-  --color-blue: #b2e7f1;
+  --color-green: #c2e4c1;
+  --color-blue: #add8f7;
   --color-white: #ffffff;
   --color-black: #000000;
 
   --color-bg-error: #e57373;
   --color-bg-warning: #ffe08a;
-  --color-bg-info: #b2e7f1;
-  --color-bg-success: #88d498;
-
-  --color-text-error: #c62828;
-  --color-text-warning: #ffa726;
-  --color-text-info: #039be5;
-  --color-text-success: #43a047;
-
-  --color-border-error: #ff8888;
-  --color-border-warning: #f9cb8b;
-  --color-border-info: #c8f0f5;
-  --color-border-success: #a0deaa;
-
-  --gradient-header: linear-gradient(135deg, #b9dfbb, #f1f9ee);
-  --box-shadow-black: 4px 4px 12px #dbe9db, -4px -4px 12px #ffffff;
-}
-
-.theme-cloud-dreams {
-  --color-border: #d0d0d5;
-  --color-bg: #f8f8fa;
-  --color-bg-body: #f0f0f5;
-  --color-bg-hover: #e4e4eb;
-  --color-accent: #cbcdd2;
-  --color-text-primary: #545568;
-  --color-text-secondary: #7e8090;
-  --color-text-tertiary: #afb0b8;
-  --color-text-error: #e57373;
-  --color-red: #ff6f6f;
-  --color-green: #b8ccb4;
-  --color-blue: #b0b4db;
-  --color-white: #ffffff;
-  --color-black: #000000;
-
-  --color-bg-error: #e57373;
-  --color-bg-warning: #ffe08a;
-  --color-bg-info: #afb0b8;
-  --color-bg-success: #b8ccb4;
+  --color-bg-info: #add8f7;
+  --color-bg-success: #c2e4c1;
 
   --color-text-error: #d32f2f;
-  --color-text-warning: #f9a825;
-  --color-text-info: #afb0b8;
-  --color-text-success: #b8ccb4;
+  --color-text-warning: #ffa000;
+  --color-text-info: #7793c6;
+  --color-text-success: #99b7a5;
 
   --color-border-error: #ff8888;
   --color-border-warning: #f9cb8b;
-  --color-border-info: #c8c9d1;
-  --color-border-success: #d4e1d8;
+  --color-border-info: #c1e0f3;
+  --color-border-success: #d6e3cc;
 
-  --gradient-header: linear-gradient(135deg, #dcdce0, #f7f8fa);
-  --box-shadow-black: 4px 4px 12px #e1e1e4, -4px -4px 12px #ffffff;
+  --gradient-header: linear-gradient(135deg, #f9dae2, #fef9fc);
+  --box-shadow-black: 4px 4px 12px #f5e2ea, -4px -4px 12px #ffffff;
 }
 
-.theme-rose-petal {
-  --color-border: #f2c4cc;
-  --color-bg: #fff0f3;
-  --color-bg-body: #ffe7ea;
-  --color-bg-hover: #f6ced2;
-  --color-accent: #e6a5b6;
-  --color-text-primary: #4a2d39;
-  --color-text-secondary: #73575f;
-  --color-text-tertiary: #c29ba5;
-  --color-text-error: #ff6f6f;
-  --color-red: #f78da7;
-  --color-green: #b8d4b8;
-  --color-blue: #cebcf3;
+.theme-soft-blue {
+  --color-border: #cce4f6;
+  --color-bg: #f0f7fb;
+  --color-bg-body: #e3eef7;
+  --color-bg-hover: #d8e8f5;
+  --color-accent: #a2c4dd;
+  --color-text-primary: #4a6a87;
+  --color-text-secondary: #7293a3;
+  --color-text-tertiary: #b5c6d4;
+  --color-text-error: #e57373;
+  --color-red: #ff6f6f;
+  --color-green: #a4d4b4;
+  --color-blue: #9abed1;
   --color-white: #ffffff;
   --color-black: #000000;
 
-  --color-bg-error: #ff6f6f;
+  --color-bg-error: #e57373;
   --color-bg-warning: #ffe08a;
-  --color-bg-info: #f7a7bb;
-  --color-bg-success: #b8d4b8;
+  --color-bg-info: #a4cce5;
+  --color-bg-success: #a4d4b4;
 
-  --color-text-error: #c62828;
+  --color-text-error: #d32f2f;
   --color-text-warning: #ffa000;
-  --color-text-info: #e57373;
-  --color-text-success: #b8d4b8;
+  --color-text-info: #6793b3;
+  --color-text-success: #80b597;
 
   --color-border-error: #ff8888;
   --color-border-warning: #f9cb8b;
-  --color-border-info: #f8bbca;
-  --color-border-success: #d1e6d1;
+  --color-border-info: #b5d4e9;
+  --color-border-success: #a4d4b4;
 
-  --gradient-header: linear-gradient(135deg, #f7cdd6, #fff3f5);
-  --box-shadow-black: 4px 4px 12px #f0d3dc, -4px -4px 12px #ffffff;
+  --gradient-header: linear-gradient(135deg, #dceaf3, #f2f8fb);
+  --box-shadow-black: 4px 4px 12px #d4e2eb, -4px -4px 12px #ffffff;
+}
+
+.theme-mint-green {
+  --color-border: #cce6d6;
+  --color-bg: #f0f9f3;
+  --color-bg-body: #e3f3e8;
+  --color-bg-hover: #d8eee2;
+  --color-accent: #a4d8b7;
+  --color-text-primary: #4a7b61;
+  --color-text-secondary: #72a38d;
+  --color-text-tertiary: #b5d1c3;
+  --color-text-error: #e57373;
+  --color-red: #ff6f6f;
+  --color-green: #a4d4b4;
+  --color-blue: #9dcab9;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-bg-error: #e57373;
+  --color-bg-warning: #ffe08a;
+  --color-bg-info: #a4d8b7;
+  --color-bg-success: #a4d4b4;
+
+  --color-text-error: #d32f2f;
+  --color-text-warning: #ffa000;
+  --color-text-info: #67b391;
+  --color-text-success: #80b597;
+
+  --color-border-error: #ff8888;
+  --color-border-warning: #f9cb8b;
+  --color-border-info: #b5e1d0;
+  --color-border-success: #a4d4b4;
+
+  --gradient-header: linear-gradient(135deg, #dcefe5, #f2faf6);
+  --box-shadow-black: 4px 4px 12px #d4e7dc, -4px -4px 12px #ffffff;
+}
+
+.theme-yellow {
+  --color-border: #f6e6b3;
+  --color-bg: #fdf8e3;
+  --color-bg-body: #faf3d2;
+  --color-bg-hover: #f5edc7;
+  --color-accent: #f0d97d;
+  --color-text-primary: #8a7534;
+  --color-text-secondary: #b29a5a;
+  --color-text-tertiary: #dcd0a7;
+  --color-text-error: #e57373;
+  --color-red: #ff6f6f;
+  --color-green: #c2d4a4;
+  --color-blue: #b4c5de;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-bg-error: #e57373;
+  --color-bg-warning: #ffe08a;
+  --color-bg-info: #f0d97d;
+  --color-bg-success: #c2d4a4;
+
+  --color-text-error: #d32f2f;
+  --color-text-warning: #ffa000;
+  --color-text-info: #b79c52;
+  --color-text-success: #99b77f;
+
+  --color-border-error: #ff8888;
+  --color-border-warning: #f9cb8b;
+  --color-border-info: #f6e0a3;
+  --color-border-success: #d6dfb4;
+
+  --gradient-header: linear-gradient(135deg, #f3e6c6, #faf6e6);
+  --box-shadow-black: 4px 4px 12px #ece5ca, -4px -4px 12px #ffffff;
+}
+
+.theme-soft-coral {
+  --color-border: #f7cdc2;
+  --color-bg: #fdf0ec;
+  --color-bg-body: #fbe4de;
+  --color-bg-hover: #f9dad3;
+  --color-accent: #f3a490;
+  --color-text-primary: #8a4f43;
+  --color-text-secondary: #b27c6a;
+  --color-text-tertiary: #dcb5a9;
+  --color-text-error: #e57373;
+  --color-red: #ff6f6f;
+  --color-green: #c2d4a4;
+  --color-blue: #b4c5de;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-bg-error: #e57373;
+  --color-bg-warning: #ffe08a;
+  --color-bg-info: #f3a490;
+  --color-bg-success: #c2d4a4;
+
+  --color-text-error: #d32f2f;
+  --color-text-warning: #ffa000;
+  --color-text-info: #b37668;
+  --color-text-success: #99b77f;
+
+  --color-border-error: #ff8888;
+  --color-border-warning: #f9cb8b;
+  --color-border-info: #f7c6bc;
+  --color-border-success: #d6dfb4;
+
+  --gradient-header: linear-gradient(135deg, #f7d9d1, #fdf2ee);
+  --box-shadow-black: 4px 4px 12px #f0d6cf, -4px -4px 12px #ffffff;
+}
+
+.theme-peach {
+  --color-border: #f7d1bb;
+  --color-bg: #fef2e8;
+  --color-bg-body: #fce8d9;
+  --color-bg-hover: #f9ddcc;
+  --color-accent: #f3b08a;
+  --color-text-primary: #8a5c3c;
+  --color-text-secondary: #b28261;
+  --color-text-tertiary: #dcbfa3;
+  --color-text-error: #e57373;
+  --color-red: #ff6f6f;
+  --color-green: #c2d4a4;
+  --color-blue: #b4c5de;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-bg-error: #e57373;
+  --color-bg-warning: #ffe08a;
+  --color-bg-info: #f3b08a;
+  --color-bg-success: #c2d4a4;
+
+  --color-text-error: #d32f2f;
+  --color-text-warning: #ffa000;
+  --color-text-info: #b3795e;
+  --color-text-success: #99b77f;
+
+  --color-border-error: #ff8888;
+  --color-border-warning: #f9cb8b;
+  --color-border-info: #f7cbb3;
+  --color-border-success: #d6dfb4;
+
+  --gradient-header: linear-gradient(135deg, #f7e0d3, #fef6ef);
+  --box-shadow-black: 4px 4px 12px #f0dfd3, -4px -4px 12px #ffffff;
 }
