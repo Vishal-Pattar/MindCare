@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Feedback.css";
-import axios from "axios";
+import axios from "../../api/axios.js";
 import { useAlert } from "../../context/AlertContext";
 import Checkbox from "./Checkbox";
 
@@ -44,8 +44,7 @@ const ReportIssue = () => {
     }
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/v1/feed/issue`, {
+      const response = await axios.post("/issues", {
         email,
         issueText,
         issueType: selectedIssueTypes,
