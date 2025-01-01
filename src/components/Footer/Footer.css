@@ -1,0 +1,104 @@
+/* Footer Styles */
+.landingpage__footer {
+  background-color: var(--color-bg-body);
+  color: var(--color-text-secondary);
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+/* Newsletter Section */
+.landingpage__footer__newsletter h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+.landingpage__footer__form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.landingpage__footer__input {
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: 0.5rem;
+  width: 250px;
+}
+
+.landingpage__footer__subscribe {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg-body);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.landingpage__footer__subscribe:hover {
+  background-color: var(--color-text-tertiary);
+}
+
+/* Social Media Section */
+.landingpage__footer__social h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+.landingpage__footer__social__icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.landingpage__footer__social__icons a {
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.landingpage__footer__social__icons a:hover {
+  color: var(--color-text-primary);
+}
+
+/* Quick Links Section */
+.landingpage__footer__links h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+}
+
+.landingpage__footer__links ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.landingpage__footer__links li {
+  margin: 0;
+}
+
+.landingpage__footer__links a {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.landingpage__footer__links a:hover {
+  color: var(--color-text-primary);
+}
+
+/* Copyright Section */
+.landingpage__footer__copy {
+  font-size: 0.875rem;
+  color: var(--color-text-tertiary);
+}
