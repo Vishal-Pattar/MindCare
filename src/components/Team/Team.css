@@ -1,0 +1,103 @@
+.team__container {
+  background-color: var(--color-bg-body);
+  color: var(--color-text-primary);
+  padding: 2rem;
+  box-sizing: border-box;
+  max-height: 93vh;
+  overflow-y: auto;
+}
+
+.team__container::-webkit-scrollbar {
+  width: 12px;
+}
+
+.team__container::-webkit-scrollbar-track {
+  background: var(--color-bg-body);
+}
+
+.team__container::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-tertiary);
+  border-radius: 20px;
+  border: 3px solid var(--color-bg-body);
+}
+
+/* Header Styles */
+.team__title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-family: "Geist-Bold", sans-serif;
+  margin-bottom: 2rem;
+  text-align: center;
+  user-select: none;
+}
+
+/* Blog Grid Layout */
+.team__grid {
+  display: flex;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: space-evenly;
+  align-items: center;
+  column-gap: 2rem;
+}
+
+/* Blog Item Styles */
+.team__item {
+  width: 16rem;
+  aspect-ratio: 8/13;
+  background-color: var(--color-bg);
+  padding: 1.5rem;
+  border: 2px solid var(--color-border);
+  box-shadow: var(--box-shadow-black);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* border-radius: 100rem; */
+}
+
+.team__item:hover {
+  transform: translateY(-0.625rem);
+  box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.3);
+}
+
+.team__image {
+  aspect-ratio: 1/1;
+  width: 10rem;
+  border-radius: 100%;
+  border: 2px solid var(--color-text-primary);
+}
+
+.team__name {
+  font-size: 2rem;
+  font-family: "Geist-SemiBold", sans-serif;
+  margin: 1rem 0 0 0;
+}
+
+.team__role {
+  font-size: 1rem;
+  font-family: "Geist-Regular", sans-serif;
+  color: var(--color-text-secondary);
+}
+
+.team__description {
+  text-align: center;
+}
+
+.team__social {
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.team__social span:hover {
+  color: var(--color-text-primary);
+}
