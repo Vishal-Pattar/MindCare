@@ -16,6 +16,7 @@ import {
   MdEvent,
   MdArrowBackIosNew,
 } from "react-icons/md";
+import { AiOutlineSolution } from "react-icons/ai";
 
 const AdminPanel = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -79,6 +80,12 @@ const AdminPanel = () => {
               >
                 Invitation
               </div>
+              <div
+                className="adminpanel__menu--item"
+                onClick={() => handleNavigation("/admin/issues")}
+              >
+                Issues
+              </div>
             </div>
             <div className="adminpanel__sidebar--toggle">
               <MdArrowBackIosNew
@@ -118,6 +125,11 @@ const AdminPanel = () => {
                 className="adminpanel__menu--button"
                 title="Invitation"
                 onClick={() => handleNavigation("/admin/invitation")}
+              />
+              <AiOutlineSolution
+                className="adminpanel__menu--button"
+                title="Issue"
+                onClick={() => handleNavigation("/admin/issues")}
               />
             </div>
             <div className="adminpanel__sidebar--toggle">
