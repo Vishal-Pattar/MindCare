@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useMemo } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Header.css";
-import axios from "axios";
+import axios from "../../api/axios.js";
 import AuthContext from "../../context/AuthContext";
 import useCredits from "../../hooks/useCredits";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
@@ -28,12 +28,7 @@ const Header = () => {
     handleMenu();
     dispatch(clearMessages());
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(`${apiUrl}/api/v1/users/logout`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get("/auth/logout");
       if (response.status === 200) {
         sessionStorage.removeItem("authToken");
         logout();
@@ -53,12 +48,14 @@ const Header = () => {
     <>
       <div className="header__container">
         <Link to="/">
-          <div className="header__title roboto-regular">Creative Minds</div>
+          <div className="header__title roboto-regular">Mind Care</div>
         </Link>
         <span>
           {(ussr?.role === "Admin" || ussr?.role === "Root") && (
             <Link to="/admin">
-              <button className="header__button roboto-regular">Admin</button>
+              <button className="header__button roboto-regular">
+                Dashboard
+              </button>
             </Link>
           )}
           {isAuthenticated && (
