@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "../../../context/AlertContext";
-import axios from "axios";
+import axios from "../../../api/axios.js";
 import { useParams } from "react-router-dom";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
@@ -9,12 +9,6 @@ import "./AdminProfile.css";
 const Profile = () => {
   const { username } = useParams();
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
 
   const [formData, setFormData] = useState({
     username: "",
@@ -40,12 +34,7 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      await axios.put(
-        `${apiUrl}/api/v1/admin/personal/${username}`,
-        { formData },
-        config
-      );
+      await axios.put(`/personal/${username}`, { formData });
       addAlert("Profile updated successfully", "success", "bottom_right");
       setIsEditing(false);
     } catch (error) {
@@ -59,11 +48,7 @@ const Profile = () => {
 
   const fetchData = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(
-        `${apiUrl}/api/v1/admin/personal/${username}`,
-        config
-      );
+      const response = await axios.get(`/personal/${username}`);
       const data = response.data.data;
       if (data) {
         const {
