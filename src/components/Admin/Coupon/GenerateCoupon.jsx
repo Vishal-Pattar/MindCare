@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../../api/axios.js";
 import { useAlert } from "../../../context/AlertContext";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
@@ -8,24 +8,13 @@ const GenerateCoupon = () => {
   const [numberOfCoupons, setNumberOfCoupons] = useState("");
   const [creditsPerCoupon, setCreditsPerCoupon] = useState("");
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
 
   const handleGenerate = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(
-        `${apiUrl}/api/v1/coupons`,
-        {
-          numberOfCoupons: parseInt(numberOfCoupons),
-          creditsPerCoupon: parseInt(creditsPerCoupon),
-        },
-        config
-      );
+      const response = await axios.post("/coupons", {
+        numberOfCoupons: parseInt(numberOfCoupons),
+        creditsPerCoupon: parseInt(creditsPerCoupon),
+      });
       const newCoupons = response.data.data;
       console.log("newCoupons:", response);
 
