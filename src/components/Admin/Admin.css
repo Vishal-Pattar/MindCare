@@ -9,11 +9,27 @@
   font-family: "Geist-Medium", sans-serif;
 }
 
+.admin__header {
+  display: flex;
+  flex-direction: column;
+}
+
 .admin__title {
+  display: flex;
+  align-items: center;
+  font-family: "Geist-SemiBold", sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--color-text-primary);
   user-select: none;
+}
+
+.admin__description {
+  font-size: 0.9rem;
+  font-family: "Geist-Regular", sans-serif;
+  user-select: none;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
 }
 
 .admin__stats {
@@ -117,9 +133,11 @@
 
 .admin__box--coupon {
   flex-direction: row;
+  white-space: nowrap;
   flex-wrap: wrap;
-  gap: 2rem;
-  align-items: flex-start;
+  row-gap: 2rem;
+  justify-content: space-around;
+  align-items: start;
 }
 
 .admin__box::placeholder {
@@ -470,6 +488,8 @@
   color: var(--color-white);
 }
 
+/* Email */
+
 .admin__email {
   border: none;
   background: none;
@@ -480,6 +500,28 @@
   border: 1px solid var(--color-border);
   padding: 0.5rem;
   border-radius: 0.5rem;
+}
+
+.admin__box--email {
+  height: 100%;
+  padding-bottom: 0rem;
+}
+
+.admin__header--span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.admin__header--span span {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin__form--select-tr {
+  width: 25%;
+  justify-content: start;
+  padding: 0rem;
 }
 
 /* Notification */
