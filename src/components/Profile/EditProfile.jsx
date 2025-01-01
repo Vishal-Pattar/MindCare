@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { useAlert } from "../../context/AlertContext";
-import axios from "axios";
+import axios from "../../api/axios.js";
 import withAuthorization from "../../utils/withAuthorization";
 import { Permissions } from "../../utils/roles";
 
 const EditProfile = ({ setEditing }) => {
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -33,8 +27,7 @@ const EditProfile = ({ setEditing }) => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const apiUrl = process.env.REACT_APP_API_URL;
-        const response = await axios.get(`${apiUrl}/api/v1/personal`, config);
+        const response = await axios.get("/personal");
         const data = response.data.data;
 
         if (data) {
@@ -111,13 +104,8 @@ const EditProfile = ({ setEditing }) => {
     }
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
       // Make a PUT request to update the profile
-      const response = await axios.put(
-        `${apiUrl}/api/v1/personal`,
-        { formData },
-        config
-      );
+      const response = await axios.put("/personal", { formData });
       addAlert(response.data.message, "success", "bottom_right");
       setEditing(false); // Go back to display mode after updating
     } catch (error) {
@@ -138,7 +126,7 @@ const EditProfile = ({ setEditing }) => {
     }
 
     try {
-      const response = await axios.get(
+      const response = await fetch(
         `https://api.postalpincode.in/pincode/${pincode}`
       );
       const data = response.data[0];
