@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { useAlert } from "../../context/AlertContext";
-import axios from "axios";
+import axios from "../../api/axios.js";
 import withAuthorization from "../../utils/withAuthorization";
 import { Permissions } from "../../utils/roles";
 
 const DisplayProfile = ({ setEditing }) => {
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -29,9 +23,7 @@ const DisplayProfile = ({ setEditing }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiUrl = process.env.REACT_APP_API_URL;
-        const response = await axios.get(`${apiUrl}/api/v1/personal`, config);
-
+        const response = await axios.get("/personal");
         const data = response.data.data;
         if (data) {
           const {
