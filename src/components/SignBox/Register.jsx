@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SignBox.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+import axios from "../../api/axios.js";
 import { useAlert } from "../../context/AlertContext";
 import decodeFromBase64Url from "../../utils/decodeFromBase64Url";
 
@@ -47,8 +47,7 @@ const RegisterBox = () => {
     event.preventDefault();
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/v1/users/register`, {
+      const response = await axios.post("/auth/register", {
         username,
         password,
         email,
