@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../../api/axios.js";
 import formatDateTime from "../../../utils/formatDateTime";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
@@ -11,12 +11,6 @@ const Session = () => {
   const [sessions, setSessions] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [showPromptSessions, setShowPromptSessions] = useState(true);
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
   const { addAlert } = useAlert();
   const navigate = useNavigate();
 
@@ -26,11 +20,7 @@ const Session = () => {
 
   const fetchSessions = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(
-        `${apiUrl}/api/v1/admin/sessions`,
-        config
-      );
+      const response = await axios.get("/sessions/all");
       setSessions(response.data.data);
     } catch (error) {
       addAlert(
