@@ -18,15 +18,22 @@ const NewPassword = () => {
     const verifyToken = async () => {
       try {
         const apiUrl = process.env.REACT_APP_API_URL;
-        const response = await axios.get(
-          `${apiUrl}/api/v1/users/verifyToken/${token}`,
-        );
+        const response = await axios.get(`${apiUrl}/auth/verify`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         if (response.data.status === "success") {
           setIsValidToken(true);
         } else {
-          addAlert("Invalid or expired token. Please request a new password reset link", "info", "center")
+          addAlert(
+            "Invalid or expired token. Please request a new password reset link",
+            "info",
+            "center"
+          );
         }
       } catch (error) {
+        console.log(error);
         addAlert("Page not found or token invalid", "error", "center");
       } finally {
         setLoading(false);
@@ -51,10 +58,17 @@ const NewPassword = () => {
 
     try {
       const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/v1/users/newPassword`, {
-        token,
-        newPassword,
-      });
+      const response = await axios.post(
+        `${apiUrl}/auth/new-password`,
+        {
+          newPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (response.data.status === "success") {
         addAlert("Password Updated Successfully", "info", "bottom_center");
         navigate("/login"); // Redirect to login or another page after success
@@ -73,9 +87,7 @@ const NewPassword = () => {
   }
 
   if (!isValidToken) {
-    return (
-      <></>
-    );
+    return <></>;
   }
 
   return (
