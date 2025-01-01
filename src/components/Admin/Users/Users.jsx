@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Toggle from "../Custom/Toggle";
-import axios from "axios";
+import axios from "../../../api/axios.js";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
 import { useAlert } from "../../../context/AlertContext";
@@ -10,12 +10,6 @@ const Users = () => {
   const [users, setUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
 
   useEffect(() => {
     fetchUsers();
@@ -23,8 +17,7 @@ const Users = () => {
 
   const fetchUsers = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(`${apiUrl}/api/v1/admin/users`, config);
+      const response = await axios.get("/users");
       setUsers(response.data.data);
     } catch (error) {
       addAlert(
@@ -45,12 +38,7 @@ const Users = () => {
     );
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.patch(
-        `${apiUrl}/api/v1/admin/users/${user.username}/permit`,
-        {},
-        config
-      );
+      const response = await axios.patch(`/users/${user.username}/permit`, {});
       setUsers(updatedUsers);
       addAlert(response.data.message, "warning", "bottom_right");
     } catch (error) {
@@ -69,12 +57,9 @@ const Users = () => {
     );
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.patch(
-        `${apiUrl}/api/v1/admin/users/${user.username}/role`,
-        { role: newRole },
-        config
-      );
+      const response = await axios.patch(`/users/${user.username}/role`, {
+        role: newRole,
+      });
       setUsers(updatedUsers);
       addAlert(response.data.message, "warning", "bottom_right");
     } catch (error) {
@@ -96,14 +81,10 @@ const Users = () => {
       user.email.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleDeleteUser = async(user) => {
+  const handleDeleteUser = async (user) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.delete(
-        `${apiUrl}/api/v1/admin/users/${user.username}`,
-        config
-      );
-      if (response.data.status === "success"){
+      const response = await axios.delete(`/users/${user.username}`);
+      if (response.data.status === "success") {
         window.location.reload();
       }
       addAlert(response.data.message, "warning", "bottom_right");
@@ -115,7 +96,7 @@ const Users = () => {
         "bottom_right"
       );
     }
-  }
+  };
 
   return (
     <>
@@ -145,7 +126,7 @@ const Users = () => {
               <th>Coupon</th>
               <th>Role</th>
               <th>Permit</th>
-              <th>Edit</th>
+              <th>Profile</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -194,7 +175,10 @@ const Users = () => {
                 </td>
                 <td>
                   {user.role !== "Root" && (
-                    <button className="admin__button admin__button--small delete" onClick={() => handleDeleteUser(user)}>
+                    <button
+                      className="admin__button admin__button--small delete"
+                      onClick={() => handleDeleteUser(user)}
+                    >
                       Delete
                     </button>
                   )}
