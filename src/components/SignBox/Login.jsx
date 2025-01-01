@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./SignBox.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../../api/axios.js";
 import AuthContext from "../../context/AuthContext";
 import { useAlert } from "../../context/AlertContext";
 
@@ -16,8 +16,7 @@ const LoginBox = () => {
     event.preventDefault();
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/v1/users/login`, {
+      const response = await axios.post("/auth/login", {
         username,
         password,
       });
@@ -78,7 +77,7 @@ const LoginBox = () => {
         </button>
       </form>
       <div className="signbox__footer">
-        <Link to="/register">Forgot Password?</Link>
+        <Link to="/resetPassword">Forgot Password?</Link>
       </div>
     </>
   );
