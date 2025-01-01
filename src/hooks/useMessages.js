@@ -1,11 +1,10 @@
 import { useState } from "react";
-import axios from "axios";
+import axios from "../api/axios.js";
 import { useAlert } from "../context/AlertContext";
 import useCredits, { triggerFetchCredits } from "./useCredits";
 
 const useMessages = () => {
   const [messages, setMessages] = useState([]);
-  const token = sessionStorage.getItem("authToken");
   const { addAlert } = useAlert();
   const credits = useCredits();
 
@@ -30,16 +29,9 @@ const useMessages = () => {
     ]);
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(
-        `${apiUrl}/api/v1/generate`,
-        { prompt: userMessage },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.post("/generate", {
+        prompt: userMessage,
+      });
 
       setMessages((prevMessages) =>
         prevMessages.map((msg) =>
