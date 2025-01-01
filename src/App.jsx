@@ -24,6 +24,7 @@ import Email from "./components/Admin/Email/Email.jsx";
 import Invitation from "./components/Admin/Invitation/Invitation.jsx";
 import Notification from "./components/Admin/Notification/Notification.jsx";
 import ControlProfile from "./components/Admin/Profile/ControlProfile.jsx";
+import Issues from "./components/Admin/Issues/Issues.jsx";
 
 import LandingPage from "./components/LandingPage/LandingPage.jsx";
 import { AuthProvider } from "./context/AuthContext.js";
@@ -41,6 +42,7 @@ import FAQ from "./components/FAQ/FAQ.jsx";
 
 import Pricing from "./components/Pricing/Pricing.jsx";
 import Checkout from "./components/Pricing/Checkout.jsx";
+import Team from "./components/Team/Team.jsx";
 
 const App = () => {
   const [theme, setTheme] = useState("");
@@ -67,6 +69,7 @@ const App = () => {
                 <Route path="email" element={<Email />} />
                 <Route path="invitation" element={<Invitation />} />
                 <Route path="notification" element={<Notification />} />
+                <Route path="issues" element={<Issues />} />
               </Route>
               <Route path="/" element={<LandingPage />} />
               <Route path="/chat" element={<HomeArea />} />
@@ -89,7 +92,10 @@ const App = () => {
               <Route path="/tutorials" element={<Tutorials />} />
               <Route path="/blogs" element={<BlogList />} />
               <Route path="/blogs/:id" element={<BlogDetail />} />
-              <Route path="/faq" element={<FAQ />} />
+              <Route path="/faqs" element={<FAQ />} />
+              
+              <Route path="/team" element={<Team />} />
+
               <Route path="*" element={<PageNotFound />} />
             </Routes>
             <AlertBox />
