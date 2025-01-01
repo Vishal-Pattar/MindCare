@@ -79,9 +79,7 @@ const TypeBox = ({ addMessage, isResponsePending, handleStop }) => {
         </div>
       </div>
       <div className="typebox__footer">
-        <span>
-          Companion ChatBot built by Creative Minds
-        </span>
+        ChatBot built by&nbsp;<span>Creative Minds</span> 
       </div>
     </div>
   );
