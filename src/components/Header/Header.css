@@ -88,6 +88,7 @@ span {
   padding: 0.5rem;
   gap: 0.5rem;
   border-top: none;
+  border-radius: 0.5rem;
 }
 
 .header__menu a {
