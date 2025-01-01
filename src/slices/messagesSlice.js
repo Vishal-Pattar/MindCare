@@ -1,22 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../api/axios.js";
 
 // Fetch chat history
 export const fetchChatHistory = createAsyncThunk(
   "messages/fetchChatHistory",
   async (_, { rejectWithValue }) => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
       const token = sessionStorage.getItem("authToken");
       const sessionId = token.split(".")[2];
-      const response = await axios.get(
-        `${apiUrl}/api/v1/history/${sessionId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`/history/${sessionId}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -30,18 +22,14 @@ export const fetchChatHistory = createAsyncThunk(
 export const addMessage = createAsyncThunk(
   "messages/addMessage",
   async (userMessage, { rejectWithValue, dispatch }) => {
-    const apiUrl = process.env.REACT_APP_API_URL;
-    const token = sessionStorage.getItem("authToken");
     const tempMessageId = Date.now(); // Temporary ID for the message
 
     try {
       dispatch(promptSent({ id: tempMessageId, user: userMessage })); // Immediately dispatch user message
 
-      const response = await axios.post(
-        `${apiUrl}/api/v1/generate`,
-        { prompt: userMessage },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await axios.post("/generate", {
+        prompt: userMessage,
+      });
 
       const message = {
         id: tempMessageId,
