@@ -1,42 +1,30 @@
 import React, { useState } from "react";
 import { useAlert } from "../../../context/AlertContext";
-import axios from "axios";
+import axios from "../../../api/axios.js";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
 
 const Email = () => {
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
-
-  const [adminEmail, setAdminEmail] = useState("admin");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [body, setBody] = useState("");
-  const [loading, setLoading] = useState(false); // New loading state
+  const [senderEmail, setSenderEmail] = useState("admin");
+  const [receiverEmail, setReceiverEmail] = useState("");
+  const [emailSubject, setEmailSubject] = useState("");
+  const [emailBody, setEmailBody] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!email || !subject || !body || !adminEmail) {
+    if (!receiverEmail || !emailSubject || !emailBody || !senderEmail) {
       addAlert("Please fill all the fields", "error", "bottom_right");
     } else {
-      setLoading(true); // Disable button when the request is initiated
-      const apiUrl = process.env.REACT_APP_API_URL;
+      setLoading(true);
       axios
-        .post(
-          `${apiUrl}/api/v1/admin/email`,
-          {
-            adminEmail,
-            email,
-            subject,
-            body,
-          },
-          config
-        )
+        .post("/email/custom", {
+          senderEmail,
+          receiverEmail,
+          emailSubject,
+          emailBody,
+        })
         .then((res) => {
           addAlert("Email Sent Successfully", "success", "bottom_right");
         })
@@ -45,61 +33,64 @@ const Email = () => {
           addAlert("Email Not Sent", "error", "bottom_right");
         })
         .finally(() => {
-          setLoading(false); // Re-enable button after response
+          setLoading(false);
         });
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="admin__container">
-        <span className="admin__title">Email</span>
-        <div className="admin__cover">
-          <select
-            name="admin__email"
-            className="admin__email"
-            value={adminEmail}
-            onChange={(e) => setAdminEmail(e.target.value)}
-          >
-            <option value="admin">Admin</option>
-            <option value="no-reply">no-reply</option>
-          </select>
-          <div className="admin__button">Refresh</div>
-        </div>
-      </div>
       <div className="admin__box admin__box--email">
         <div className="admin__form--container-box">
           <div className="admin__form--container">
+            <span className="admin__header--span">
+              <span>
+                <div className="admin__title">Send Custom Emails</div>
+                <div className="admin__description">
+                  Use this form to send custom emails to your users.
+                </div>
+              </span>
+              <div className="admin__form--select admin__form--select-tr">
+                <select
+                  id="from"
+                  name="sender_email"
+                  value={senderEmail}
+                  onChange={(e) => setSenderEmail(e.target.value)}
+                >
+                  <option value="admin">Admin</option>
+                  <option value="no-reply">No-Reply</option>
+                </select>
+              </div>
+            </span>
             <div className="admin__form--input">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="receiverEmail">Receiver Email</label>
               <input
                 type="text"
-                id="email"
-                name="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                id="receiverEmail"
+                name="receiverEmail"
+                value={receiverEmail}
+                onChange={(e) => setReceiverEmail(e.target.value)}
                 placeholder="Enter Receiver's Email"
               />
             </div>
             <div className="admin__form--input">
-              <label htmlFor="subject">Subject</label>
+              <label htmlFor="emailSubject">Subject</label>
               <input
                 type="text"
-                id="subject"
-                name="subject"
-                value={subject}
-                onChange={(e) => setSubject(e.target.value)}
+                id="emailSubject"
+                name="emailSubject"
+                value={emailSubject}
+                onChange={(e) => setEmailSubject(e.target.value)}
                 placeholder="Enter your Subject"
               />
             </div>
             <div className="admin__form--input">
-              <label htmlFor="body">Body</label>
+              <label htmlFor="emailBody">Body</label>
               <textarea
-                type="text"
-                id="body"
-                name="body"
-                value={body}
-                onChange={(e) => setBody(e.target.value)}
+                id="emailBody"
+                name="emailBody"
+                value={emailBody}
+                onChange={(e) => setEmailBody(e.target.value)}
                 placeholder="Enter your Body"
               ></textarea>
             </div>
