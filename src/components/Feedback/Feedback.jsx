@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Feedback.css";
 import { useAlert } from "../../context/AlertContext";
-import axios from "axios";
+import axios from "../../api/axios.js";
 import { useNavigate } from "react-router-dom";
 import ratingOptions from "./ratingOptions";
 
@@ -37,8 +37,7 @@ const Feedback = () => {
     const session = sessionStorage.getItem("session");
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/v1/feed/feedback`, {
+      const response = await axios.post("/feedback", {
         username,
         session,
         rating: selectedRating,
