@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SignBox.css";
-import axios from "axios";
+import axios from "../../api/axios.js";
 import { useAlert } from "../../context/AlertContext";
 
 const ResetPassword = () => {
@@ -16,10 +16,9 @@ const ResetPassword = () => {
     }
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(
-        `${apiUrl}/api/v1/users/resetPassword/${email}`
-      );
+      const response = await axios.post("/auth/reset-password", {
+        email,
+      });
       if (response.data.status === "success") {
         addAlert(
           "Reset Password link sent to your registered email address",
