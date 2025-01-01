@@ -64,7 +64,8 @@
   align-items: center;
   width: 4vw;
   height: 100%;
-  background-color: var(--color-accent);
+  background-color: var(--color-bg-body);
+  border-right: 1px solid var(--color-border);
 }
 
 .adminpanel__menu--button {
@@ -91,7 +92,8 @@
   justify-content: start;
   height: 100%;
   width: 12vw;
-  background-color: var(--color-accent);
+  background-color: var(--color-bg-body);
+  border-right: 1px solid var(--color-border);
 }
 
 .adminpanel__menu--item {
@@ -167,7 +169,7 @@
 .adminpanel__feedback--content {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: start;
   align-items: flex-start;
   gap: 1rem;
   margin: 1rem;
