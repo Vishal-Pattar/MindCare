@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../../api/axios.js";
 import StatCard from "../Graphs/StatCard/StatCard";
 import { useAlert } from "../../../context/AlertContext";
 import { FaStar } from "react-icons/fa";
 
 const Dashboard = () => {
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
-
   const [feedback, setFeedback] = useState([]);
   const [stats, setStats] = useState([
     { title: "Total Users", value: 0, icon: "👤" },
@@ -26,11 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiURL = process.env.REACT_APP_API_URL;
-        const response = await axios.get(
-          `${apiURL}/api/v1/admin/metrics`,
-          config
-        );
+        const response = await axios.get("/metrics/all");
         const metricsData = response.data;
 
         // Calculate total stats from the response
@@ -66,12 +55,7 @@ const Dashboard = () => {
 
     const fetchFeedback = async () => {
       try {
-        const apiURL = process.env.REACT_APP_API_URL;
-        const feedbackResponse = await axios.get(
-          `${apiURL}/api/v1/feed/feedback`,
-          config
-        );
-        console.log(feedbackResponse);
+        const feedbackResponse = await axios.get("/feedback");
         setFeedback(feedbackResponse.data.data);
       } catch (error) {
         console.error(error);
@@ -114,7 +98,7 @@ const Dashboard = () => {
                     <span>{item.username}</span>
                     <span className="adminpanel__feedback--rating">
                       {[...Array(item.rating)].map((_, i) => (
-                        <FaStar 
+                        <FaStar
                           key={i}
                           className="adminpanel__feedback--star"
                         />
