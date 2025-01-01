@@ -27,6 +27,7 @@ backend-server
 backend
 server
 Health-LLM
+llm-backend
 
 # Local Netlify folder
 .netlify
