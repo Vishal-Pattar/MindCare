@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "../api/axios.js";
 import { useAlert } from "../context/AlertContext";
 
 export const triggerFetchCredits = () => {
@@ -12,13 +12,8 @@ const useCredits = () => {
   const { addAlert } = useAlert();
 
   const fetchCredits = async () => {
-    const token = sessionStorage.getItem("authToken");
-    const config = { headers: { Authorization: `Bearer ${token}` } };
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(`${apiUrl}/api/v1/metrics`,
-        config
-      );
+      const response = await axios.get("/metrics/user");
       setCredits(response.data.data.credits_available);
     } catch (error) {
       addAlert(
