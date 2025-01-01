@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAlert } from "../../../context/AlertContext";
-import axios from "axios";
+import axios from "../../../api/axios.js";
 import { useParams } from "react-router-dom";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
@@ -8,12 +8,6 @@ import { Permissions } from "../../../utils/roles";
 const ControlProfile = () => {
   const { username } = useParams();
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
 
   const [userFound, setUserFound] = useState(false);
   const [formData, setFormData] = useState({
@@ -43,7 +37,7 @@ const ControlProfile = () => {
     }
 
     try {
-      const response = await axios.get(
+      const response = await fetch(
         `https://api.postalpincode.in/pincode/${pincode}`
       );
       const data = response.data[0];
@@ -110,13 +104,7 @@ const ControlProfile = () => {
     }
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      await axios.put(
-        `${apiUrl}/api/v1/admin/personal/${username}`,
-        formData, 
-        config
-      );
-
+      await axios.put(`/personal/${username}`, formData);
       addAlert("Profile updated successfully.", "info", "bottom_right");
     } catch (error) {
       addAlert(
@@ -130,14 +118,8 @@ const ControlProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const apiUrl = process.env.REACT_APP_API_URL;
-        const response = await axios.get(
-          `${apiUrl}/api/v1/admin/personal/${username}`,
-          config
-        );
-
+        const response = await axios.get(`/personal/${username}`);
         const data = response.data.data;
-
         if (data) {
           const {
             first_name,
@@ -174,7 +156,7 @@ const ControlProfile = () => {
     };
 
     fetchData();
-  }, [username, authToken, addAlert]);
+  }, [username, addAlert]);
 
   return userFound ? (
     <>
