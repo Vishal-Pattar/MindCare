@@ -125,9 +125,10 @@
   user-select: none;
 }
 
-.typebox__footer span span:hover {
-  text-decoration: underline;
+.typebox__footer span:hover {
+  /* text-decoration: underline; */
   cursor: pointer;
+  color: var(--color-text-primary);
 }
 
 /* Media Queries */
