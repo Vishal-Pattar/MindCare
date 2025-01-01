@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../api/axios.js";
 import { rolePermissions } from "./roles";
 import AuthContext from "../context/AuthContext";
 import { useAlert } from "../context/AlertContext";
@@ -11,23 +11,13 @@ const withAuthorization = (requiredPermission) => (WrappedComponent) => {
     const { addAlert } = useAlert();
     const [loading, setLoading] = useState(true);
     const authToken = sessionStorage.getItem("authToken");
-    const apiUrl = process.env.REACT_APP_API_URL;
-    const navigate = useNavigate(); // Initialize the navigate function
+    const navigate = useNavigate();
 
     useEffect(() => {
       const fetchUserRole = async () => {
         try {
-          if (!ussr && authToken) {
-            const config = {
-              headers: {
-                Authorization: `Bearer ${authToken}`,
-              },
-            };
-
-            const response = await axios.get(
-              `${apiUrl}/api/v1/admin/role`,
-              config
-            );
+          if (!ussr) {
+            const response = await axios.get("/admin/role");
             login({
               username: response.data.username,
               role: response.data.role,
@@ -52,7 +42,7 @@ const withAuthorization = (requiredPermission) => (WrappedComponent) => {
       } else {
         fetchUserRole();
       }
-    }, [ussr, authToken, login, addAlert, apiUrl, navigate]);
+    }, [ussr, authToken, login, addAlert, navigate]);
 
     if (loading) {
       return null; // Or a loading spinner can be returned here
