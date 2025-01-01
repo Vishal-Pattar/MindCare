@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CouponTable from "./CouponTable";
-import axios from "axios";
+import axios from "../../../api/axios.js";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
 import { useAlert } from "../../../context/AlertContext";
@@ -11,12 +11,6 @@ const Coupon = () => {
   const [numberOfCoupons, setNumberOfCoupons] = useState("");
   const [creditsPerCoupon, setCreditsPerCoupon] = useState("");
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
 
   useEffect(() => {
     fetchCoupons();
@@ -24,12 +18,8 @@ const Coupon = () => {
 
   const fetchCoupons = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.get(`${apiUrl}/api/v1/coupons`,
-        config
-      );
+      const response = await axios.get("/coupons");
       const data = response.data.data;
-
       const sortedCoupons = data.sort((a, b) => {
         if (a.status !== b.status) {
           return a.status - b.status;
@@ -39,7 +29,8 @@ const Coupon = () => {
       setCouponStats(response.data.count);
       setCoupons(sortedCoupons);
     } catch (error) {
-      addAlert(error.response ? error.response.data.message : error.message,
+      addAlert(
+        error.response ? error.response.data.message : error.message,
         "error",
         "bottom_right"
       );
@@ -48,14 +39,10 @@ const Coupon = () => {
 
   const handleGenerate = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
-      const response = await axios.post(`${apiUrl}/api/v1/coupons`,
-        {
-          numberOfCoupons: parseInt(numberOfCoupons),
-          creditsPerCoupon: parseInt(creditsPerCoupon),
-        },
-        config
-      );
+      const response = await axios.post("/coupons", {
+        numberOfCoupons: parseInt(numberOfCoupons),
+        creditsPerCoupon: parseInt(creditsPerCoupon),
+      });
       const newCoupons = response.data.data;
       console.log("newCoupons:", response);
 
@@ -71,7 +58,11 @@ const Coupon = () => {
       setNumberOfCoupons("");
       setCreditsPerCoupon("");
     } catch (error) {
-      addAlert(error.response ? error.response.data.message : error.message, "error", "bottom_right");
+      addAlert(
+        error.response ? error.response.data.message : error.message,
+        "error",
+        "bottom_right"
+      );
     }
   };
 
