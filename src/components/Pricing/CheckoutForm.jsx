@@ -22,10 +22,9 @@ const CheckoutForm = ({ amount, planName }) => {
     if (!stripe || !elements) return;
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL;
       const {
         data: { clientSecret },
-      } = await axios.post(`${apiUrl}/api/v1/payments/create-payment-intent`, {
+      } = await axios.post("/payments/create-payment-intent", {
         amount,
         currency: "inr",
       });
