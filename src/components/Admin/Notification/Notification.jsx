@@ -2,28 +2,18 @@ import React, { useState, useEffect } from "react";
 import withAuthorization from "../../../utils/withAuthorization";
 import { Permissions } from "../../../utils/roles";
 import { useAlert } from "../../../context/AlertContext";
-import axios from "axios";
+import axios from "../../../api/axios.js";
 import timeAgo from "../../../utils/timeAgo";
-import Checkbox from "./Checkbox";
+import Checkbox from "../Issues/Checkbox";
 
 const Notification = () => {
   const [notifications, setNotifications] = useState([]);
   const { addAlert } = useAlert();
-  const authToken = sessionStorage.getItem("authToken");
-  const config = {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  };
 
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        const apiUrl = process.env.REACT_APP_API_URL;
-        const response = await axios.get(
-          `${apiUrl}/api/v1/notification`,
-          config
-        );
+        const response = await axios.get("/notification");
         setNotifications(response.data.data);
       } catch (error) {
         addAlert(
@@ -35,7 +25,7 @@ const Notification = () => {
     };
 
     fetchNotifications();
-  }, [authToken, addAlert]);
+  }, [addAlert]);
 
   return (
     <>
