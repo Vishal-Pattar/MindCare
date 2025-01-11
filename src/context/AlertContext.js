@@ -4,6 +4,8 @@ const AlertContext = createContext();
 
 export const useAlert = () => useContext(AlertContext);
 
+let globalAddAlert = null;
+
 export const AlertProvider = ({ children }) => {
   const [alerts, setAlerts] = useState([]);
 
@@ -32,9 +34,25 @@ export const AlertProvider = ({ children }) => {
     setAlerts([]);
   }, []);
 
+  globalAddAlert = addAlert;
+
   return (
-    <AlertContext.Provider value={{ alerts, addAlert, removeAlert, removeAllAlerts, removeAlertByContent }}>
+    <AlertContext.Provider
+      value={{
+        alerts,
+        addAlert,
+        removeAlert,
+        removeAllAlerts,
+        removeAlertByContent,
+      }}
+    >
       {children}
     </AlertContext.Provider>
   );
+};
+
+export const triggerAlert = (message, variant, position) => {
+  if (globalAddAlert) {
+    globalAddAlert(message, variant, position);
+  }
 };
