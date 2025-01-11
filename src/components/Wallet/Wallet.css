@@ -1,0 +1,154 @@
+/* Wallet Container */
+.wallet__container {
+  height: 93vh;
+  width: 100vw;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  box-sizing: border-box;
+}
+
+/* Header Section */
+.wallet__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--color-border);
+  background-color: var(--color-bg);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 25%;
+  gap: 0.5rem;
+}
+
+.wallet__info {
+  font-size: 1rem;
+  font-family: "Geist-Regular", sans-serif;
+  color: var(--color-text-secondary);
+}
+
+.wallet__info span {
+  font-family: "Geist-Bold", sans-serif;
+  color: var(--color-text-primary);
+}
+
+.wallet__title {
+  font-size: 2rem;
+  font-family: "Geist-Bold", sans-serif;
+  color: var(--color-text-primary);
+}
+
+.wallet__balance {
+  background-color: var(--color-bg-light);
+  border-radius: 0.5rem;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 0.5rem;
+}
+
+.wallet__balance span {
+  font-size: 3rem;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.wallet__balance span svg {
+  font-size: 2.5rem;
+}
+
+.wallet__last-updated {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.wallet__actions {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.wallet__button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  color: var(--color-bg);
+  background-color: var(--color-text-primary);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0.5rem 0;
+}
+
+.wallet__button:hover {
+  background-color: var(--color-text-secondary);
+  opacity: 0.9;
+}
+
+/* Transactions Section */
+.wallet__transactions {
+  width: 80%;
+  height: 50vh;
+  position: relative;
+  border: 2px solid var(--color-border);
+  overflow-y: auto;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.wallet__table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+.wallet__table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: var(--color-accent);
+  color: var(--color-text-primary);
+  font-family: "Geist-Bold", sans-serif;
+  box-sizing: border-box;
+}
+
+.wallet__table th,
+.wallet__table td {
+  text-align: center;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-bottom: none;
+}
+
+.wallet__table td {
+  font-family: "Geist-Regular", sans-serif;
+  color: var(--color-text-secondary);
+}
+
+.wallet__table tbody tr:nth-child(odd) {
+  background-color: var(--color-bg);
+}
+
+/* Scrollbar Styling */
+.wallet__transactions::-webkit-scrollbar {
+  width: 10px;
+}
+
+.wallet__transactions::-webkit-scrollbar-track {
+  background: var(--color-bg-body);
+}
+
+.wallet__transactions::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-tertiary);
+  border-radius: 20px;
+  border: 3px solid var(--color-bg-body);
+}
