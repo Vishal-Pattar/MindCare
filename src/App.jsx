@@ -42,14 +42,21 @@ import FAQ from "./components/FAQ/FAQ.jsx";
 
 import Pricing from "./components/Pricing/Pricing.jsx";
 import Checkout from "./components/Pricing/Checkout.jsx";
+import Wallet from "./components/Wallet/Wallet.jsx";
 import Team from "./components/Team/Team.jsx";
+import Confirmation from "./components/Payment/Confirmation.jsx";
 
 const App = () => {
   const [theme, setTheme] = useState("");
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
-    setTheme(storedTheme);
+    if (storedTheme) {
+      setTheme(storedTheme);
+    } else {
+      localStorage.setItem("theme", "theme-soft-blue");
+      setTheme("theme-soft-blue");
+    }
   }, []);
 
   return (
@@ -88,12 +95,14 @@ const App = () => {
 
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/wallet" element={<Wallet />} />
+              <Route path="/cnf" element={<Confirmation />} />
 
               <Route path="/tutorials" element={<Tutorials />} />
               <Route path="/blogs" element={<BlogList />} />
               <Route path="/blogs/:id" element={<BlogDetail />} />
               <Route path="/faqs" element={<FAQ />} />
-              
+
               <Route path="/team" element={<Team />} />
 
               <Route path="*" element={<PageNotFound />} />
