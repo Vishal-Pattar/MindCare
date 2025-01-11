@@ -38,10 +38,10 @@ const BuildProfile = ({ setProfileExists }) => {
       const response = await fetch(
         `https://api.postalpincode.in/pincode/${pincode}`
       );
-      const data = response.data[0];
+      const data = await response.json();
 
-      if (data.Status === "Success" && data.PostOffice?.length > 0) {
-        const { Country, State, District, Block } = data.PostOffice[0];
+      if (data[0].Status === "Success" && data[0].PostOffice?.length > 0) {
+        const { Country, State, District, Block } = data[0].PostOffice[0];
         setFormData((prevData) => ({
           ...prevData,
           country: Country,
