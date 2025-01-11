@@ -43,14 +43,6 @@
   color: var(--color-text-primary);
 }
 
-.pricing__toggle {
-  display: flex;
-  gap: 1rem;
-  font-size: 1rem;
-  align-items: center;
-  color: var(--color-text-secondary);
-}
-
 .pricing__plans {
   width: 100%;
   display: flex;
@@ -68,20 +60,57 @@
   border: 2px solid var(--color-border);
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  row-gap: 2rem;
+  user-select: none;
 }
 
-.pricing__plan-title {
-  font-size: 1.8rem;
-  font-family: "Geist-Bold", sans-serif;
-  margin-bottom: 1rem;
+.pricing__plan--title {
+  width: 100%;
+  font-size: 1.25rem;
+  font-family: "Geist-Medium", sans-serif;
   color: var(--color-text-primary);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.pricing__plan-price {
-  font-size: 2.5rem;
-  color: var(--color-bg-success);
-  font-family: "Geist-Bold", sans-serif;
-  margin-bottom: 1.5rem;
+.pricing__plan--tag {
+  font-size: 0.85rem;
+  font-family: "Geist-Medium", sans-serif;
+  color: var(--color-white);
+  background-color: var(--color-bg-info);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.pricing__plan--subscribed {
+  background-color: var(--color-bg-success);
+  color: var(--color-white);
+  font-size: 0.75rem;
+  font-weight: "Geist-Bold", sans-serif;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+}
+
+.pricing__plan--contain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.pricing__plan--price {
+  font-size: 2rem;
+  color: var(--color-text-primary);
+  font-family: "Geist-Medium", sans-serif;
+}
+
+.pricing__plan--per {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  font-family: "Geist-Regular", sans-serif;
 }
 
 .pricing__features {
@@ -89,15 +118,25 @@
   margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .pricing__feature {
   font-size: 1rem;
   margin: 0.5rem 0;
   color: var(--color-text-secondary);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pricing__feature--icon {
+  font-size: 1rem;
+  color: var(--color-text-primary);
 }
 
 .pricing__btn {
+  width: 100%;
   background-color: var(--color-text-primary);
   color: var(--color-bg);
   border: none;
@@ -122,7 +161,7 @@
   background-color: var(--color-bg);
 }
 
-.pricing__card--custom {
+.pricing__card--enterprise {
   background-color: var(--color-bg);
 }
 
@@ -131,215 +170,121 @@
   transition: all 0.3s ease;
 }
 
-/* Container for the entire checkout section */
-.pricing__container--checkout {
+/*###################### Checkout Container ######################*/
+
+.checkout__container {
+  width: 40vw;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  text-align: left;
-  background-color: var(--color-bg-body);
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  border: 2px solid var(--color-border);
+  border-radius: 0.5rem;
+  background-color: var(--color-bg);
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  gap: 1.5rem;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.pricing__checkout {
-  width: 30vw;
-  padding: 3rem;
-  background-color: var(--color-bg);
+.checkout__title {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Geist-Bold", sans-serif;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+}
+
+.checkout__description-box {
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
-  max-width: 500px;
-  margin: 3rem;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-/* Title in the checkout container */
-.pricing__title {
-  font-size: 2rem;
-  color: var(--color-text-primary);
-  font-family: "Geist-Bold", sans-serif;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  user-select: none;
-}
-
-/* Form layout inside the checkout section */
-.pricing__checkout form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-/* Form input containers */
-.pricing__input {
-  margin-bottom: 0.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.pricing__input label {
-  font-size: 0.85rem;
-  font-family: "Geist-Medium", sans-serif;
-  margin-bottom: 0.4rem;
-  color: var(--color-text-secondary);
-  user-select: none;
-}
-
-/* Stripe Elements and inputs styling */
-.pricing__input input,
-.StripeElement {
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 0.75rem;
-  font-size: 1rem;
+  padding: 1.5rem;
   background-color: var(--color-bg);
-  color: var(--color-text-primary);
-  font-family: "Geist-Regular", sans-serif;
-  transition: border-color 0.2s ease;
+  opacity: 0.95;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.StripeElement iframe {
-  box-shadow: none !important;
-}
-
-/* Disabled input styling for the amount field */
-.disabled-input {
-  background-color: var(--color-accent);
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* Focus state for input fields and Stripe Elements */
-.pricing__input input:focus,
-.StripeElement--focus {
-  border-color: var(--color-text-secondary);
-  outline: none;
-}
-
-/* Container for radio buttons */
-.pricing__radio-group {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-/* Radio button label */
-.pricing__radio-label {
-  display: flex;
-  align-items: center;
-  font-family: "Geist-Regular", sans-serif;
-  color: var(--color-text-primary);
-  font-size: 1rem;
-  cursor: pointer;
-  position: relative;
-}
-
-/* Hide default radio button */
-.pricing__radio-input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-}
-
-/* Custom radio button */
-.pricing__radio-custom {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--color-border);
-  border-radius: 50%;
-  margin-right: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-/* Radio button checked state */
-.pricing__radio-input:checked + .pricing__radio-custom {
-  border-color: var(--color-text-primary);
-  background-color: var(--color-text-primary);
-}
-
-.pricing__radio-input:checked + .pricing__radio-custom::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--color-bg);
-}
-
-/* Button styles */
-.pricing__button {
-  background-color: var(--color-text-primary);
-  color: var(--color-bg);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  cursor: pointer;
+.checkout__heading {
+  font-size: 1.25rem;
   font-family: "Geist-SemiBold", sans-serif;
-  width: 100%;
-  transition: all 0.3s ease;
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
 }
 
-.pricing__button:disabled {
-  background-color: var(--color-border);
+.checkout__details {
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+
+.checkout__details p {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.checkout__details p span {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.checkout__coin--icon {
+  display: flex;
+  align-self: center;
+}
+
+.checkout__terms {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.checkout__terms a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.checkout__terms a:hover {
+  color: var(--color-text-secondary);
+}
+
+.checkout__checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.25rem;
+}
+
+.checkout__button {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-family: "Geist-Regular", sans-serif;
+  color: var(--color-bg-body);
+  background-color: var(--color-text-primary);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.checkout__button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.checkout__button--disabled {
   cursor: not-allowed;
 }
 
-.pricing__button:hover {
-  background-color: var(--color-text-secondary);
+.checkout__button--disabled:hover {
+  transform: none;
 }
 
-/* Footer message and error handling */
-.pricing__footer {
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  color: var(--color-text-secondary);
-  text-align: center;
-}
-
-.pricing__footer.error {
-  color: var(--color-text-error);
-}
-
-/* Media Queries */
-
-/* For tablets */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .pricing__checkout {
-    max-width: 600px;
-    padding: 2rem;
-  }
-
-  .pricing__checkout h2 {
-    font-size: 1.75rem;
-  }
-
-  .pricing__button {
-    font-size: 1rem;
-  }
-}
-
-/* For large screens */
-@media (min-width: 1025px) {
-  .pricing__checkout {
-    max-width: 500px;
-  }
-}
-
-/* For small devices */
-@media (max-width: 767px) {
-  .pricing__checkout {
-    width: 90%;
-    padding: 1.5rem;
-  }
-
-  .pricing__checkout h2 {
-    font-size: 1.5rem;
-  }
-
-  .pricing__button {
-    font-size: 0.95rem;
-    padding: 0.6rem;
-  }
+.checkout__checkbox--icon1 {
+  color: var(--color-text-primary);
 }
