@@ -12,7 +12,7 @@
   display: none;
 }
 
-.outputbox__content span {
+.outputbox__pr {
   display: flex;
   flex-direction: row;
   font-family: "Geist-Regular", sans-serif;
