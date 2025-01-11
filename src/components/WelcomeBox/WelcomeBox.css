@@ -1,14 +1,23 @@
 .welcomebox__container {
+  height: 74vh;
+  width: 100vw;
+  box-sizing: border-box;
+  background: var(--color-bg-body);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+.welcomebox__container--one {
   width: 40vw;
   position: relative;
-  top: 20%;
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;
   border: 1px solid var(--color-border);
   background: var(--color-bg);
   padding: 2rem;
-  margin-top: 6rem;
   display: flex;
   flex-direction: column;
   border-radius: 0.5rem;
@@ -31,28 +40,53 @@
   font-size: 0.9rem;
 }
 
-/* Media Queries */
+.welcomebox__container--two {
+  width: 50vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
 
-/* Small devices (phones) */
+.welcomebox__prompts {
+  color: var(--color-text-primary);
+  padding: 1rem;
+  background-color: var(--color-bg);
+  border-radius: 0.5rem;
+  border: 2px solid var(--color-border);
+  user-select: none;
+  cursor: pointer;
+}
+
+.welcomebox__prompts:hover {
+  background-color: var(--color-bg-hover);
+  border-color: var(--color-text-tertiary);
+}
+
 @media (max-width: 767px) {
   .welcomebox__container {
-    width: 90vw; /* Adjust width for small devices */
+    width: 90vw;
     padding: 1.5rem;
   }
 
   .welcomebox__header {
-    font-size: 1.1rem; /* Slightly smaller font size */
+    font-size: 1.1rem;
   }
 
   .welcomebox__content p {
-    font-size: 0.85rem; /* Adjust paragraph font size for better readability */
+    font-size: 0.85rem;
   }
 }
 
-/* Tablets */
 @media (min-width: 768px) and (max-width: 1024px) {
   .welcomebox__container {
-    width: 70vw; /* More space for tablets */
+    width: 70vw;
     padding: 2rem;
   }
 
@@ -61,6 +95,6 @@
   }
 
   .welcomebox__content p {
-    font-size: 0.9rem; /* Default font size */
+    font-size: 0.9rem;
   }
 }
