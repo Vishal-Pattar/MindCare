@@ -6,10 +6,10 @@ import { Permissions } from "../../utils/roles";
 
 const SettingsPage = () => {
   const [theme, setTheme] = useState(
-    () => localStorage.getItem("theme") || "soft-coral-theme"
+    () => localStorage.getItem("theme")
   );
   const [notifications, setNotifications] = useState(
-    () => localStorage.getItem("notifications") || "enabled"
+    () => localStorage.getItem("notifications")
   );
 
   const handleThemeChange = (event) => {
