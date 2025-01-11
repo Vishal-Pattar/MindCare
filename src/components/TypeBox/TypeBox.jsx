@@ -1,19 +1,18 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import "./TypeBox.css";
-import { FiPlus } from "react-icons/fi";
-import { MdSubdirectoryArrowLeft, MdStop } from "react-icons/md";
+import { MdSubdirectoryArrowLeft } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 import withAuthorization from "../../utils/withAuthorization";
 import { Permissions } from "../../utils/roles";
 
-const TypeBox = ({ addMessage, isResponsePending, handleStop }) => {
+const TypeBox = ({ addMessage, isResponsePending }) => {
   const textareaRef = useRef(null);
 
   const handleSendMessage = useCallback(() => {
     if (textareaRef.current && textareaRef.current.value.trim()) {
-      addMessage(textareaRef.current.value); // Trigger add message
-      textareaRef.current.value = ""; // Clear the input after sending
-      textareaRef.current.style.height = "auto"; // Reset textarea height
+      addMessage(textareaRef.current.value);
+      textareaRef.current.value = "";
+      textareaRef.current.style.height = "auto";
     }
   }, [addMessage]);
 
@@ -50,14 +49,6 @@ const TypeBox = ({ addMessage, isResponsePending, handleStop }) => {
   return (
     <div className="typebox__container">
       <div className="typebox__textarea">
-        <div
-          className="typebox__newchat"
-          data-tooltip-id="typebox_newchat"
-          data-tooltip-content="New Chat"
-        >
-          <Tooltip id="typebox_newchat" className="typebox_tooltip" />
-          <FiPlus className="typebox__icon" />
-        </div>
         <textarea
           rows="1"
           ref={textareaRef}
@@ -67,15 +58,11 @@ const TypeBox = ({ addMessage, isResponsePending, handleStop }) => {
         <div
           className="typebox__submit"
           data-tooltip-id="typebox_submit"
-          data-tooltip-content={isResponsePending ? "Stop" : "Send Message"}
-          onClick={isResponsePending ? handleStop : handleSendMessage} // Switch between send and stop
+          data-tooltip-content="Send Message"
+          onClick={handleSendMessage}
         >
           <Tooltip id="typebox_submit" className="typebox_tooltip" />
-          {isResponsePending ? (
-            <MdStop className="typebox__icon" /> // Show Stop icon
-          ) : (
-            <MdSubdirectoryArrowLeft className="typebox__icon" /> // Show Send icon
-          )}
+          <MdSubdirectoryArrowLeft className="typebox__icon" />
         </div>
       </div>
       <div className="typebox__footer">
