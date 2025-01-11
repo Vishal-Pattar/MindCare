@@ -5,7 +5,7 @@ import TypeBox from "../TypeBox/TypeBox";
 import {
   addMessage,
   fetchChatHistory,
-  responseRecieved,
+  clearMessages,
 } from "../../slices/messagesSlice";
 import { triggerFetchCredits } from "../../hooks/useCredits";
 import withAuthorization from "../../utils/withAuthorization";
@@ -15,12 +15,10 @@ const HomeArea = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.messages.messages);
   const history = useSelector((state) => state.messages.history);
-  const isWordEffectRunning = useSelector(
-    (state) => state.messages.isWordEffectRunning
-  );
   const [currentResponse, setCurrentResponse] = useState(null);
 
   useEffect(() => {
+    dispatch(clearMessages());
     if (sessionStorage.getItem("authToken")) {
       triggerFetchCredits();
       dispatch(fetchChatHistory());
@@ -29,26 +27,17 @@ const HomeArea = () => {
 
   const handleAddMessage = (message) => {
     dispatch(addMessage(message)).then((action) => {
-      setCurrentResponse(action.payload); // Set current response
+      setCurrentResponse(action.payload);
     });
-  };
-
-  const handleStop = () => {
-    dispatch(responseRecieved()); // Stop word effect
-    setCurrentResponse(null); // Clear current response
   };
 
   return (
     <>
-      <TypeBox
-        addMessage={handleAddMessage}
-        isResponsePending={isWordEffectRunning}
-        handleStop={handleStop}
-      />
+      <TypeBox addMessage={handleAddMessage} isResponsePending={false} />
       <OutputBox
         messages={history.concat(messages)}
         currentResponse={currentResponse}
-        onStopEffect={handleStop}
+        addMessage={handleAddMessage}
       />
     </>
   );
