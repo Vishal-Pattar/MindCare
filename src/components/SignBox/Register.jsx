@@ -3,7 +3,7 @@ import "./SignBox.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "../../api/axios.js";
 import { useAlert } from "../../context/AlertContext";
-import decodeFromBase64Url from "../../utils/decodeFromBase64Url";
+import { decodeFromBase64Url } from "../../utils/Base64Url.js";
 
 const RegisterBox = () => {
   const [username, setUsername] = useState("");
