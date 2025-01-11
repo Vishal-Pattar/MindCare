@@ -38,19 +38,23 @@
 }
 
 .redColor {
-  color: var(--color-red);
+  color: var(--color-border-error) !important;
 }
 
 .greenColor {
-  color: var(--color-green);
+  color: var(--color-bg-success) !important;
 }
 
 .blueColor {
-  color: var(--color-blue);
+  color: var(--color-bg-info) !important;
+}
+
+.yellowColor {
+  color: var(--color-bg-warning) !important;
 }
 
 .center {
-  text-align: centersrc\components\Admin;
+  text-align: center;
 }
 
 .roboto-thin {
