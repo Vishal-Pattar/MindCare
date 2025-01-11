@@ -4,10 +4,11 @@ import "./Header.css";
 import axios from "../../api/axios.js";
 import AuthContext from "../../context/AuthContext";
 import useCredits from "../../hooks/useCredits";
-import { HiOutlineMenuAlt3 } from "react-icons/hi";
-import { HiOutlineMenu } from "react-icons/hi";
+import { triggerFetchCredits } from "../../hooks/useCredits";
+import { HiOutlineMenuAlt3, HiOutlineMenu } from "react-icons/hi";
 import { useDispatch } from "react-redux";
 import { clearMessages } from "../../slices/messagesSlice";
+import { RiCopperCoinFill } from "react-icons/ri";
 
 const Header = () => {
   const credits = useCredits();
@@ -22,10 +23,13 @@ const Header = () => {
 
   useEffect(() => {
     setIsAuthenticated(!!token);
+    if (token) {
+      triggerFetchCredits();
+    }
   }, [token]);
 
   const handleLogout = async () => {
-    handleMenu();
+    toggleMenu();
     dispatch(clearMessages());
     try {
       const response = await axios.get("/auth/logout");
@@ -40,8 +44,40 @@ const Header = () => {
     }
   };
 
-  const handleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  const renderMenuItems = () => {
+    if (isAuthenticated) {
+      return (
+        <>
+          <MenuItem to="/chat" label="Chat" onClick={toggleMenu} />
+          <MenuItem to="/profile" label="Profile" onClick={toggleMenu} />
+          <MenuItem to="/pricing" label="Pricing" onClick={toggleMenu} />
+          <MenuItem to="/settings" label="Settings" onClick={toggleMenu} />
+          <MenuItem
+            to="/reportIssue"
+            label="Report Issue"
+            onClick={toggleMenu}
+          />
+          <MenuItem label="Logout" onClick={handleLogout} />
+        </>
+      );
+    }
+
+    return (
+      <>
+        <MenuItem to="/login" label="Login" onClick={toggleMenu} />
+        <MenuItem to="/register" label="Register" onClick={toggleMenu} />
+        <MenuItem
+          to="/resetPassword"
+          label="Reset Password"
+          onClick={toggleMenu}
+        />
+        <MenuItem to="/reportIssue" label="Report Issue" onClick={toggleMenu} />
+      </>
+    );
   };
 
   return (
@@ -60,11 +96,15 @@ const Header = () => {
           )}
           {isAuthenticated && (
             <>
-              <div className="header__stats roboto-regular">
-                Credits:{" "}
+              <div
+                className="header__stats roboto-regular"
+                onClick={() => navigate("/wallet")}
+              >
+                Credits:
                 <span className={credits > 0 ? "greenColor" : "redColor"}>
                   {credits}
                 </span>
+                <RiCopperCoinFill className="header__coin--icon" />
               </div>
               <div className="header__notification roboto-regular">
                 Notifications
@@ -72,7 +112,7 @@ const Header = () => {
               <span className="header__notify">0</span>
             </>
           )}
-          <div className="header__menu--button" onClick={handleMenu}>
+          <div className="header__menu--button" onClick={toggleMenu}>
             {isMenuOpen ? (
               <HiOutlineMenuAlt3 className="header__menu--icon" />
             ) : (
@@ -81,99 +121,25 @@ const Header = () => {
           </div>
         </span>
       </div>
-      {isMenuOpen && (
-        <div className="header__menu">
-          {isAuthenticated && (
-            <>
-              <Link to="/chat">
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleMenu}
-                >
-                  Chat
-                </button>
-              </Link>
-              <Link to="/profile">
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleMenu}
-                >
-                  Profile
-                </button>
-              </Link>
-              <Link to="/pricing">
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleMenu}
-                >
-                  Pricing
-                </button>
-              </Link>
-              <Link to="/settings">
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleMenu}
-                >
-                  Settings
-                </button>
-              </Link>
-              <Link to="/reportIssue">
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleMenu}
-                >
-                  Report Issue
-                </button>
-              </Link>
-              <Link>
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </Link>
-            </>
-          )}
-          {!isAuthenticated && (
-            <>
-              <Link to="/login">
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleMenu}
-                >
-                  Login
-                </button>
-              </Link>
-              <Link to="/register">
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleMenu}
-                >
-                  Register
-                </button>
-              </Link>
-              <Link to="/resetPassword">
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleMenu}
-                >
-                  Reset Password
-                </button>
-              </Link>
-              <Link to="/reportIssue">
-                <button
-                  className="header__menu--item roboto-regular"
-                  onClick={handleMenu}
-                >
-                  Report Issue
-                </button>
-              </Link>
-            </>
-          )}
-        </div>
-      )}
+      {isMenuOpen && <div className="header__menu">{renderMenuItems()}</div>}
     </>
+  );
+};
+
+const MenuItem = ({ to, label, onClick }) => {
+  if (to) {
+    return (
+      <Link to={to}>
+        <button className="header__menu--item roboto-regular" onClick={onClick}>
+          {label}
+        </button>
+      </Link>
+    );
+  }
+  return (
+    <button className="header__menu--item roboto-regular" onClick={onClick}>
+      {label}
+    </button>
   );
 };
 
