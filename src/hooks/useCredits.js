@@ -16,11 +16,11 @@ const useCredits = () => {
       const response = await axios.get("/metrics/user");
       setCredits(response.data.data.credits_available);
     } catch (error) {
-      addAlert(
-        error.response.data.error || error.message,
-        "error",
-        "bottom_right"
-      );
+      // addAlert(
+      //   error.response.data.error || error.message,
+      //   "error",
+      //   "bottom_right"
+      // );
     }
   };
 
