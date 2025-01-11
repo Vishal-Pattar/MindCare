@@ -1,14 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../api/axios.js";
+import { triggerAlert } from "../context/AlertContext.js";
 
 // Fetch chat history
 export const fetchChatHistory = createAsyncThunk(
   "messages/fetchChatHistory",
   async (_, { rejectWithValue }) => {
     try {
-      const token = sessionStorage.getItem("authToken");
-      const sessionId = token.split(".")[2];
-      const response = await axios.get(`/history/${sessionId}`);
+      const response = await axios.get(`/history`);
       return response.data;
     } catch (error) {
       return rejectWithValue(
@@ -52,15 +51,11 @@ const messagesSlice = createSlice({
     history: [],
     loading: false,
     error: null,
-    isWordEffectRunning: false,
     isResponsePending: false,
   },
   reducers: {
     clearMessages: (state) => {
       state.messages = [];
-    },
-    startWordEffect: (state) => {
-      state.isWordEffectRunning = true;
     },
     promptSent: (state, action) => {
       const { id, user } = action.payload;
@@ -69,7 +64,6 @@ const messagesSlice = createSlice({
     },
     responseRecieved: (state) => {
       state.isResponsePending = false;
-      state.isWordEffectRunning = false;
     },
     updateMessageOutput: (state, action) => {
       const { id, output } = action.payload;
@@ -77,9 +71,6 @@ const messagesSlice = createSlice({
       if (message) {
         message.response = output;
       }
-    },
-    stopWordEffect: (state) => {
-      state.isWordEffectRunning = false;
     },
   },
   extraReducers: (builder) => {
@@ -104,17 +95,24 @@ const messagesSlice = createSlice({
       .addCase(addMessage.rejected, (state, action) => {
         state.error = action.payload;
         state.isResponsePending = false;
+
+        const tempMessage = state.messages.find(
+          (msg) => msg.response === "Loading..."
+        );
+        if (tempMessage) {
+          tempMessage.response = "";
+        }
+
+        triggerAlert(action.payload, "error", "bottom_right");
       });
   },
 });
 
 export const {
   clearMessages,
-  startWordEffect,
   promptSent,
   responseRecieved,
   updateMessageOutput,
-  stopWordEffect,
 } = messagesSlice.actions;
 
 export default messagesSlice.reducer;
