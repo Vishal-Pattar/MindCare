@@ -36,6 +36,9 @@ a {
   cursor: pointer;
   user-select: none;
   transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .header__button:hover {
@@ -95,7 +98,6 @@ span {
   text-decoration: none;
   color: var(--color-text-primary);
   background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   display: flex;
   justify-content: center;
@@ -103,10 +105,11 @@ span {
 }
 
 .header__menu--item {
+  width: 100%;
   font-size: 1rem;
   font-family: "Geist-Medium", sans-serif;
   padding: 0.5rem 1rem;
-  border: none;
+  border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   background: transparent;
   color: var(--color-text-primary);
@@ -116,7 +119,7 @@ span {
   text-decoration: none;
 }
 
-.header__menu a:hover {
+.header__menu--item:hover {
   background-color: var(--color-bg-hover);
   border-color: var(--color-text-tertiary);
 }
