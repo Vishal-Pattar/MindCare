@@ -18,6 +18,8 @@ const LandingPage = () => {
       document.documentElement.classList.add(storedTheme);
     }
 
+    console.log(storedTheme);
+
     // Trigger credits fetch if authToken is in sessionStorage
     if (sessionStorage.getItem("authToken")) {
       triggerFetchCredits();
@@ -37,6 +39,8 @@ const LandingPage = () => {
     const borderColor = computedStyle
       .getPropertyValue("--color-bg-body")
       .trim();
+
+    console.log(borderColor);
 
     // Handle image loading
     img.onload = () => {
@@ -66,7 +70,7 @@ const LandingPage = () => {
         document.documentElement.classList.remove(storedTheme);
       }
     };
-  }, []);
+  }, [localStorage]);
 
   return (
     <div className="landingpage__container">
