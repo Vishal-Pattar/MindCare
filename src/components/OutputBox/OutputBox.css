@@ -40,9 +40,9 @@
   white-space: pre-wrap;
 }
 
-.outputbox__textspace_output {
+/* .outputbox__textspace_output {
   padding: 0;
-}
+} */
 
 .loader {
   height: 1.5rem;
