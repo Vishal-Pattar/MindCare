@@ -5,6 +5,7 @@ import "./Payment.css";
 import { useAlert } from "../../context/AlertContext";
 import { formatDateTimeinTransaction } from "../../utils/formatDateTime";
 import { RiCopperCoinFill } from "react-icons/ri";
+import { triggerFetchCredits } from "../../hooks/useCredits";
 
 const Confirmation = () => {
   const [paymentConfirmation, setPaymentConfirmation] = useState(null);
@@ -12,15 +13,21 @@ const Confirmation = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const session_id = new URLSearchParams(window.location.search).get("session_id");
+    const session_id = new URLSearchParams(window.location.search).get(
+      "session_id"
+    );
 
     if (session_id) {
       const verifyPayment = async () => {
         try {
-          const response = await axios.post("/payments/verify-payment-session", {
-            session_id,
-          });
+          const response = await axios.post(
+            "/payments/verify-payment-session",
+            {
+              session_id,
+            }
+          );
           setPaymentConfirmation(response.data.data);
+          triggerFetchCredits();
         } catch (error) {
           addAlert(
             error.response?.data?.message || "Failed to verify payment.",
@@ -48,7 +55,9 @@ const Confirmation = () => {
   if (!paymentConfirmation) {
     return (
       <div className="payment__container">
-        <span className="payment__loading">Loading payment confirmation...</span>
+        <span className="payment__loading">
+          Loading payment confirmation...
+        </span>
       </div>
     );
   }
@@ -58,15 +67,22 @@ const Confirmation = () => {
       <div className="payment__header">
         <h1 className="payment__title">Payment Confirmation</h1>
       </div>
-      <div className={`payment__info ${getStatusClass(paymentConfirmation.paymentStatus)}`}>
+      <div
+        className={`payment__info ${getStatusClass(
+          paymentConfirmation.paymentStatus
+        )}`}
+      >
         <p>
-          <span className="payment__label">Username:</span> {paymentConfirmation.username}
+          <span className="payment__label">Username:</span>{" "}
+          {paymentConfirmation.username}
         </p>
         <p>
-          <span className="payment__label">Transaction ID:</span> {paymentConfirmation.transactionId}
+          <span className="payment__label">Transaction ID:</span>{" "}
+          {paymentConfirmation.transactionId}
         </p>
         <p>
-          <span className="payment__label">Amount:</span> ₹{paymentConfirmation.amount}
+          <span className="payment__label">Amount:</span> ₹
+          {paymentConfirmation.amount}
         </p>
         <p>
           <span className="payment__label">Credits:</span>
