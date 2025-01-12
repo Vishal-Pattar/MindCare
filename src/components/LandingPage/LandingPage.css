@@ -43,7 +43,7 @@
   height: 50vh;
   aspect-ratio: 16/9;
   background-color: var(--color-border);
-  border-radius: 1rem;
+  border-radius: 0.25rem;
   position: relative;
   left: 50%;
   transform: translate(-50%, 15%);
@@ -52,19 +52,30 @@
   padding: 0.75rem;
 }
 
+.landingpage__boardborder span {
+  font-family: "SamsungOne", sans-serif;
+  font-size: 0.6rem;
+  position: absolute;
+  bottom: 0rem;
+  right: 50%;
+  transform: translateX(50%);
+  color: var(--color-text-primary);
+  line-height: 0.75rem;
+}
+
 .landingpage__boardcontent {
   height: 100%;
   width: 100%;
-  border-radius: 1rem;
+  border-radius: 0.25rem;
   box-sizing: border-box;
-  background-color: var(--color-text-secondary);
+  background-color: var(--color-border);
 }
 
 .landingpage__gif {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  border-radius: 1rem;
+  border-radius: 0.25rem;
 }
 
 .landingpage__people {
