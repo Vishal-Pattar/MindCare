@@ -1,95 +1,93 @@
 const faqData = [
   {
-    question: "What is the purpose of this platform?",
+    question: "Does the system provide therapy or prescribe medication?",
     answer:
-      "Our platform is designed to offer AI-based mental health support services to individuals suffering from issues like anxiety, depression, and other mental health conditions. It provides users with a confidential and anonymous space where they can access professional guidance and mental health resources.",
+      "No, the system does not provide therapy sessions or prescribe any medication. It focuses solely on offering AI-driven conversations to support users emotionally.",
   },
   {
-    question: "How does the AI system work in providing mental health support?",
+    question: "Who can use this system?",
     answer:
-      "Our AI models are trained using mental health data from trusted sources. These AI models analyze user input and offer personalized responses, providing emotional support, relaxation techniques, or suggestions for managing mental health challenges.",
+      "Anyone experiencing feelings of loneliness, anxiety, or depression can use the system to engage in friendly and uplifting conversations. It is not limited to individuals diagnosed with mental health conditions.",
   },
   {
-    question: "Is this platform a substitute for a therapist?",
+    question: "Is my conversation with the AI private?",
     answer:
-      "No, our platform is not a replacement for professional therapy. It is designed to offer support, guidance, and resources for users dealing with mental health issues. For serious conditions, we recommend seeking professional help from certified therapists or medical professionals.",
+      "Yes, user privacy is our top priority. All conversations are secure, anonymous, and are not shared with any third parties.",
   },
   {
-    question: "How do you ensure user anonymity?",
+    question: "Is the AI available 24/7?",
     answer:
-      "We use encrypted communication protocols and do not store personal identifiers that could be traced back to individual users. All conversations are anonymized to encourage open and honest sharing, ensuring complete privacy.",
+      "Yes, the AI is accessible 24/7, ensuring continuous support whenever needed.",
   },
   {
-    question: "What kind of mental health issues does the platform address?",
+    question: "Does the system charge any fees?",
     answer:
-      "Our platform primarily addresses anxiety, depression, stress, and related emotional and mental health challenges. The AI system offers coping mechanisms and advice to help users manage their emotions better.",
+      "The system operates on a freemium model. Basic features are free, while premium options require a subscription.",
   },
   {
-    question: "How reliable is the AI in offering mental health advice?",
+    question: "Does the system support multiple languages?",
     answer:
-      "Our AI models are trained using credible data from mental health organizations, ensuring the information provided is accurate and trustworthy. However, we advise users to consult healthcare professionals for severe cases.",
+      "Currently, the system is available in English. We are working to expand language support to reach a broader audience.",
   },
   {
-    question:
-      "What makes your platform different from other mental health apps?",
+    question: "Do I need to create an account to use the system?",
     answer:
-      "Our platform is powered by advanced AI models that deliver personalized and real-time emotional support. Additionally, we emphasize anonymity and privacy, and our credit-based system allows users to engage with the platform on their terms.",
+      "Yes, an account is required to use the system.",
   },
   {
-    question: "How does the platform help in preventing burnout?",
+    question: "Does the system save chat history?",
     answer:
-      "The platform offers stress-relief exercises, emotional support conversations, and resources designed to help users manage their workload and personal stress, reducing the risk of burnout.",
+      "Yes, chat history is securely stored for a limited period. This ensures privacy while maintaining a personalized experience.",
   },
   {
-    question: "Can companies use this platform for their employees?",
+    question: "Can I provide suggestions for improvement?",
     answer:
-      "Yes, we offer B2B packages for companies looking to provide mental health support to their employees. Corporate clients can subscribe to our services through bulk packages, ensuring that employees have access to the platform s mental health resources.",
+      "Yes, we value user feedback. Suggestions can be submitted via the 'Feedback' section on our website.",
   },
   {
-    question:
-      "What are the main benefits of using AI for mental health support?",
+    question: "How long does it take to set up the system?",
     answer:
-      "AI provides instant and personalized responses, allowing users to get real-time emotional support. Additionally, AI offers anonymity, which can make users more comfortable sharing sensitive information about their mental health.",
+      "The setup process is quick and straightforward. You can start using the system immediately after creating an account.",
   },
   {
-    question: "What kind of data is used to train the AI models?",
+    question: "How do I start using the system?",
     answer:
-      "We source our data from reputable mental health organizations such as the WHO and National Institutes of Health. The models are trained to offer responses that are scientifically accurate and empathetic to the user s situation.",
+      "Visit our website, create an account, and begin chatting with the AI.",
   },
   {
-    question: "Can the platform be used globally?",
+    question: "How can I report an issue?",
     answer:
-      "Yes, our platform is available to users worldwide, though we are initially focusing on Indian national data to address local needs. However, our goal is to expand to a global audience with localized solutions.",
+      "If you face any issues, report them via the 'Report an Issue' feature or contact us through email or the 'Contact Us' page on our website.",
   },
   {
-    question: "Does the platform offer support in multiple languages?",
+    question: "Is there a time limit for conversations?",
     answer:
-      "Currently, the platform supports English, but we are working on incorporating more regional and global languages to make it accessible to a wider audience.",
+      "Subscribed users have unlimited chat access. Non-subscribed users can chat until their free credits are exhausted.",
   },
   {
-    question: "Are the AI models continuously updated?",
+    question: "Is the system suitable for children?",
     answer:
-      "Yes, our AI models are periodically updated with the latest mental health data and techniques. This ensures that users are receiving the most up-to-date advice and support.",
+      "The system is designed for users aged 18 and above. Parental guidance is recommended for younger users.",
   },
   {
-    question: "What should I do if the platform doesn t solve my issue?",
+    question: "Can the AI provide emergency assistance?",
     answer:
-      "If the platform doesn't meet your expectations or resolve your mental health concern, we recommend consulting a licensed therapist or healthcare provider for further assistance.",
+      "No, the system is not equipped to handle emergencies. For immediate help, please contact a mental health professional or an emergency helpline.",
   },
   {
-    question: "What technologies are used in building this platform?",
+    question: "Can the AI detect if I need urgent help?",
     answer:
-      "Our platform leverages cutting-edge technologies like Artificial Intelligence (AI) and Machine Learning (ML) models, including LLAMA 3.1 and Mistral, to provide personalized mental health support. We also use cloud computing to ensure scalability and seamless performance.",
+      "The AI is programmed to detect certain patterns indicating distress. In such cases, it may recommend contacting a mental health professional or helpline.",
   },
   {
-    question: "What role does Machine Learning play in the platform?",
+    question: "Are there plans to add new features?",
     answer:
-      "Machine Learning (ML) helps the platform to learn and improve over time. As more users interact with the platform, the AI models can adapt and provide better recommendations based on historical interactions and feedback, thus improving the accuracy and effectiveness of support.",
+      "Yes, we are constantly improving the system based on user feedback and exploring new features to enhance user experience.",
   },
   {
-    question: "How is user data processed and stored?",
+    question: "Can I use the system on mobile devices?",
     answer:
-      "All user data is processed securely through our cloud infrastructure. We use encrypted databases to store data, and access to this information is strictly controlled. We follow data protection regulations like GDPR and HIPAA to ensure user privacy and security.",
+      "Yes, the system is optimized for mobile and desktop devices for seamless use across platforms.",
   },
 ];
 
