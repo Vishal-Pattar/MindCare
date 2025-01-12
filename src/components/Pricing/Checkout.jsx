@@ -1,38 +1,49 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import "./Checkout.css";
+import { useLocation, Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import { useAlert } from "../../context/AlertContext";
 import { FaCheckSquare, FaRegSquare } from "react-icons/fa";
-import { RiCopperCoinFill } from "react-icons/ri";
 import axios from "../../api/axios";
 import { decodeFromBase64Url } from "../../utils/Base64Url.js";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
+const useQuery = () => new URLSearchParams(useLocation().search);
 
 const Checkout = () => {
   const query = useQuery();
   const encodedData = query.get("data");
   const { addAlert } = useAlert();
+
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [plan, setPlan] = useState("Pay as you go");
+  const [amount, setAmount] = useState("");
+  const [credits, setCredits] = useState("");
 
-  let planName = "";
-  let amount = 0;
-  let credits = 0;
-
-  if (encodedData) {
-    try {
-      const decodedData = decodeFromBase64Url(encodedData); // Decode the query parameter
-      planName = decodedData.planName;
-      amount = decodedData.amount;
-      credits = amount / 2; // Calculate credits
-    } catch (error) {
-      addAlert("Invalid payment data.", "error", "bottom_right");
+  useEffect(() => {
+    if (encodedData) {
+      try {
+        const decodedData = decodeFromBase64Url(encodedData);
+        setPlan(decodedData.planName);
+        setAmount(decodedData.amount);
+        setCredits(decodedData.amount / 2);
+      } catch (error) {
+        addAlert("Invalid payment data.", "error", "bottom_right");
+      }
     }
-  }
+  }, [encodedData, addAlert]);
+
+  const handleAmountChange = (value) => {
+    const numericValue = parseFloat(value);
+    if (numericValue) {
+      setAmount(numericValue);
+      setCredits(parseInt(numericValue / 2));
+    } else {
+      setAmount("");
+      setCredits("");
+    }
+  };
 
   const handleCheckout = async () => {
     if (!termsAccepted) {
@@ -53,7 +64,7 @@ const Checkout = () => {
 
     try {
       const response = await axios.post("/payments/create-checkout-session", {
-        planName,
+        planName: plan,
         amount,
       });
 
@@ -80,43 +91,46 @@ const Checkout = () => {
 
   return (
     <div className="checkout__container">
-      <h1 className="checkout__title">Secure Checkout</h1>
-      <div className="checkout__description-box">
-        <h2 className="checkout__heading">Description of Purchase</h2>
-        <div className="checkout__details">
-          <p>
-            <strong>Plan:</strong> {planName}
-          </p>
-          <p>
-            <strong>Amount:</strong> ₹{amount}
-          </p>
-          <p>
-            <strong>Credits:</strong>
-            <span>
-              {credits}
-              <RiCopperCoinFill className="checkout__coin--icon" />
-            </span>
-            will be added to your wallet
-          </p>
-        </div>
+      <div className="checkout__title">Secure Checkout</div>
+      <div className="checkout__description">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus,
+        autem.
       </div>
-      <div className="checkout__terms">
-        <div
-          className="checkout__checkbox"
-          onClick={() => setTermsAccepted(!termsAccepted)}
-        >
-          {termsAccepted ? (
-            <FaCheckSquare size={20} className="checkout__checkbox--icon1" />
-          ) : (
-            <FaRegSquare size={20} className="checkout__checkbox--icon2" />
-          )}
-          <label>
-            I accept the{" "}
-            <a href="/terms" target="_blank" rel="noopener noreferrer">
-              Terms and Conditions
-            </a>
-          </label>
-        </div>
+      <div className="checkout__inputGroup">
+        <label htmlFor="plan">Plan</label>
+        <input id="plan" type="text" value={plan} readOnly disabled />
+      </div>
+      <div className="checkout__inputGroup">
+        <label htmlFor="amount">Amount</label>
+        <input
+          id="amount"
+          type="text"
+          placeholder="Enter Amount"
+          value={amount}
+          onChange={(e) => handleAmountChange(e.target.value)}
+          disabled={!!encodedData}
+          required
+        />
+      </div>
+      <div className="checkout__inputGroup">
+        <label htmlFor="credits">Credits</label>
+        <input id="credits" type="text" value={credits} readOnly disabled />
+      </div>
+      <div
+        className="checkout__checkbox"
+        onClick={() => setTermsAccepted(!termsAccepted)}
+      >
+        {termsAccepted ? (
+          <FaCheckSquare size={20} className="checkout__checkbox--icon1" />
+        ) : (
+          <FaRegSquare size={20} className="checkout__checkbox--icon2" />
+        )}
+        <span>
+          I accept the&nbsp;
+          <Link to="/terms" target="_blank" rel="noopener noreferrer">
+            Terms and Conditions
+          </Link>
+        </span>
       </div>
       <button
         onClick={handleCheckout}
