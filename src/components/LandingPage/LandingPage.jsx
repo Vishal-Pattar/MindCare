@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./LandingPage.css";
-import gif from "../../assets/MindCare2.gif";
+import gif from "../../assets/MindCare.gif";
 import { triggerFetchCredits } from "../../hooks/useCredits";
 import people from "../../assets/watching-people.png";
 import servicesData from "./servicesData.js";
@@ -17,8 +17,6 @@ const LandingPage = () => {
     if (storedTheme) {
       document.documentElement.classList.add(storedTheme);
     }
-
-    console.log(storedTheme);
 
     // Trigger credits fetch if authToken is in sessionStorage
     if (sessionStorage.getItem("authToken")) {
@@ -39,8 +37,6 @@ const LandingPage = () => {
     const borderColor = computedStyle
       .getPropertyValue("--color-bg-body")
       .trim();
-
-    console.log(borderColor);
 
     // Handle image loading
     img.onload = () => {
@@ -78,6 +74,7 @@ const LandingPage = () => {
         <div className="landingpage__boardcontent">
           <img src={gif} alt="MindCare" className="landingpage__gif" />
         </div>
+        <span>SAMSUNG</span>
       </div>
       <canvas ref={canvasRef} className="landingpage__people" />
       <div className="landingpage__service">
