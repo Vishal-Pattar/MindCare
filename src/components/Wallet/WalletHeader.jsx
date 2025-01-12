@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { RiCopperCoinFill } from "react-icons/ri";
 import { useAlert } from "../../context/AlertContext.js";
 import axios from "../../api/axios.js";
@@ -7,6 +8,7 @@ import formatDateTime from "../../utils/formatDateTime.js";
 const WalletHeader = () => {
   const [userData, setUserData] = useState();
   const { addAlert } = useAlert();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMetrics = async () => {
@@ -47,7 +49,12 @@ const WalletHeader = () => {
           <button className="wallet__button" onClick={handleRefresh}>
             Refresh
           </button>
-          <button className="wallet__button">Top Up</button>
+          <button
+            className="wallet__button"
+            onClick={() => navigate("/checkout")}
+          >
+            Top Up
+          </button>
         </div>
       </div>
     </div>
