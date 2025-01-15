@@ -1,6 +1,4 @@
-# ![MindCare Banner]()
-
-# MindCare
+![MindCare-Banner](https://github.com/user-attachments/assets/e6c63eb0-a958-4d20-9757-3b1ffc037f1f)
 
 ## Inspiration
 
